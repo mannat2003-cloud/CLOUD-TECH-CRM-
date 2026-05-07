@@ -151,6 +151,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 
   background: rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(18px);
@@ -253,6 +254,29 @@ backdrop-filter: blur(8px);
       color: #64748b;
       font-size: 13px;
     }
+    .bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.55;
+  z-index: 1;
+}
+
+.glow1 {
+  width: 350px;
+  height: 350px;
+  background: #2563eb;
+  top: -120px;
+  right: 150px;
+}
+
+.glow2 {
+  width: 280px;
+  height: 280px;
+  background: #38bdf8;
+  bottom: -100px;
+  right: 250px;
+}
 
     @keyframes float {
       0%,100% { transform: translateY(0) rotate(0deg); }
@@ -272,7 +296,12 @@ backdrop-filter: blur(8px);
         height: auto;
         grid-template-columns: 1fr;
       }
+      .login-panel {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
 
+       background: rgba(255,255,255,0.18);
+      }
       .brand-panel {
         min-height: 300px;
         padding: 45px 30px;
