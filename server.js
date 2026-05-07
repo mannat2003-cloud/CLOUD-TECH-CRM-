@@ -217,6 +217,12 @@ app.put("/reset-password", async (req, res) => {
 app.delete("/delete-account", async (req, res) => {
   const { username } = req.headers;
 
+  if (username.toLowerCase() === "cloudtech") {
+  return res.json({
+    success: false,
+    message: "Main admin account cannot be deleted"
+  });
+}
   await Lead.deleteMany({ createdBy: username });
   await User.deleteOne({ username: username });
 
