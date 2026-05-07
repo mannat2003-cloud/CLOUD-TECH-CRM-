@@ -143,14 +143,21 @@
     }
 
     .login-panel {
-      padding: 70px 55px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: rgba(255,255,255,0.96);
-      position: relative;
-      z-index: 10;
-    }
+  padding: 70px 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.22);
+
+  position: relative;
+  z-index: 10;
+}
 
     .login-logo {
       text-align: center;
@@ -167,7 +174,7 @@
     .login-panel h1 {
       text-align: center;
       font-size: 30px;
-      color: #111827;
+      color: #0f172a;;
       margin: 0;
     }
 
@@ -207,6 +214,8 @@
       outline: none;
       font-size: 14px;
       transition: .2s;
+      background: rgba(255,255,255,0.75);
+backdrop-filter: blur(8px);
     }
 
     .input-box input:focus {
