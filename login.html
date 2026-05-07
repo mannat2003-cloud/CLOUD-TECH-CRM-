@@ -1,110 +1,364 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Cloud Tech Login</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #2563eb, #1e3a8a);
-      height: 100vh;
+      min-height: 100vh;
+      background: #020617;
       display: flex;
-      flex-wrap: wrap;
-gap:10px;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
 
-    .login-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 90%;
-  max-width: 350px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      margin-bottom: 5px;
-      color:#2563eb;
-    }
-
-    input {
+    .login-page {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      max-width: 1200px;
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: linear-gradient(135deg, #020617, #0f172a, #082f49);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
     }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #2563eb;
+    .brand-panel {
+      padding: 60px;
       color: white;
-      font-weight: bold;
-      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    button:hover {
-      background: #1e40af;
+    .brand-title {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .brand-title span {
+      color: #38bdf8;
+    }
+
+    .brand-subtitle {
+      color: #cbd5e1;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 60px;
+    }
+
+    .headline {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 40px;
+    }
+
+    .headline span {
+      color: #38bdf8;
+    }
+
+    .feature {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 26px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .feature h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .feature p {
+      margin: 5px 0 0;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .cloud-art {
+      position: absolute;
+      bottom: 35px;
+      right: 45px;
+      width: 260px;
+      height: 150px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #dbeafe, #38bdf8);
+      opacity: 0.9;
+      filter: drop-shadow(0 0 35px rgba(14,165,233,0.55));
+    }
+
+    .cloud-art::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      left: 45px;
+      top: -55px;
+    }
+
+    .cloud-art::after {
+      content: "☁";
+      position: absolute;
+      font-size: 70px;
+      color: #2563eb;
+      left: 94px;
+      top: 28px;
+    }
+
+    .login-panel {
+      background: rgba(255,255,255,0.96);
+      margin: 32px;
+      border-radius: 26px;
+      padding: 55px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
+    }
+
+    .logo-circle {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: white;
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    }
+
+    .logo-circle img {
+      max-width: 70px;
+      max-height: 70px;
+      object-fit: contain;
+    }
+
+    .login-panel h1 {
+      text-align: center;
+      font-size: 30px;
+      margin: 0;
+      color: #0f172a;
+    }
+
+    .login-panel p {
+      text-align: center;
+      color: #475569;
+      margin: 12px 0 38px;
+      font-size: 16px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 14px;
+      color: #111827;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 16px 16px 16px 48px;
+      border-radius: 13px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+      background: white;
+    }
+
+    .input-box input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 43px;
+      left: 17px;
+      color: #64748b;
+      font-size: 18px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: white;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: 0.25s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(37,99,235,0.35);
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 34px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .login-page {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-panel {
+        display: none;
+      }
+
+      .login-panel {
+        margin: 18px;
+        padding: 40px 25px;
+      }
     }
   </style>
-
 </head>
 
 <body>
 
-<div class="login-box">
+  <div class="login-page">
 
-  <div style="text-align:center; margin-bottom:15px;">
-    <img src="logo.png" style="width:200px; border-radius:12px;">
+    <div class="brand-panel">
+      <div class="brand-title">CLOUD <span>TECH</span></div>
+      <div class="brand-subtitle">CRM & FOLLOW-UP MANAGEMENT SYSTEM</div>
+
+      <div class="headline">
+        Manage Leads.<br>
+        Track Follow-ups.<br>
+        <span>Grow Your Business.</span>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">👥</div>
+        <div>
+          <h3>Centralized Lead Management</h3>
+          <p>Store and organize all your leads in one secure place.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📅</div>
+        <div>
+          <h3>Smart Follow-ups</h3>
+          <p>Never miss a follow-up. Stay on top of every lead.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <div>
+          <h3>Performance Insights</h3>
+          <p>Track your team performance with powerful dashboards.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <div>
+          <h3>Secure & Reliable</h3>
+          <p>Your data is secured with role-based login access.</p>
+        </div>
+      </div>
+
+      <div class="cloud-art"></div>
+    </div>
+
+    <div class="login-panel">
+      <div class="logo-circle">
+        <img src="logo.png" alt="Cloud Tech Logo">
+      </div>
+
+      <h1>Welcome Back!</h1>
+      <p>Sign in to continue to Cloud Tech CRM</p>
+
+      <div class="input-box">
+        <label>Username</label>
+        <span class="input-icon">👤</span>
+        <input id="username" placeholder="Enter your username">
+      </div>
+
+      <div class="input-box">
+        <label>Password</label>
+        <span class="input-icon">🔒</span>
+        <input id="password" type="password" placeholder="Enter your password">
+      </div>
+
+      <button class="login-btn" onclick="login()">Login</button>
+
+      <div class="footer-text">
+        © 2026 Cloud Tech. All rights reserved.
+      </div>
+    </div>
+
   </div>
-
-  <h1>Cloud Tech Pvt. Ltd.</h1>
-
-  <input id="username" placeholder="username">
-  <input id="password" type="password" placeholder="Password">
-
-<button onclick="login()">Login</button>
-
-</div>
 
 <script>
   if (localStorage.getItem("loggedIn")) {
-  window.location.href = "index.html";
-}
-
-async function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  const res = await fetch("/login", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ username, password })
-  });
-
-  const data = await res.json();
-
-  if (data.success) {
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("username", data.username);   
-    localStorage.setItem("role", data.role);
-
     window.location.href = "index.html";
-  } else {
-    alert("Invalid credentials");
   }
-}
 
+  async function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("role", data.role);
+
+      window.location.href = "index.html";
+    } else {
+      alert("Invalid credentials");
+    }
+  }
 </script>
 
 </body>
