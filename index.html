@@ -1788,15 +1788,21 @@ async function deleteMyAccount() {
 
   if (!confirmDelete) return;
 
-  await fetch("/delete-account", {
+  const res = await fetch("/delete-account", {
     method: "DELETE",
     headers: {
       username: localStorage.getItem("username")
     }
   });
 
-  localStorage.clear();
+  const data = await res.json();
 
+  if (!data.success) {
+    alert(data.message);
+    return;
+  }
+
+  localStorage.clear();
   window.location.href = "/login.html";
 }
 
