@@ -5,302 +5,330 @@
   <title>Cloud Tech Login</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  min-height: 100vh;
-  background: #020617;
-}
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
     .login-page {
-  width: 100%;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: linear-gradient(135deg, #020617, #0f172a, #082f49);
-}
+      width: 92%;
+      max-width: 1100px;
+      height: 620px;
+      background: white;
+      border-radius: 18px;
+      display: grid;
+      grid-template-columns: 58% 42%;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(37,99,235,0.22);
+      position: relative;
+    }
 
     .brand-panel {
-      padding: 60px;
-      color: white;
       position: relative;
       overflow: hidden;
+      padding: 70px 60px;
+      background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 45% 55% 60% 40%;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.95;
+    }
+
+    .blob.one {
+      width: 330px;
+      height: 330px;
+      background: #38bdf8;
+      left: -120px;
+      bottom: -80px;
+    }
+
+    .blob.two {
+      width: 310px;
+      height: 360px;
+      background: #2563eb;
+      right: -80px;
+      top: -90px;
+      animation-delay: 1s;
+    }
+
+    .blob.three {
+      width: 180px;
+      height: 180px;
+      background: #93c5fd;
+      right: 140px;
+      bottom: 50px;
+      animation-delay: 2s;
+    }
+
+    .dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2563eb;
+      animation: bounce 3s infinite;
+    }
+
+    .dot.d1 { top: 55px; left: 130px; }
+    .dot.d2 { top: 95px; left: 310px; background:#38bdf8; animation-delay:.5s; }
+    .dot.d3 { bottom: 90px; left: 240px; background:#0ea5e9; animation-delay:1s; }
+
+    .curve {
+      position: absolute;
+      width: 180px;
+      height: 80px;
+      border-top: 2px solid rgba(15,23,42,0.25);
+      border-radius: 50%;
+      top: 40px;
+      left: 80px;
+      transform: rotate(12deg);
+    }
+
+    .brand-content {
+      position: relative;
+      z-index: 5;
+      max-width: 390px;
     }
 
     .brand-title {
       font-size: 42px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #0f172a;
+      margin-bottom: 10px;
     }
 
     .brand-title span {
-      color: #38bdf8;
+      color: #2563eb;
     }
 
     .brand-subtitle {
-      color: #cbd5e1;
-      letter-spacing: 2px;
+      color: #475569;
       font-size: 13px;
-      margin-bottom: 60px;
+      letter-spacing: 2px;
+      margin-bottom: 70px;
     }
 
-    .headline {
+    .welcome-left {
       font-size: 34px;
       font-weight: 800;
-      line-height: 1.3;
-      margin-bottom: 40px;
+      color: #1e293b;
+      margin-bottom: 14px;
     }
 
-    .headline span {
-      color: #38bdf8;
+    .welcome-text {
+      color: #475569;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 330px;
     }
 
-    .feature {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 26px;
-      align-items: flex-start;
+    .decor-line {
+      margin-top: 35px;
+      width: 75px;
+      height: 4px;
+      border-radius: 20px;
+      background: #2563eb;
     }
 
-    .feature-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #2563eb, #0ea5e9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .feature h3 {
-      margin: 0;
-      font-size: 15px;
-    }
-
-    .feature p {
-      margin: 5px 0 0;
-      color: #cbd5e1;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    
     .login-panel {
-      background: rgba(255,255,255,0.96);
-      margin: 32px;
-      border-radius: 26px;
-      padding: 55px 50px;
+      padding: 70px 55px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.96);
+      position: relative;
+      z-index: 10;
     }
 
-    .logo-circle {
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      background: white;
-      margin: 0 auto 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    .login-logo {
+      text-align: center;
+      margin-bottom: 18px;
     }
 
-    .logo-circle img {
-      max-width: 70px;
-      max-height: 70px;
+    .login-logo img {
+      width: 180px;
+      max-width: 180px;
+      height: auto;
       object-fit: contain;
     }
 
     .login-panel h1 {
       text-align: center;
       font-size: 30px;
+      color: #111827;
       margin: 0;
-      color: #0f172a;
     }
 
     .login-panel p {
       text-align: center;
-      color: #475569;
-      margin: 12px 0 38px;
-      font-size: 16px;
+      color: #64748b;
+      margin: 10px 0 35px;
+      font-size: 15px;
     }
 
     label {
+      font-size: 13px;
       font-weight: 700;
-      font-size: 14px;
       color: #111827;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       display: block;
     }
 
     .input-box {
       position: relative;
-      margin-bottom: 22px;
-    }
-
-    .input-box input {
-      width: 100%;
-      padding: 16px 16px 16px 48px;
-      border-radius: 13px;
-      border: 1px solid #d1d5db;
-      font-size: 15px;
-      outline: none;
-      transition: 0.2s;
-      background: white;
-    }
-
-    .input-box input:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+      margin-bottom: 20px;
     }
 
     .input-icon {
       position: absolute;
-      top: 43px;
-      left: 17px;
-      color: #64748b;
-      font-size: 18px;
+      top: 41px;
+      left: 16px;
+      color: #2563eb;
+    }
+
+    .input-box input {
+      width: 100%;
+      height: 48px;
+      padding: 0 15px 0 46px;
+      border: 1px solid #d1d5db;
+      border-radius: 24px;
+      outline: none;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .input-box input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
     }
 
     .login-btn {
       width: 100%;
-      padding: 16px;
+      height: 48px;
       border: none;
-      border-radius: 14px;
+      border-radius: 24px;
       background: linear-gradient(135deg, #2563eb, #0ea5e9);
       color: white;
-      font-size: 17px;
       font-weight: 800;
       cursor: pointer;
       margin-top: 8px;
-      transition: 0.25s;
+      transition: .25s;
     }
 
     .login-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 25px rgba(37,99,235,0.35);
+      box-shadow: 0 10px 25px rgba(37,99,235,.35);
     }
 
     .footer-text {
       text-align: center;
-      margin-top: 34px;
+      margin-top: 30px;
       color: #64748b;
       font-size: 13px;
     }
-    .login-logo {
-  text-align: center;
-  margin-bottom: 10px;
-}
 
-.login-logo img {
-  width: 200px;
-  max-width: 200px;
-  height: auto;
-  object-fit: contain;
-}
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-18px) rotate(4deg); }
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
     @media (max-width: 850px) {
+      body { overflow: auto; }
+
       .login-page {
+        width: 94%;
+        height: auto;
         grid-template-columns: 1fr;
       }
 
       .brand-panel {
-        display: none;
+        min-height: 300px;
+        padding: 45px 30px;
+      }
+
+      .brand-subtitle {
+        margin-bottom: 35px;
       }
 
       .login-panel {
-        margin: 18px;
         padding: 40px 25px;
       }
-          }
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="login-page">
+<div class="login-page">
 
-    <div class="brand-panel">
+  <div class="brand-panel">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+    <div class="dot d1"></div>
+    <div class="dot d2"></div>
+    <div class="dot d3"></div>
+    <div class="curve"></div>
+
+    <div class="brand-content">
       <div class="brand-title">CLOUD <span>TECH</span></div>
       <div class="brand-subtitle">CRM & FOLLOW-UP MANAGEMENT SYSTEM</div>
 
-      <div class="headline">
-        Manage Leads.<br>
-        Track Follow-ups.<br>
-        <span>Grow Your Business.</span>
+      <div class="welcome-left">Welcome back!</div>
+      <div class="welcome-text">
+        Sign in to access your follow-up dashboard, manage leads,
+        track performance, and never miss an opportunity.
       </div>
 
-      <div class="feature">
-        <div class="feature-icon">👥</div>
-        <div>
-          <h3>Centralized Lead Management</h3>
-          <p>Store and organize all your leads in one secure place.</p>
-        </div>
-      </div>
+      <div class="decor-line"></div>
+    </div>
+  </div>
 
-      <div class="feature">
-        <div class="feature-icon">📅</div>
-        <div>
-          <h3>Smart Follow-ups</h3>
-          <p>Never miss a follow-up. Stay on top of every lead.</p>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">📊</div>
-        <div>
-          <h3>Performance Insights</h3>
-          <p>Track your team performance with powerful dashboards.</p>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">🔒</div>
-        <div>
-          <h3>Secure & Reliable</h3>
-          <p>Your data is secured with role-based login access.</p>
-        </div>
-      </div>
-
-      </div>
-
-    <div class="login-panel">
-      <div class="login-logo">
-  <img src="logo.png" alt="Cloud Tech Logo">
-</div>
-
-      <h1>Welcome Back!</h1>
-      <p>Sign in to continue to Cloud Tech CRM</p>
-
-      <div class="input-box">
-        <label>Username</label>
-        <span class="input-icon">👤</span>
-        <input id="username" placeholder="Enter your username">
-      </div>
-
-      <div class="input-box">
-        <label>Password</label>
-        <span class="input-icon">🔒</span>
-        <input id="password" type="password" placeholder="Enter your password">
-      </div>
-
-      <button class="login-btn" onclick="login()">Login</button>
-
-      <div class="footer-text">
-        © 2026 Cloud Tech. All rights reserved.
-      </div>
+  <div class="login-panel">
+    <div class="login-logo">
+      <img src="logo.png" alt="Cloud Tech Logo">
     </div>
 
+    <h1>Sign In</h1>
+    <p>Continue to Cloud Tech CRM</p>
+
+    <div class="input-box">
+      <label>Username</label>
+      <span class="input-icon">👤</span>
+      <input id="username" placeholder="Enter your username">
+    </div>
+
+    <div class="input-box">
+      <label>Password</label>
+      <span class="input-icon">🔒</span>
+      <input id="password" type="password" placeholder="Enter your password">
+    </div>
+
+    <button class="login-btn" onclick="login()">Login</button>
+
+    <div class="footer-text">
+      © 2026 Cloud Tech. All rights reserved.
+    </div>
   </div>
+
+</div>
 
 <script>
   if (localStorage.getItem("loggedIn")) {
@@ -323,7 +351,6 @@
       localStorage.setItem("loggedIn", "true");
       localStorage.setItem("username", data.username);
       localStorage.setItem("role", data.role);
-
       window.location.href = "index.html";
     } else {
       alert("Invalid credentials");
