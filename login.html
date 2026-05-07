@@ -10,27 +10,19 @@
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      min-height: 100vh;
-      background: #020617;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  background: #020617;
+}
 
     .login-page {
-      width: 100%;
-      max-width: 1200px;
-      min-height: 680px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: linear-gradient(135deg, #020617, #0f172a, #082f49);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
-    }
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, #020617, #0f172a, #082f49);
+}
 
     .brand-panel {
       padding: 60px;
@@ -99,38 +91,7 @@
       line-height: 1.5;
     }
 
-    .cloud-art {
-      position: absolute;
-      bottom: 35px;
-      right: 45px;
-      width: 260px;
-      height: 150px;
-      border-radius: 50px;
-      background: linear-gradient(135deg, #dbeafe, #38bdf8);
-      opacity: 0.9;
-      filter: drop-shadow(0 0 35px rgba(14,165,233,0.55));
-    }
-
-    .cloud-art::before {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: #e0f2fe;
-      left: 45px;
-      top: -55px;
-    }
-
-    .cloud-art::after {
-      content: "☁";
-      position: absolute;
-      font-size: 70px;
-      color: #2563eb;
-      left: 94px;
-      top: 28px;
-    }
-
+    
     .login-panel {
       background: rgba(255,255,255,0.96);
       margin: 32px;
@@ -250,6 +211,16 @@
         margin: 18px;
         padding: 40px 25px;
       }
+      .login-logo {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-logo img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
     }
   </style>
 </head>
@@ -300,13 +271,12 @@
         </div>
       </div>
 
-      <div class="cloud-art"></div>
-    </div>
+      </div>
 
     <div class="login-panel">
-      <div class="logo-circle">
-        <img src="logo.png" alt="Cloud Tech Logo">
-      </div>
+      <div class="login-logo">
+  <img src="logo.png" alt="Cloud Tech Logo">
+</div>
 
       <h1>Welcome Back!</h1>
       <p>Sign in to continue to Cloud Tech CRM</p>
