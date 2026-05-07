@@ -21,6 +21,11 @@ const leadSchema = new mongoose.Schema({
   createdBy: String
 });
 
+leadSchema.index({ createdBy: 1 });
+leadSchema.index({ nextFollowUp: 1 });
+leadSchema.index({ status: 1 });
+leadSchema.index({ phone: 1 });
+
 const Lead = mongoose.model("Lead", leadSchema);
 
 /* ================= USERS ================= */
