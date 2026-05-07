@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2563eb, #1e3a8a);
+      height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+gap:10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+  max-width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin-bottom: 5px;
+      color:#2563eb;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+  <div style="text-align:center; margin-bottom:15px;">
+    <img src="logo.png" style="width:200px; border-radius:12px;">
+  </div>
+
+  <h1>Cloud Tech Pvt. Ltd.</h1>
+
+  <input id="username" placeholder="username">
+  <input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+<script>
+  if (localStorage.getItem("loggedIn")) {
+  window.location.href = "index.html";
+}
+
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("/login", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ username, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("username", data.username);   
+    localStorage.setItem("role", data.role);
+
+    window.location.href = "index.html";
+  } else {
+    alert("Invalid credentials");
+  }
+}
+
+</script>
+
+</body>
+</html>

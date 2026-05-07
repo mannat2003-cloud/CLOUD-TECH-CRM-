@@ -1,0 +1,103 @@
+body {
+  background: #f4f7ff;
+  font-family: 'Segoe UI';
+}
+
+h1 {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* TOP HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* CARDS */
+.top-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.box {
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* MODERN TABLE */
+table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* BUTTON STYLE */
+button {
+  border-radius: 10px;
+}
+.layout{
+    display:flex;
+}
+
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    padding:20px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:10px;
+    text-decoration:none;
+    margin-top:10px;
+    border-radius:8px;
+}
+
+.sidebar a:hover{
+    background:#1e293b;
+}
+
+.main{
+    flex:1;
+    padding:20px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.cards{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+}
+
+.blue{background:#2563eb;color:white;}
+.green{background:#16a34a;color:white;}
+.orange{background:#f59e0b;color:white;}
+
+.form{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}

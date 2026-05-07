@@ -1,0 +1,344 @@
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+
+app.use(express.json());
+app.use(express.static(__dirname));
+
+/* ================= DB ================= */
+
+
+mongoose.connect("mongodb+srv://Simar:032003@cluster0.ng5rso5.mongodb.net/followupDB?retryWrites=true&w=majority")
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err));
+const leadSchema = new mongoose.Schema({
+  clientName: String,
+  phone: String,
+  company: String,
+  status: String,
+  nextFollowUp: String,
+  notes: String,
+  createdBy: String
+});
+
+const Lead = mongoose.model("Lead", leadSchema);
+
+/* ================= USERS ================= */
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+  role: String
+});
+
+const User = mongoose.model("User", userSchema);
+
+let users = [
+  { username: "CloudTech", password: "032003", role: "admin" },
+
+  { username: "emp1", password: "123", role: "employee" },
+  { username: "emp2", password: "123", role: "employee" },
+  { username: "emp3", password: "123", role: "employee" }
+];
+
+/* ================= LOGIN ================= */
+
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await User.findOne({
+    username: new RegExp("^" + username.trim() + "$", "i"),
+    password: password
+  });
+
+  if (user) {
+    return res.json({
+      success: true,
+      username: user.username,
+      role: user.role
+    });
+  }
+
+  res.json({ success: false });
+});
+
+
+
+app.get("/setup-users", async (req, res) => {
+  const defaultUsers = [
+    { username: "CloudTech", password: "032003", role: "admin" },
+    { username: "emp1", password: "123", role: "employee" },
+    { username: "emp2", password: "123", role: "employee" },
+    { username: "emp3", password: "123", role: "employee" }
+  ];
+
+  for (const u of defaultUsers) {
+    const exists = await User.findOne({
+      username: new RegExp("^" + u.username + "$", "i")
+    });
+
+    if (!exists) {
+      await User.create(u);
+    }
+  }
+
+  res.send("Default users checked/created");
+});
+
+
+
+/* ================= ADD LEAD ================= */
+
+app.post("/add-lead", async (req, res) => {
+  try {
+
+    req.body.status = req.body.status.trim();
+
+    console.log("BODY:", req.body); // debug
+
+    const lead = await Lead.create(req.body);
+
+    res.json({ success: true, data: lead });
+  } catch (err) {
+    console.error("ADD ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET ALL LEADS
+
+app.get("/leads", async (req, res) => {
+
+  const { username, role } = req.headers;
+  console.log("USER:", username, "ROLE:", role);
+
+  let data;
+
+  if (role === "admin") {
+    data = await Lead.find();
+  } else {
+    data = await Lead.find({ createdBy: username });
+  }
+
+  console.log("DATA COUNT:", data.length);
+
+  res.json(data);
+});
+
+/* ================= UPDATE ================= */
+
+app.put("/update-lead/:id", async (req, res) => {
+  await Lead.findByIdAndUpdate(req.params.id, req.body);
+  res.json({ success: true });
+});
+
+
+/* ================= DELETE ================= */
+
+app.delete("/delete-lead/:id", async (req, res) => {
+  const { username, role } = req.headers;
+
+  const lead = await Lead.findById(req.params.id);
+
+  if (!lead) {
+    return res.json({ success: false, message: "Lead not found" });
+  }
+
+  if (role !== "admin" && lead.createdBy !== username) {
+    return res.json({ success: false, message: "Not allowed" });
+  }
+
+  await Lead.findByIdAndDelete(req.params.id);
+
+  res.json({ success: true });
+});
+
+/* ========= Create User ========== */
+
+app.post("/create-user", async (req, res) => {
+  const { username, password } = req.body;
+
+  const exists = await User.findOne({
+    username: new RegExp("^" + username.trim() + "$", "i")
+  });
+
+  if (exists) {
+    return res.json({ success: false, message: "Username already exists" });
+  }
+
+  const totalUsers = await User.countDocuments();
+
+  if (totalUsers >= 10) {
+    return res.json({
+      success: false,
+      message: "Maximum user limit reached"
+    });
+  }
+
+
+  await User.create({
+    username: username.trim(),
+    password,
+    role: "employee"
+  });
+
+  res.json({ success: true });
+});
+
+app.get("/all-users", async (req, res) => {
+  const users = await User.find({}, "username password role");
+  res.json(users);
+});
+
+
+app.put("/reset-password", async (req, res) => {
+  const { username } = req.headers;
+  const { newPassword } = req.body;
+
+  if (!username) {
+    return res.json({
+      success: false,
+      message: "User not logged in"
+    });
+  }
+
+  await User.findOneAndUpdate(
+    { username: new RegExp("^" + username.trim() + "$", "i") },
+    { password: newPassword }
+  );
+
+  res.json({ success: true });
+});
+
+app.delete("/delete-account", async (req, res) => {
+  const { username } = req.headers;
+
+  await Lead.deleteMany({ createdBy: username });
+  await User.deleteOne({ username: username });
+
+  res.json({ success: true });
+});
+
+
+/* ================= TODAY FOLLOWUPS ================= */
+
+app.get("/today-followups", async (req, res) => {
+  const today = new Date().toISOString().split("T")[0];
+
+const all = await Lead.find();
+
+const data = all.filter(l => l.nextFollowUp === today);
+
+  res.json(data);
+});
+
+  
+/* ================== Chart ============== */
+
+app.get("/performance", async (req, res) => {
+  const { type, user } = req.query;
+
+  const { username, role } = req.headers;
+
+let data;
+
+if (role === "admin") {
+  data = await Lead.find();
+} else {
+  data = await Lead.find({
+  $or: [
+    { createdBy: username },
+    { createdBy: { $exists: false } } // old data fix
+  ]
+});
+}
+if (user && user !== "All") {
+   data = data.filter(l => l.createdBy === user);
+}
+
+  // YEARLY CASE (SPECIAL)
+  if (type === "year") {
+
+  const months = [
+    "Jan","Feb","Mar","Apr","May","Jun",
+    "Jul","Aug","Sep","Oct","Nov","Dec"
+  ];
+
+  const result = months.map(m => ({
+  month: m,
+  "In Progress": 0,
+  Interested: 0,
+  "Closed Won": 0,
+  "Closed Lost": 0
+}));
+
+  data.forEach(l => {
+
+        if (!l.nextFollowUp) return;
+
+    const d = new Date(l.nextFollowUp + "T00:00:00");
+    const monthIndex = d.getMonth();
+
+    const key = (l.status || "").trim();
+
+    if (result[monthIndex][key] !== undefined) {
+      result[monthIndex][key]++;
+    }
+
+  });
+
+  return res.json(result);
+}
+
+
+  // NORMAL (today/week/month) - EMPLOYEE WISE
+let startDate = new Date();
+
+if (type === "today") {
+  startDate.setHours(0,0,0,0);
+}
+
+if (type === "week") {
+  startDate.setDate(startDate.getDate() - 7);
+}
+
+if (type === "month") {
+  startDate.setMonth(startDate.getMonth() - 1);
+}
+
+const filtered = data.filter(l => {
+  if (!l.nextFollowUp) return false;
+  return new Date(l.nextFollowUp) >= startDate;
+});
+
+// 🔥 GROUP BY EMPLOYEE
+const users = {};
+
+filtered.forEach(l => {
+  const user = l.createdBy || "Unknown";
+
+  if (!users[user]) {
+    users[user] = {
+  "In Progress": 0,
+  Interested: 0,
+  "Closed Won": 0,
+  "Closed Lost": 0
+};
+  }
+
+  const key = (l.status || "").trim();
+
+  if (users[user][key] !== undefined) {
+    users[user][key]++;
+  }
+});
+
+res.json(users);
+}); 
+
+/* ================= SERVER ================= */
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(3000, "0.0.0.0", () => {
+  console.log("Server running on http://localhost:3000");
+});

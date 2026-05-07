@@ -1,0 +1,14 @@
+{
+  "name": "cloud-tech-followup",
+  "version": "1.0.0",
+  "main": "server.js",
+
+  "scripts": {
+    "start": "node server.js"
+  },
+
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.6.1"
+  }
+}
