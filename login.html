@@ -29,6 +29,8 @@
       overflow: hidden;
       box-shadow: 0 25px 70px rgba(37,99,235,0.22);
       position: relative;
+      position: relative;
+      overflow: hidden;
     }
 
     .brand-panel {
@@ -143,17 +145,24 @@
     }
 
     .login-panel {
+  margin: 35px;
   padding: 70px 55px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.10);
 
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.22);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(255,255,255,0.18);
+
+  box-shadow:
+    0 8px 32px rgba(31,38,135,0.2);
+
+  border-radius: 28px;
 
   position: relative;
   z-index: 10;
@@ -287,6 +296,8 @@ backdrop-filter: blur(8px);
 
 <div class="login-page">
 
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
   <div class="brand-panel">
     <div class="blob one"></div>
     <div class="blob two"></div>
