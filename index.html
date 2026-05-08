@@ -23,8 +23,8 @@
   background: transparent;
   border: none;
 
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
 
   display: inline-flex;
   align-items: center;
@@ -36,9 +36,9 @@
 }
 
 .action-btn svg {
-  width: 21px;
-  height: 21px;
-  stroke-width: 2.2;
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.1;
 }
 
 .edit-btn {
@@ -913,6 +913,7 @@ button:active {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.4s ease;
+  z-index: 99999;
 }
 
 #toast.show {
@@ -1423,6 +1424,9 @@ highlightedLeadId = leadToHighlight;
 clearForm();
 
 await loadAll();
+
+showToast("Lead added successfully");
+
 }
 function startEdit(id){
   editId = id;
