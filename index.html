@@ -1506,9 +1506,12 @@ function isOverdue(l) {
 }
 
 function formatDate(dateStr) {
+
   const [y, m, d] = dateStr.split("-");
-  return `${d}/${m}/${y}`;
-}
+
+  return `${d.padStart(2, "0")}/${m.padStart(2, "0")}/${y}`;
+} 
+
 function applyQuickFilter(type) {
 
   const today = new Date();
