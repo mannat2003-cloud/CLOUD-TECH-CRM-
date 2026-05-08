@@ -19,7 +19,39 @@
 .top-cards-new {
   grid-template-columns: repeat(5, 1fr) 330px;
 }
+.action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.edit-btn {
+  background: #dbeafe;
+  color: #2563eb;
+  margin-right: 6px;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
 .overview-card {
   width: auto !important;
   max-width: 355px;
@@ -1640,18 +1672,19 @@ const highlightClass =
   <td>👤 ${l.createdBy || "Unknown"}</td>
 
   <td style="white-space:nowrap;">
-  <button onclick="editLead('${l._id}')" style="margin-right:6px;">
-    Edit
-  </button>
+  <button onclick="editLead('${l._id}')" class="action-btn edit-btn">
+  <i data-lucide="pencil"></i>
+</button>
 
-  <button onclick="deleteLead('${l._id}')" style="background:red;">
-    Delete
-  </button>
+<button onclick="deleteLead('${l._id}')" class="action-btn delete-btn">
+  <i data-lucide="trash-2"></i>
+</button>
 </td>
 </tr>
 `;
   });
   renderPagination(data.length);
+  lucide.createIcons();
 }
 
 function renderPagination(totalItems) {
