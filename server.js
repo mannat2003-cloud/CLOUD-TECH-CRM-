@@ -190,7 +190,7 @@ app.post("/create-user", async (req, res) => {
 });
 
 app.get("/all-users", async (req, res) => {
-  const users = await User.find({}, "username password role");
+  const users = await User.find({}, "username role");
   res.json(users);
 });
 
