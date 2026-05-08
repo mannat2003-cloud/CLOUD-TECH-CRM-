@@ -20,10 +20,11 @@
   grid-template-columns: repeat(5, 1fr) 330px;
 }
 .action-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  background: transparent;
   border: none;
+
+  width: 42px;
+  height: 42px;
 
   display: inline-flex;
   align-items: center;
@@ -31,22 +32,22 @@
 
   cursor: pointer;
   transition: 0.2s ease;
+  padding: 0;
 }
 
 .action-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
+  stroke-width: 2.2;
 }
 
 .edit-btn {
-  background: #dbeafe;
-  color: #2563eb;
-  margin-right: 6px;
+  color: #374151;
+  margin-right: 4px;
 }
 
 .delete-btn {
-  background: #fee2e2;
-  color: #dc2626;
+  color: #111827;
 }
 
 .action-btn:hover {
@@ -1659,7 +1660,7 @@ const highlightClass =
   <td>${l.customerName || l.clientName || ""}</td>
   <td>${l.phone || ""}</td>
   <td>${l.company || ""}</td>
-  <td>${new Date().toLocaleDateString()}</td>
+  <td>${formatDate(new Date().toISOString().split("T")[0])}</td>
 
   <td>
     ${l.nextFollowUp ? formatDate(l.nextFollowUp) : ""}
