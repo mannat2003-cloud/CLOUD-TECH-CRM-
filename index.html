@@ -903,7 +903,7 @@ button:active {
   transform: scale(0.95);
 }
 #toast {
-  position: fixed;
+  position: fixed !important;
   bottom: 25px;
   right: 25px;
 
@@ -922,7 +922,7 @@ button:active {
   z-index: 999999;
   font-weight: 600;
   box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-}
+  }
 
 #toast.show {
   opacity: 1;
@@ -1322,7 +1322,6 @@ align-items:center;
     gap:12px;
   "></div>
 </div>
-<div id="toast">Saved successfully</div>
 
 
 <script>
@@ -2393,6 +2392,7 @@ if (role === "admin") {
 });
 
 </script>
+<div id="toast">Saved successfully</div>
 
 </body>
 </html>
