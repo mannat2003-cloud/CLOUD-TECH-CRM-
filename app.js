@@ -8,6 +8,10 @@
   let highlightedLeadId = null;
 let allLeads = [];
 let currentData = [];
+let selectedStatusFilter = "All";
+let selectedDateFilter = "All";
+let selectedQuickFilter = "All";
+let selectedUserFilter = "All";
 
 let currentPage = 1;
 const leadsPerPage = 10;
@@ -220,7 +224,14 @@ function todayYMD() {
 }
 
 function isOverdue(l) {
-  return l.nextFollowUp && l.nextFollowUp < todayYMD();
+  const status = (l.status || "").trim();
+
+  return (
+    l.nextFollowUp &&
+    l.nextFollowUp < todayYMD() &&
+    status !== "Closed Won" &&
+    status !== "Closed Lost"
+  );
 }
 
 function formatDate(dateStr) {
@@ -231,49 +242,9 @@ function formatDate(dateStr) {
 } 
 
 function applyQuickFilter(type) {
-
-  const today = new Date();
-  const todayStr = today.toISOString().split("T")[0];
-
-  let filtered = [];
-
-  if (type === "All") {
-    filtered = allLeads;
-  }
-
-  else if (type === "overdue") {
-  filtered = allLeads.filter(l => isOverdue(l));
-}
-
-  else if (type === "today") {
-    filtered = allLeads.filter(l =>
-      l.nextFollowUp === todayStr
-    );
-  }
-
-  else if (type === "closedWeek") {
-
-    const weekStart = new Date();
-    weekStart.setDate(today.getDate() - today.getDay());
-
-    filtered = allLeads.filter(l => {
-      if (l.status !== "Closed Won") return false;
-
-      if (!l.nextFollowUp) return false;
-
-      const d = new Date(l.nextFollowUp);
-      return d >= weekStart && d <= today;
-    });
-  }
-
-  else if (type === "lost") {
-    filtered = allLeads.filter(l =>
-      l.status === "Closed Lost"
-    );
-  }
-
+  selectedQuickFilter = type;
   currentPage = 1;
-  renderTable(filtered);
+  applyAllFilters();
 }
 
 function exportToExcel() {
@@ -414,23 +385,16 @@ function setType(type){
 }
 
 function filterLeads(status) {
-  if (status === "All") return renderTable(allLeads);
-
-  const filtered = allLeads.filter(l => l.status === status);
-  renderTable(filtered);
+  selectedStatusFilter = status;
+  currentPage = 1;
+  applyAllFilters();
 }
 
 function searchLeads() {
-  const value = document.getElementById("searchInput").value.toLowerCase();
-
-  const filtered = allLeads.filter(l =>
-    (l.customerName || l.clientName || "").toLowerCase().includes(value) ||
-    (l.phone || "").toLowerCase().includes(value) ||
-    (l.company || "").toLowerCase().includes(value)
-  );
-
-  renderTable(filtered);
+  currentPage = 1;
+  applyAllFilters();
 }
+
 function toggleSettings() {
   document.getElementById("settingsModal").style.display = "flex";
 }
@@ -539,44 +503,111 @@ function logout(){
 
 // 📅 DATE FILTER
 function filterByDate(type) {
+  selectedDateFilter = type;
+  currentPage = 1;
+  applyAllFilters();
+}
+  
+// 👤 USER FILTER
+function filterByUser(user) {
+  selectedUserFilter = user;
+  currentPage = 1;
+  applyAllFilters();
+}
+function applyAllFilters() {
   const today = new Date();
   const todayStr = today.toISOString().split("T")[0];
 
-  let filtered = allLeads;
+  let filtered = [...allLeads];
 
-  if (type === "today") {
-    filtered = allLeads.filter(l => l.nextFollowUp === todayStr);
+  // USER FILTER
+  if (selectedUserFilter !== "All") {
+    filtered = filtered.filter(l =>
+      (l.createdBy || "") === selectedUserFilter
+    );
   }
 
-  else if (type === "week") {
-    const weekStart = new Date();
-    weekStart.setDate(today.getDate() - today.getDay());
+  // SEARCH FILTER
+  const searchInput = document.getElementById("searchInput");
+  const searchValue = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
-    filtered = allLeads.filter(l => {
+  if (searchValue) {
+    filtered = filtered.filter(l =>
+      (l.customerName || l.clientName || "").toLowerCase().includes(searchValue) ||
+      (l.phone || "").toLowerCase().includes(searchValue) ||
+      (l.company || "").toLowerCase().includes(searchValue) ||
+      (l.notes || "").toLowerCase().includes(searchValue)
+    );
+  }
+
+  // STATUS FILTER
+  if (selectedStatusFilter !== "All") {
+    filtered = filtered.filter(l => l.status === selectedStatusFilter);
+  }
+
+  // DATE FILTER
+  if (selectedDateFilter === "today") {
+    filtered = filtered.filter(l => l.nextFollowUp === todayStr);
+  }
+
+  if (selectedDateFilter === "week") {
+    const weekStart = new Date(today);
+    weekStart.setDate(today.getDate() - today.getDay());
+    weekStart.setHours(0, 0, 0, 0);
+
+    filtered = filtered.filter(l => {
       if (!l.nextFollowUp) return false;
+
       const d = new Date(l.nextFollowUp);
+      d.setHours(0, 0, 0, 0);
+
       return d >= weekStart && d <= today;
     });
   }
 
-  else if (type === "month") {
-    filtered = allLeads.filter(l => {
+  if (selectedDateFilter === "month") {
+    filtered = filtered.filter(l => {
       if (!l.nextFollowUp) return false;
+
       const d = new Date(l.nextFollowUp);
-      return d.getMonth() === today.getMonth() &&
-             d.getFullYear() === today.getFullYear();
+
+      return (
+        d.getMonth() === today.getMonth() &&
+        d.getFullYear() === today.getFullYear()
+      );
     });
   }
 
-  renderTable(filtered);
-}
+  // QUICK FILTER
+  if (selectedQuickFilter === "overdue") {
+    filtered = filtered.filter(l => isOverdue(l));
+  }
 
-  
-// 👤 USER FILTER
-function filterByUser(user) {
-  if (user === "All") return renderTable(allLeads);
+  if (selectedQuickFilter === "today") {
+    filtered = filtered.filter(l => l.nextFollowUp === todayStr);
+  }
 
-  const filtered = allLeads.filter(l => l.createdBy === user);
+  if (selectedQuickFilter === "closedWeek") {
+    const weekStart = new Date(today);
+    weekStart.setDate(today.getDate() - today.getDay());
+    weekStart.setHours(0, 0, 0, 0);
+
+    filtered = filtered.filter(l => {
+      if (l.status !== "Closed Won") return false;
+      if (!l.nextFollowUp) return false;
+
+      const d = new Date(l.nextFollowUp);
+      d.setHours(0, 0, 0, 0);
+
+      return d >= weekStart && d <= today;
+    });
+  }
+
+  if (selectedQuickFilter === "lost") {
+    filtered = filtered.filter(l => l.status === "Closed Lost");
+  }
+
+  currentData = filtered;
   renderTable(filtered);
 }
 
@@ -864,7 +895,7 @@ async function loadAll() {
   // ✅ SET DATA
   allLeads = leads;
   currentPage = 1;
-  renderTable(allLeads);
+  applyAllFilters();
   setTimeout(() => {
 
   if (highlightedLeadId) {
@@ -953,11 +984,34 @@ function populateChartUsers() {
 
   // chart dropdown
   const chartDropdown = document.getElementById("chartUserFilter");
-  chartDropdown.innerHTML = `<option value="All">All Users</option>`;
+  if (chartDropdown) {
+    chartDropdown.innerHTML = `<option value="All">All Users</option>`;
 
     users.forEach(u => {
-  chartDropdown.innerHTML += `<option value="${u}">${u}</option>`;
-});
+      chartDropdown.innerHTML += `<option value="${u}">${u}</option>`;
+    });
+  }
+
+  // admin-only lead filter dropdown
+  const userFilter = document.getElementById("userFilter");
+  const role = localStorage.getItem("role");
+  const userFilterGroup = document.getElementById("userFilterGroup");
+
+  if (userFilter) {
+    if (role === "admin") {
+      if (userFilterGroup) userFilterGroup.style.display = "flex";
+      userFilter.style.display = "block";
+      userFilter.innerHTML = `<option value="All">All Users</option>`;
+
+      users.forEach(u => {
+        userFilter.innerHTML += `<option value="${u}">${u}</option>`;
+      });
+    } else {
+      if (userFilterGroup) userFilterGroup.style.display = "none";
+      userFilter.style.display = "none";
+      selectedUserFilter = localStorage.getItem("username") || "All";
+    }
+  }
 }
 
 async function saveStatus(id){
@@ -981,27 +1035,29 @@ async function saveStatus(id){
   loadAll();
 }
 function resetFilters() {
-  // 🔍 Clear search
+  selectedStatusFilter = "All";
+  selectedDateFilter = "All";
+  selectedQuickFilter = "All";
+  selectedUserFilter = "All";
+
   const search = document.getElementById("searchInput");
   if (search) search.value = "";
 
   const quick = document.getElementById("quickFilter");
-if (quick) quick.value = "All";
+  if (quick) quick.value = "All";
 
-  // 📅 Reset all dropdowns
+  const userFilter = document.getElementById("userFilter");
+  if (userFilter) userFilter.value = "All";
+
   const selects = document.querySelectorAll(".filter-bar select");
   selects.forEach(s => s.selectedIndex = 0);
 
-  // 🔄 Reset page + data
   currentPage = 1;
+  currentData = allLeads;
   renderTable(allLeads);
 
-  showToast("Filters Reset"); 
-
-  
-  currentData = allLeads;
+  showToast("Filters Reset");
 }
-
 function togglePerformanceChart(){
   const box = document.getElementById("teamChartBox");
 

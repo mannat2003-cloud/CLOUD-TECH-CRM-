@@ -311,14 +311,21 @@ align-items:center;
       type="text" 
       id="searchInput" 
       placeholder="Search by client, phone, company..." 
-      onkeyup="searchLeads()"
+      onkeyup="applyAllFilters()"
     >
   </div>
+
+  <div class="filter-group" id="userFilterGroup" style="display:none;">
+  <label>User</label>
+  <select id="userFilter" onchange="filterByUser(this.value)">
+    <option value="All">All Users</option>
+  </select>
+</div>
 
   <!-- 📅 DATE -->
   <div class="filter-group">
     <label>Date</label>
-    <select onchange="filterByDate(this.value)">
+    <select id="dateFilter" onchange="filterByDate(this.value)">
       <option value="All">All</option>
       <option value="today">Today</option>
       <option value="week">This Week</option>
@@ -329,7 +336,7 @@ align-items:center;
   <!-- 📊 STATUS -->
   <div class="filter-group">
     <label>Status</label>
-    <select onchange="filterLeads(this.value)">
+    <select id="statusFilter" onchange="filterLeads(this.value)">
       <option value="All">All</option>
       <option>In Progress</option>
       <option>Interested</option>
@@ -356,6 +363,7 @@ align-items:center;
   <button class="reset-btn" onclick="resetFilters()">⟲ Reset</button>
 </div>
   
+
     <!-- ➕ ACTIONS -->
     <div class="actions">
   <button class="secondary" onclick="exportToExcel()">Export</button>
