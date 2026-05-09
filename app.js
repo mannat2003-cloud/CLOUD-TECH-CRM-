@@ -316,7 +316,7 @@ const highlightClass =
   <td>${l.customerName || l.clientName || ""}</td>
   <td>${l.phone || ""}</td>
   <td>${l.company || ""}</td>
-  <td>${l.lastFollowUp ? formatDate(l.lastFollowUp) : formatDate(new Date().toISOString().split("T")[0])}</td>
+  <td>${l.lastFollowUp ? formatDate(l.lastFollowUp) : ""}</td>
 
   <td>
     ${l.nextFollowUp ? formatDate(l.nextFollowUp) : ""}
