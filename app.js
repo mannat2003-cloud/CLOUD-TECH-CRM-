@@ -8,7 +8,6 @@
   let highlightedLeadId = null;
 let allLeads = [];
 let currentData = [];
-let selectedStatusFilter = "All";
 let selectedDateFilter = "All";
 let selectedQuickFilter = "All";
 let selectedUserFilter = "All";
@@ -382,12 +381,6 @@ function prevPage() {
 function setType(type){
   currentType = type;
   loadPerformance(type);
-}
-
-function filterLeads(status) {
-  selectedStatusFilter = status;
-  currentPage = 1;
-  applyAllFilters();
 }
 
 function searchLeads() {
