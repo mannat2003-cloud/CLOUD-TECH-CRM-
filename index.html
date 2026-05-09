@@ -251,6 +251,16 @@ align-items:center;
     <input id="date" type="date">
   </div>
 
+<div class="filter-group">
+  <label>Status</label>
+  <select id="status">
+    <option>In Progress</option>
+    <option>Interested</option>
+    <option>Closed Won</option>
+    <option>Closed Lost</option>
+  </select>
+</div>
+
   <div class="filter-group">
     <label>Remarks</label>
     <input id="notes" placeholder="Type here....">
@@ -313,7 +323,7 @@ align-items:center;
   </select>
 </div>
 
-  <!-- 📅 DATE -->
+  <!-- DATE -->
   <div class="filter-group">
     <label>Date</label>
     <select id="dateFilter" onchange="filterByDate(this.value)">
@@ -324,20 +334,7 @@ align-items:center;
     </select>
   </div>
 
-  <!-- 📊 STATUS -->
-  <div class="filter-group">
-    <label>Status</label>
-    <select id="statusFilter" onchange="filterLeads(this.value)">
-      <option value="All">All</option>
-      <option>In Progress</option>
-      <option>Interested</option>
-      <option>Closed Won</option>
-      <option>Closed Lost</option>
-          </select>
-  </div>
-  
-
-
+  <!--Quick Filter-->
   <div class="filter-group">
   <label>Quick Filter</label>
   <select id="quickFilter" onchange="applyQuickFilter(this.value)">
