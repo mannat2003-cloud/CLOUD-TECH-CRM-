@@ -245,16 +245,7 @@ align-items:center;
     <input id="company" placeholder="Name">
   </div>
 
-  <div class="filter-group">
-    <label>Status</label>
-    <select id="status">
-      <option>In Progress</option>
-      <option>Interested</option>
-      <option>Closed Won</option>
-      <option>Closed Lost</option>
-    </select>
-  </div>
-
+  
   <div class="filter-group">
     <label>Next Follow-up</label>
     <input id="date" type="date">
@@ -351,10 +342,20 @@ align-items:center;
   <label>Quick Filter</label>
   <select id="quickFilter" onchange="applyQuickFilter(this.value)">
     <option value="All">All</option>
-    <option value="overdue">Overdue</option>
-    <option value="today">Due Today</option>
-    <option value="closedWeek">Closed This Week</option>
-    <option value="lost">Lost</option>
+
+<option value="In Progress">In Progress</option>
+
+<option value="Interested">Interested</option>
+
+<option value="Closed Won">Closed Won</option>
+
+<option value="Closed Lost">Closed Lost</option>
+
+<option value="overdue">Overdue</option>
+
+<option value="today">Due Today</option>
+
+<option value="closedWeek">Closed This Week</option>
   </select>
 </div>
 

@@ -540,10 +540,6 @@ function applyAllFilters() {
     );
   }
 
-  // STATUS FILTER
-  if (selectedStatusFilter !== "All") {
-    filtered = filtered.filter(l => l.status === selectedStatusFilter);
-  }
 
   // DATE FILTER
   if (selectedDateFilter === "today") {
@@ -606,7 +602,16 @@ function applyAllFilters() {
   if (selectedQuickFilter === "lost") {
     filtered = filtered.filter(l => l.status === "Closed Lost");
   }
-
+if (
+  selectedQuickFilter === "In Progress" ||
+  selectedQuickFilter === "Interested" ||
+  selectedQuickFilter === "Closed Won" ||
+  selectedQuickFilter === "Closed Lost"
+) {
+  filtered = filtered.filter(
+    l => l.status === selectedQuickFilter
+  );
+}
   currentData = filtered;
   renderTable(filtered);
 }
@@ -1035,7 +1040,6 @@ async function saveStatus(id){
   loadAll();
 }
 function resetFilters() {
-  selectedStatusFilter = "All";
   selectedDateFilter = "All";
   selectedQuickFilter = "All";
   selectedUserFilter = "All";
