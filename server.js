@@ -284,9 +284,9 @@ if (user && user !== "All") {
 
   data.forEach(l => {
 
-        if (!l.nextFollowUp) return;
+        if (!l.lastFollowUp) return;
 
-    const d = new Date(l.nextFollowUp + "T00:00:00");
+    const d = new Date(l.lastFollowUp + "T00:00:00");
     const monthIndex = d.getMonth();
 
     const key = (l.status || "").trim();
@@ -317,11 +317,11 @@ if (type === "month") {
 }
 
 const filtered = data.filter(l => {
-  if (!l.nextFollowUp) return false;
-  return new Date(l.nextFollowUp) >= startDate;
+  if (!l.lastFollowUp) return false;
+return new Date(l.lastFollowUp) >= startDate;
 });
 
-// 🔥 GROUP BY EMPLOYEE
+// GROUP BY EMPLOYEE
 const users = {};
 
 filtered.forEach(l => {

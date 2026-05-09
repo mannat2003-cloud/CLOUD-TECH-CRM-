@@ -29,10 +29,11 @@ if (!/^[0-9]{10}$/.test(phone)) {
   const data = {
     
     customerName: document.getElementById("customerName").value,
-clientName: document.getElementById("customerName").value,
+    clientName: document.getElementById("customerName").value,
     phone: "+91" + phone,
     company: document.getElementById("company").value,
     status: document.getElementById("status").value,
+    lastFollowUp: new Date().toISOString().split("T")[0],
     nextFollowUp: document.getElementById("date").value,
     notes: document.getElementById("notes").value,
     createdBy: localStorage.getItem("username")
@@ -315,7 +316,7 @@ const highlightClass =
   <td>${l.customerName || l.clientName || ""}</td>
   <td>${l.phone || ""}</td>
   <td>${l.company || ""}</td>
-  <td>${formatDate(new Date().toISOString().split("T")[0])}</td>
+  <td>${l.lastFollowUp ? formatDate(l.lastFollowUp) : ""}</td>
 
   <td>
     ${l.nextFollowUp ? formatDate(l.nextFollowUp) : ""}
@@ -536,8 +537,8 @@ function applyAllFilters() {
 
   // DATE FILTER
   if (selectedDateFilter === "today") {
-    filtered = filtered.filter(l => l.nextFollowUp === todayStr);
-  }
+  filtered = filtered.filter(l => l.lastFollowUp === todayStr);
+}
 
   if (selectedDateFilter === "week") {
     const weekStart = new Date(today);
@@ -545,9 +546,9 @@ function applyAllFilters() {
     weekStart.setHours(0, 0, 0, 0);
 
     filtered = filtered.filter(l => {
-      if (!l.nextFollowUp) return false;
+      if (!l.lastFollowUp) return false;
 
-      const d = new Date(l.nextFollowUp);
+const d = new Date(l.lastFollowUp);
       d.setHours(0, 0, 0, 0);
 
       return d >= weekStart && d <= today;
@@ -556,9 +557,9 @@ function applyAllFilters() {
 
   if (selectedDateFilter === "month") {
     filtered = filtered.filter(l => {
-      if (!l.nextFollowUp) return false;
+      if (!l.lastFollowUp) return false;
 
-      const d = new Date(l.nextFollowUp);
+const d = new Date(l.lastFollowUp);
 
       return (
         d.getMonth() === today.getMonth() &&
