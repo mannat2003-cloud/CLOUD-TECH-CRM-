@@ -13,9 +13,11 @@ mongoose.connect("mongodb+srv://Simar:032003@cluster0.ng5rso5.mongodb.net/follow
 .catch(err => console.log(err));
 const leadSchema = new mongoose.Schema({
   clientName: String,
+  customerName: String,
   phone: String,
   company: String,
   status: String,
+  lastFollowUp: String,
   nextFollowUp: String,
   notes: String,
   createdBy: String
