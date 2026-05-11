@@ -1073,3 +1073,139 @@ button:active {
 #allLeadsSection td:nth-child(7) {
   white-space: normal;
 }
+#allLeadsSection table {
+  font-size: 13px;
+}
+
+#allLeadsSection .notes-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Notes short by default */
+#allLeadsSection .notes-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* Notes full show on hover */
+#allLeadsSection .notes-cell:hover {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-break: break-word;
+  background: #f9fafb;
+  padding: 8px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 20;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+/* All Leads table controlled column layout */
+#allLeadsSection table {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 13px;
+}
+
+/* Common cell style */
+#allLeadsSection th,
+#allLeadsSection td {
+  padding: 8px 10px;
+  vertical-align: top;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Client Name */
+#allLeadsSection th:nth-child(1),
+#allLeadsSection td:nth-child(1) {
+  width: 120px;
+}
+
+/* Phone - do not wrap */
+#allLeadsSection th:nth-child(2),
+#allLeadsSection td:nth-child(2) {
+  width: 130px;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+/* Company */
+#allLeadsSection th:nth-child(3),
+#allLeadsSection td:nth-child(3) {
+  width: 130px;
+}
+
+/* Product */
+#allLeadsSection th:nth-child(4),
+#allLeadsSection td:nth-child(4) {
+  width: 130px;
+}
+
+/* Last Follow-up */
+#allLeadsSection th:nth-child(5),
+#allLeadsSection td:nth-child(5) {
+  width: 105px;
+  white-space: nowrap;
+}
+
+/* Next Follow-up */
+#allLeadsSection th:nth-child(6),
+#allLeadsSection td:nth-child(6) {
+  width: 105px;
+  white-space: nowrap;
+}
+
+/* Notes */
+#allLeadsSection th:nth-child(7),
+#allLeadsSection td:nth-child(7) {
+  width: 180px;
+}
+
+/* Status */
+#allLeadsSection th:nth-child(8),
+#allLeadsSection td:nth-child(8) {
+  width: 115px;
+}
+
+/* Created By */
+#allLeadsSection th:nth-child(9),
+#allLeadsSection td:nth-child(9) {
+  width: 110px;
+}
+
+/* Actions */
+#allLeadsSection th:nth-child(10),
+#allLeadsSection td:nth-child(10) {
+  width: 90px;
+  white-space: nowrap;
+}
+/* Notes short by default */
+#allLeadsSection .notes-cell {
+  max-width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+/* Notes full show on hover */
+#allLeadsSection .notes-cell:hover {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-break: break-word;
+  background: #f9fafb;
+  padding: 8px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 50;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
