@@ -165,17 +165,17 @@ app.delete("/delete-lead/:id", async (req, res) => {
     });
   }
 
-  // Employee can delete only within 15 minutes
-  const createdTime = lead._id.getTimestamp();
-  const now = new Date();
-  const diffMinutes = (now - createdTime) / (1000 * 60);
+  // Employee can delete only within 48 hours
+const createdTime = lead._id.getTimestamp();
+const now = new Date();
+const diffHours = (now - createdTime) / (1000 * 60 * 60);
 
-  if (diffMinutes > 15) {
-    return res.json({
-      success: false,
-      message: "Delete time expired. Please contact admin."
-    });
-  }
+if (diffHours > 48) {
+  return res.json({
+    success: false,
+    message: "Delete time expired after 48 hours. Please contact admin."
+  });
+}
 
   await Lead.findByIdAndDelete(req.params.id);
 

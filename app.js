@@ -260,7 +260,9 @@ function exportToExcel() {
 
     "Company": l.company || "",
 
-    "Last Follow-up":
+"Product": l.product || "",
+
+"Last Follow-up":
       l.lastFollowUp
         ? new Date(l.lastFollowUp).toLocaleDateString()
         : new Date().toLocaleDateString(),
