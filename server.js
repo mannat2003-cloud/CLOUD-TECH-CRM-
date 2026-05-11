@@ -8,7 +8,7 @@ app.use(express.static(__dirname));
 /* ================= DB ================= */
 
 
-mongoose.connect("mongodb+srv://CloudTech:Theunisecure0303092003@cluster0.ng5rso5.mongodb.net/followupDB?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 const leadSchema = new mongoose.Schema({
