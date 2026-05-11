@@ -11,6 +11,7 @@ let currentData = [];
 let selectedDateFilter = "All";
 let selectedQuickFilter = "All";
 let selectedUserFilter = "All";
+let selectedProductFilter = "All";
 
 let currentPage = 1;
 const leadsPerPage = 10;
@@ -32,8 +33,8 @@ if (!/^[0-9]{10}$/.test(phone)) {
     clientName: document.getElementById("customerName").value,
     phone: "+91" + phone,
     company: document.getElementById("company").value,
+    product: document.getElementById("product").value,
     status: document.getElementById("status").value,
-    lastFollowUp: new Date().toISOString().split("T")[0],
     nextFollowUp: document.getElementById("date").value,
     notes: document.getElementById("notes").value,
     createdBy: localStorage.getItem("username")
@@ -43,6 +44,7 @@ if (!/^[0-9]{10}$/.test(phone)) {
   !data.customerName.trim() ||
   !data.phone.trim() ||
   !data.company.trim() ||
+  !data.product.trim() ||
   !data.status.trim() ||
   !data.nextFollowUp
 ) {
@@ -78,6 +80,8 @@ let result = null;
   } else {
 
     // normal add
+
+    data.lastFollowUp = new Date().toISOString().split("T")[0];
     
     const res = await fetch("/add-lead", {
   method: "POST",
@@ -289,6 +293,11 @@ function getStatusClass(status) {
   return "";
 }
 
+function filterByProduct(product) {
+  selectedProductFilter = product;
+  currentPage = 1;
+  applyAllFilters();
+}
 
 function renderTable(data) {
   tableBody.innerHTML = "";
@@ -316,6 +325,7 @@ const highlightClass =
   <td>${l.customerName || l.clientName || ""}</td>
   <td>${l.phone || ""}</td>
   <td>${l.company || ""}</td>
+  <td>${l.product || ""}</td>
   <td>${l.lastFollowUp ? formatDate(l.lastFollowUp) : ""}</td>
 
   <td>
@@ -521,6 +531,12 @@ function applyAllFilters() {
     );
   }
 
+  // PRODUCT FILTER
+if (selectedProductFilter !== "All") {
+  filtered = filtered.filter(l =>
+    (l.product || "") === selectedProductFilter
+  );
+}
   // SEARCH FILTER
   const searchInput = document.getElementById("searchInput");
   const searchValue = searchInput ? searchInput.value.toLowerCase().trim() : "";
@@ -530,7 +546,8 @@ function applyAllFilters() {
       (l.customerName || l.clientName || "").toLowerCase().includes(searchValue) ||
       (l.phone || "").toLowerCase().includes(searchValue) ||
       (l.company || "").toLowerCase().includes(searchValue) ||
-      (l.notes || "").toLowerCase().includes(searchValue)
+(l.product || "").toLowerCase().includes(searchValue) ||
+(l.notes || "").toLowerCase().includes(searchValue)
     );
   }
 
@@ -663,74 +680,27 @@ async function loadPerformance(type) {
 
   function getCount(obj, status) {
     if (!obj) return 0;
-
-    if (status === "In Progress") {
-      return obj["In Progress"] || obj["Ongoing Follow-up"] || obj["Follow-up"] || obj["New"] || 0;
-    }
-
-    if (status === "Interested") {
-      return obj["Interested"] || obj["Contacted"] || 0;
-    }
-
-    if (status === "Closed Won") {
-      return obj["Closed Won"] || obj["Order Completed"] || obj["Completed"] || 0;
-    }
-
-    if (status === "Closed Lost") {
-      return obj["Closed Lost"] || obj["Order Lost"] || obj["Lost"] || 0;
-    }
-
-    return 0;
+    return obj[status] || 0;
   }
 
   let labels = [];
-  let datasets = [];
+  let totalLeadsData = [];
+  let totalWonData = [];
 
   if (type === "year") {
     labels = data.map(d => d.month);
 
-    if (selectedUser !== "All") {
-  const yearlyCounts = {
-    "In Progress": 0,
-    Interested: 0,
-    "Closed Won": 0,
-    "Closed Lost": 0
-  };
+    totalLeadsData = data.map(d =>
+      getCount(d, "In Progress") +
+      getCount(d, "Interested") +
+      getCount(d, "Closed Won") +
+      getCount(d, "Closed Lost")
+    );
 
-  data.forEach(d => {
-    yearlyCounts["In Progress"] += getCount(d, "In Progress");
-    yearlyCounts["Interested"] += getCount(d, "Interested");
-    yearlyCounts["Closed Won"] += getCount(d, "Closed Won");
-    yearlyCounts["Closed Lost"] += getCount(d, "Closed Lost");
-  });
+    totalWonData = data.map(d =>
+      getCount(d, "Closed Won")
+    );
 
-  updatePerformanceSummary(type, selectedUser, yearlyCounts);
-} else {
-  updatePerformanceSummary(type, "All", {});
-}
-
-    datasets = [
-      {
-        label: "Interested",
-        data: data.map(d => getCount(d, "Interested")),
-        backgroundColor: "#2563eb"
-      },
-      {
-        label: "In Progress",
-        data: data.map(d => getCount(d, "In Progress")),
-        backgroundColor: "#f59e0b"
-      },
-      {
-        label: "Closed Won",
-        data: data.map(d => getCount(d, "Closed Won")),
-        backgroundColor: "#16a34a"
-      },
-      {
-        label: "Closed Lost",
-        data: data.map(d => getCount(d, "Closed Lost")),
-        backgroundColor: "#dc2626"
-      }
-    ];
   } else {
     let users = Object.keys(data);
 
@@ -740,41 +710,34 @@ async function loadPerformance(type) {
 
     labels = users;
 
-    if (selectedUser !== "All") {
-  updatePerformanceSummary(type, selectedUser, data[selectedUser] || {});
-} else {
-  updatePerformanceSummary(type, "All", {});
-}
+    totalLeadsData = users.map(u =>
+      getCount(data[u], "In Progress") +
+      getCount(data[u], "Interested") +
+      getCount(data[u], "Closed Won") +
+      getCount(data[u], "Closed Lost")
+    );
 
-    datasets = [
-      {
-        label: "Interested",
-        data: users.map(u => getCount(data[u], "Interested")),
-        backgroundColor: "#2563eb"
-      },
-      {
-        label: "In Progress",
-        data: users.map(u => getCount(data[u], "In Progress")),
-        backgroundColor: "#f59e0b"
-      },
-      {
-        label: "Closed Won",
-        data: users.map(u => getCount(data[u], "Closed Won")),
-        backgroundColor: "#16a34a"
-      },
-      {
-        label: "Closed Lost",
-        data: users.map(u => getCount(data[u], "Closed Lost")),
-        backgroundColor: "#dc2626"
-      }
-    ];
+    totalWonData = users.map(u =>
+      getCount(data[u], "Closed Won")
+    );
   }
 
   performanceChart = new Chart(document.getElementById("multiBarChart"), {
     type: "bar",
     data: {
       labels: labels,
-      datasets: datasets
+      datasets: [
+        {
+          label: "Total Leads",
+          data: totalLeadsData,
+          backgroundColor: "#2563eb"
+        },
+        {
+          label: "Total Won",
+          data: totalWonData,
+          backgroundColor: "#16a34a"
+        }
+      ]
     },
     options: {
       responsive: true,
@@ -800,6 +763,7 @@ function editLead(id) {
   document.getElementById("customerName").value = lead.customerName || lead.clientName || "";
   document.getElementById("phone").value = (lead.phone || "").replace("+91", "");
   document.getElementById("company").value = lead.company || "";
+  document.getElementById("product").value = lead.product || "";
   document.getElementById("status").value = lead.status || "";
   document.getElementById("date").value = lead.nextFollowUp || "";
   document.getElementById("notes").value = lead.notes || "";
@@ -873,6 +837,7 @@ function clearForm() {
   document.getElementById("customerName").value = "";
   document.getElementById("phone").value = "";
   document.getElementById("company").value = "";
+  document.getElementById("product").selectedIndex = 0;
   document.getElementById("date").value = "";
   document.getElementById("notes").value = "";
   document.getElementById("status").selectedIndex = 0;
@@ -893,6 +858,7 @@ async function loadAll() {
 
   // ✅ SET DATA
   allLeads = leads;
+  updateEfficiencyBox(leads);
   currentPage = 1;
   applyAllFilters();
   setTimeout(() => {
@@ -1033,10 +999,45 @@ async function saveStatus(id){
   editId = null;
   loadAll();
 }
+
+function updateEfficiencyBox(leads) {
+  const box = document.getElementById("efficiencyBox");
+  if (!box) return;
+
+  const wonCount = {};
+
+  leads.forEach(l => {
+    const user = l.createdBy || "Unknown";
+
+    if (!wonCount[user]) {
+      wonCount[user] = 0;
+    }
+
+    if (l.status === "Closed Won") {
+      wonCount[user]++;
+    }
+  });
+
+  let html = `<div class="eff-title">User Efficiency</div>`;
+
+  Object.keys(wonCount).forEach(user => {
+    html += `
+      <div class="eff-item">
+        <span>${user}</span>
+        <b>${wonCount[user]} Won</b>
+      </div>
+    `;
+  });
+
+  box.innerHTML = html;
+}
+
+
 function resetFilters() {
   selectedDateFilter = "All";
   selectedQuickFilter = "All";
   selectedUserFilter = "All";
+  selectedProductFilter = "All";
 
   const search = document.getElementById("searchInput");
   if (search) search.value = "";
@@ -1046,6 +1047,9 @@ function resetFilters() {
 
   const userFilter = document.getElementById("userFilter");
   if (userFilter) userFilter.value = "All";
+
+  const productFilter = document.getElementById("productFilter");
+  if (productFilter) productFilter.value = "All";
 
   const selects = document.querySelectorAll(".filter-bar select");
   selects.forEach(s => s.selectedIndex = 0);
@@ -1089,32 +1093,21 @@ function showToast(message) {
 
   if (!confirm("Delete this lead?")) return;
 
-  await fetch("/delete-lead/" + id, {
-  method: "DELETE",
-  headers: {
-    username: localStorage.getItem("username"),
-    role: localStorage.getItem("role")
+  const res = await fetch("/delete-lead/" + id, {
+    method: "DELETE",
+    headers: {
+      username: localStorage.getItem("username"),
+      role: localStorage.getItem("role")
+    }
+  });
+
+  const data = await res.json();
+
+  if (!data.success) {
+    alert(data.message || "Delete not allowed");
+    return;
   }
-});
 
+  showToast("Lead deleted successfully");
   loadAll();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const username = localStorage.getItem("username") || "User";
-const role = localStorage.getItem("role") || "employee";
-
-document.getElementById("profileUsername").innerText = username;
-document.getElementById("profileRole").innerText =
-  role === "admin" ? "Admin" : "Employee";
-
-if (role === "admin") {
-  document.getElementById("profileAvatar").classList.add("admin-avatar");
-}
-
-    lucide.createIcons(); //  render icons
-
-  loadAll();
-});
-

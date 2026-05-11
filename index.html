@@ -34,6 +34,7 @@
     <button onclick="toggleSettings()">⚙ Settings</button>
     <button onclick="togglePerformanceChart()">Team Performance</button>
     </div>
+    <div id="efficiencyBox" class="efficiency-box"></div>
 
   <!-- 🔥 USER ROLE BADGE -->
   <div id="userProfileCard" class="user-profile-card">
@@ -245,6 +246,22 @@ align-items:center;
     <input id="company" placeholder="Name">
   </div>
 
+  <div class="field-box">
+  <label>Product</label>
+  <select id="product">
+    <option value="">Select Product</option>
+    <option value="Fog Cannon">Fog Cannon</option>
+    <option value="Anti Smog Gun">Anti Smog Gun</option>
+    <option value="Smog Tower">Smog Tower</option>
+    <option value="Road Sweeper">Road Sweeper</option>
+    <option value="Waste Water Evaporator">Waste Water Evaporator</option>
+    <option value="Dust Control Agent">Dust Control Agent</option>
+    <option value="Odor Control System">Odor Control System</option>
+    <option value="Humidification System">Humidification System</option>
+    <option value="Misting System">Misting System</option>
+    <option value="Mosquito Control System">Mosquito Control System</option>
+  </select>
+</div>
   
   <div class="filter-group">
     <label>Next Follow-up</label>
@@ -334,6 +351,25 @@ align-items:center;
     </select>
   </div>
 
+
+  <!----- Product Filter-->
+  <div class="filter-group">
+  <label>Product</label>
+  <select id="productFilter" onchange="filterByProduct(this.value)">
+  <option value="All">All Products</option>
+  <option value="Fog Cannon">Fog Cannon</option>
+  <option value="Anti Smog Gun">Anti Smog Gun</option>
+  <option value="Smog Tower">Smog Tower</option>
+  <option value="Road Sweeper">Road Sweeper</option>
+  <option value="Waste Water Evaporator">Waste Water Evaporator</option>
+  <option value="Dust Control Agent">Dust Control Agent</option>
+  <option value="Odor Control System">Odor Control System</option>
+  <option value="Humidification System">Humidification System</option>
+  <option value="Misting System">Misting System</option>
+  <option value="Mosquito Control System">Mosquito Control System</option>
+</select>
+</div>
+
   <!--Quick Filter-->
   <div class="filter-group">
   <label>Quick Filter</label>
@@ -377,6 +413,7 @@ align-items:center;
 <th>Client Name</th>
     <th>Phone</th>
     <th>Company</th>
+    <th>Product</th>
     <th>Last-follow up</th>
     <th>Next-follow up</th>
     <th>Notes</th>

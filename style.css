@@ -774,6 +774,37 @@ button {
   margin-left: 2px;
 }
 
+.efficiency-box {
+  background: white;
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin: 15px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.eff-title {
+  font-weight: 700;
+  color: #111827;
+  margin-right: 8px;
+}
+
+.eff-item {
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+}
+
+.eff-item b {
+  margin-left: 6px;
+  color: #0f172a;
+}
+
 .filter-bar button:hover {
   transform: translateY(-2px);
 }
