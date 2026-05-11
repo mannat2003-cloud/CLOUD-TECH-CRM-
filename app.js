@@ -1130,3 +1130,30 @@ function showToast(message) {
   showToast("Lead deleted successfully");
   loadAll();
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+  const username = localStorage.getItem("username") || "User";
+  const role = localStorage.getItem("role") || "employee";
+
+  const profileUsername = document.getElementById("profileUsername");
+  const profileRole = document.getElementById("profileRole");
+  const profileAvatar = document.getElementById("profileAvatar");
+
+  if (profileUsername) {
+    profileUsername.innerText = username;
+  }
+
+  if (profileRole) {
+    profileRole.innerText = role === "admin" ? "Admin" : "Employee";
+  }
+
+  if (role === "admin" && profileAvatar) {
+    profileAvatar.classList.add("admin-avatar");
+  }
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+
+  loadAll();
+});
