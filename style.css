@@ -898,12 +898,7 @@ body {
     grid-template-columns: repeat(5, 1fr) 360px;
   }
 
-  .form-grid.add-lead {
-    display: grid;
-    grid-template-columns: 1.1fr 1.2fr 1.1fr 1fr 1fr 1.1fr 130px;
-  }
-
-  .filter-bar {
+    .filter-bar {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -1252,4 +1247,66 @@ button:active {
 /* Phone input compact */
 #phone {
   max-width: 155px;
+}
+/* =========================
+   ADD LEAD RESPONSIVE FIX
+========================= */
+
+/* Desktop: 8 fields fit properly */
+.add-lead-card .form-grid.add-lead {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.9fr 0.85fr 1fr 120px !important;
+  gap: 12px;
+  align-items: end;
+}
+
+.add-lead-card input,
+.add-lead-card select,
+.add-lead-card button {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Make phone input not overflow */
+.add-lead-card #phone {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Tablet / zoomed laptop */
+@media (max-width: 1200px) {
+  .add-lead-card .form-grid.add-lead {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .add-lead-card .form-grid.add-lead .filter-group:last-child {
+    grid-column: span 1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body {
+    min-width: unset !important;
+    overflow-x: auto;
+  }
+
+  .content,
+  .top-cards-new,
+  .add-lead-card,
+  .filter-bar,
+  #allLeadsSection {
+    min-width: 1000px !important;
+  }
+
+  .add-lead-card .form-grid.add-lead {
+    grid-template-columns: repeat(4, 1fr) !important;
+    min-width: 980px;
+  }
+
+  .add-lead-card input,
+  .add-lead-card select,
+  .add-lead-card button {
+    width: 100%;
+  }
 }
