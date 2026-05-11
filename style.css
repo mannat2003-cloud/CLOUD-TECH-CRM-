@@ -774,34 +774,61 @@ button {
   margin-left: 2px;
 }
 
-.efficiency-box {
-  background: white;
-  border-radius: 16px;
-  padding: 14px 18px;
-  margin: 15px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+.efficiency-card {
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin: 18px 0 22px;
+}
+
+.efficiency-heading {
   display: flex;
-  gap: 18px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.efficiency-heading h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+.efficiency-heading p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.efficiency-box {
+  display: flex;
+  gap: 12px;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .eff-title {
-  font-weight: 700;
-  color: #111827;
-  margin-right: 8px;
+  display: none;
 }
 
 .eff-item {
   background: #eff6ff;
   color: #1d4ed8;
-  padding: 8px 14px;
-  border-radius: 999px;
+  padding: 10px 16px;
+  border-radius: 14px;
   font-size: 14px;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+}
+
+.eff-item span {
+  font-weight: 600;
 }
 
 .eff-item b {
-  margin-left: 6px;
+  margin-left: 8px;
   color: #0f172a;
 }
 

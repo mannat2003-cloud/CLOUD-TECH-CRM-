@@ -34,8 +34,7 @@
     <button onclick="toggleSettings()">⚙ Settings</button>
     <button onclick="togglePerformanceChart()">Team Performance</button>
     </div>
-    <div id="efficiencyBox" class="efficiency-box"></div>
-
+    
   <!-- 🔥 USER ROLE BADGE -->
   <div id="userProfileCard" class="user-profile-card">
   <div id="profileAvatar" class="profile-avatar">
@@ -64,7 +63,16 @@
   </div>
 
 </div>
+<div class="efficiency-card">
+  <div class="efficiency-heading">
+    <div>
+      <h2>Team Efficiency</h2>
+      <p>Total won leads by each user</p>
+    </div>
+  </div>
 
+  <div id="efficiencyBox" class="efficiency-box"></div>
+</div>
 
 <div class="top-cards-new">
 
@@ -246,7 +254,7 @@ align-items:center;
     <input id="company" placeholder="Name">
   </div>
 
-  <div class="field-box">
+  <div class="field-group">
   <label>Product</label>
   <select id="product">
     <option value="">Select Product</option>
