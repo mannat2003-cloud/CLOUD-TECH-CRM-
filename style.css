@@ -779,15 +779,17 @@ button {
   border: 1px solid rgba(255,255,255,0.45);
   box-shadow: 0 8px 24px rgba(37,99,235,0.08);
   border-radius: 18px;
-  padding: 18px 20px;
+  padding: 18px 22px;
   margin: 18px 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .efficiency-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
+  flex-shrink: 0;
 }
 
 .efficiency-heading h2 {
@@ -807,6 +809,7 @@ button {
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .eff-title {
@@ -821,6 +824,7 @@ button {
   font-size: 14px;
   border: 1px solid #dbeafe;
   box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+  white-space: nowrap;
 }
 
 .eff-item span {
@@ -1235,4 +1239,13 @@ button:active {
   position: relative;
   z-index: 50;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+/* Make Add Lead phone field slightly smaller */
+.add-lead-card .form-grid {
+  grid-template-columns: 1.1fr 1fr 1.1fr 1.1fr 0.9fr 0.85fr 1.1fr 130px !important;
+}
+
+/* Phone input compact */
+#phone {
+  max-width: 185px;
 }
