@@ -859,14 +859,34 @@ async function loadAll() {
   loadOverviewChart(leads);
 
   // ✅ SET DATA
-  allLeads = leads;
+  // ✅ SET DATA
+allLeads = leads;
 updateEfficiencyBox(leads);
+populateChartUsers();
 
+// reset filters when dashboard loads
 selectedDateFilter = "All";
 selectedQuickFilter = "All";
+selectedUserFilter = "All";
 selectedProductFilter = "All";
 
+const search = document.getElementById("searchInput");
+if (search) search.value = "";
+
+const dateFilter = document.getElementById("dateFilter");
+if (dateFilter) dateFilter.value = "All";
+
+const quickFilter = document.getElementById("quickFilter");
+if (quickFilter) quickFilter.value = "All";
+
+const productFilter = document.getElementById("productFilter");
+if (productFilter) productFilter.value = "All";
+
+const userFilter = document.getElementById("userFilter");
+if (userFilter) userFilter.value = "All";
+
 currentPage = 1;
+currentData = allLeads;
 renderTable(allLeads);
   setTimeout(() => {
 
@@ -900,7 +920,7 @@ renderTable(allLeads);
 
 }, 300);
 
-  populateChartUsers();
+}
 
   // ✅ TODAY DATE
   const todayDate = new Date().toISOString().split("T")[0];
