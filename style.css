@@ -774,20 +774,6 @@ button {
   margin-left: 2px;
 }
 
-.efficiency-card {
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(255,255,255,0.45);
-  box-shadow: 0 8px 24px rgba(37,99,235,0.08);
-  border-radius: 18px;
-  padding: 18px 22px;
-  margin: 18px 0 22px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
 .efficiency-heading {
   flex-shrink: 0;
 }
@@ -804,12 +790,30 @@ button {
   color: #64748b;
 }
 
+.efficiency-card {
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin: 18px 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 35px;
+}
+
+.efficiency-heading {
+  flex-shrink: 0;
+}
+
 .efficiency-box {
   display: flex;
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .eff-title {
