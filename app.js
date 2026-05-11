@@ -860,9 +860,14 @@ async function loadAll() {
 
   // ✅ SET DATA
   allLeads = leads;
-  updateEfficiencyBox(leads);
-  currentPage = 1;
-  applyAllFilters();
+updateEfficiencyBox(leads);
+
+selectedDateFilter = "All";
+selectedQuickFilter = "All";
+selectedProductFilter = "All";
+
+currentPage = 1;
+renderTable(allLeads);
   setTimeout(() => {
 
   if (highlightedLeadId) {
@@ -1062,6 +1067,7 @@ function resetFilters() {
 
   showToast("Filters Reset");
 }
+
 function togglePerformanceChart(){
   const box = document.getElementById("teamChartBox");
 
