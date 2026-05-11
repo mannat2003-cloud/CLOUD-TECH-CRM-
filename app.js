@@ -855,120 +855,111 @@ async function loadAll() {
     }
   });
 
-   const leads = await res.json();
+  const leads = await res.json();
+
   loadOverviewChart(leads);
 
-  // ✅ SET DATA
-  // ✅ SET DATA
-allLeads = leads;
-updateEfficiencyBox(leads);
-populateChartUsers();
+  // SET DATA
+  allLeads = leads;
+  updateEfficiencyBox(leads);
+  populateChartUsers();
 
-// reset filters when dashboard loads
-selectedDateFilter = "All";
-selectedQuickFilter = "All";
-selectedUserFilter = "All";
-selectedProductFilter = "All";
+  // reset filters when dashboard loads
+  selectedDateFilter = "All";
+  selectedQuickFilter = "All";
+  selectedUserFilter = "All";
+  selectedProductFilter = "All";
 
-const search = document.getElementById("searchInput");
-if (search) search.value = "";
+  const search = document.getElementById("searchInput");
+  if (search) search.value = "";
 
-const dateFilter = document.getElementById("dateFilter");
-if (dateFilter) dateFilter.value = "All";
+  const dateFilter = document.getElementById("dateFilter");
+  if (dateFilter) dateFilter.value = "All";
 
-const quickFilter = document.getElementById("quickFilter");
-if (quickFilter) quickFilter.value = "All";
+  const quickFilter = document.getElementById("quickFilter");
+  if (quickFilter) quickFilter.value = "All";
 
-const productFilter = document.getElementById("productFilter");
-if (productFilter) productFilter.value = "All";
+  const productFilter = document.getElementById("productFilter");
+  if (productFilter) productFilter.value = "All";
 
-const userFilter = document.getElementById("userFilter");
-if (userFilter) userFilter.value = "All";
+  const userFilter = document.getElementById("userFilter");
+  if (userFilter) userFilter.value = "All";
 
-currentPage = 1;
-currentData = allLeads;
-renderTable(allLeads);
-  setTimeout(() => {
+  currentPage = 1;
+  currentData = allLeads;
+  renderTable(allLeads);
 
-  if (highlightedLeadId) {
-
-    const row = document.getElementById(
-      `lead-${highlightedLeadId}`
-    );
-
-    if (row) {
-      row.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }
-
-    setTimeout(() => {
-
-  const row = document.getElementById(
-    `lead-${highlightedLeadId}`
-  );
-
-  if (row) {
-    row.classList.remove("highlight-row");
-  }
-
-  highlightedLeadId = null;
-
-}, 1000);
-  }
-
-}, 300);
-
-}
-
-  // ✅ TODAY DATE
+  // TODAY DATE
   const todayDate = new Date().toISOString().split("T")[0];
 
-  // ✅ TOTAL
+  // TOTAL
   document.getElementById("totalLeads").innerText = leads.length;
 
-  // ✅ OVERDUE
+  // OVERDUE
   const overdue = leads.filter(l => isOverdue(l));
-document.getElementById("overdueCount").innerText = overdue.length;
+  document.getElementById("overdueCount").innerText = overdue.length;
 
-  // TODAY
+  // TODAY FOLLOW-UPS
   const todayLeads = leads.filter(l => {
-  if (!l.nextFollowUp) return false;
-  return new Date(l.nextFollowUp).toISOString().split("T")[0] === todayDate;
-});
+    if (!l.nextFollowUp) return false;
+    return new Date(l.nextFollowUp).toISOString().split("T")[0] === todayDate;
+  });
 
-const todayEmpty = document.getElementById("todayEmpty");
+  const todayEmpty = document.getElementById("todayEmpty");
 
-if (todayLeads.length === 0) {
-  todayEmpty.style.display = "table-row";
-} else {
-  todayEmpty.style.display = "none";
-}
+  if (todayLeads.length === 0) {
+    todayEmpty.style.display = "table-row";
+  } else {
+    todayEmpty.style.display = "none";
+  }
+
   document.getElementById("todayCount").innerText = todayLeads.length;
 
-  // CLOSED
+  // CLOSED WON
   const closed = leads.filter(l => l.status === "Closed Won");
   document.getElementById("closedCount").innerText = closed.length;
 
-
-  // Lost
+  // CLOSED LOST
   const lost = leads.filter(l => l.status === "Closed Lost");
-document.getElementById("lostCount").innerText = lost.length;
+  document.getElementById("lostCount").innerText = lost.length;
 
-    // TODAY TABLE 
+  // TODAY TABLE
   todayTable.innerHTML = "";
 
   todayLeads.forEach(l => {
     todayTable.innerHTML += `
       <tr>
         <td>${l.customerName || l.clientName || ""}</td>
-        <td>${l.phone}</td>
-        <td>${l.company}</td>
-        <td>${l.notes}</td>
-        <td>${l.createdBy}</td>
+        <td>${l.phone || ""}</td>
+        <td>${l.company || ""}</td>
+        <td>${l.notes || ""}</td>
+        <td>${l.createdBy || ""}</td>
       </tr>`;
   });
+
+  // Highlight newly added/edited lead
+  setTimeout(() => {
+    if (highlightedLeadId) {
+      const row = document.getElementById(`lead-${highlightedLeadId}`);
+
+      if (row) {
+        row.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+
+      setTimeout(() => {
+        const row = document.getElementById(`lead-${highlightedLeadId}`);
+
+        if (row) {
+          row.classList.remove("highlight-row");
+        }
+
+        highlightedLeadId = null;
+      }, 1000);
+    }
+  }, 300);
 }
 
 function populateChartUsers() {
