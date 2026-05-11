@@ -1052,3 +1052,24 @@ button:active {
   visibility: visible;
   transform: translateY(0);
 }
+#allLeadsSection table {
+  font-size: 13px;
+}
+
+#allLeadsSection th,
+#allLeadsSection td {
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+
+#allLeadsSection .notes-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#allLeadsSection th:nth-child(7),
+#allLeadsSection td:nth-child(7) {
+  white-space: normal;
+}
