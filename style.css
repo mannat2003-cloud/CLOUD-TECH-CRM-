@@ -1312,9 +1312,6 @@ button:active {
 }
 
 /* Add Lead should stay inside its card */
-.add-lead-card {
-  overflow-x: auto !important;
-}
 
 .add-lead-card .form-grid.add-lead {
   min-width: 1050px;
@@ -1325,9 +1322,6 @@ button:active {
 }
 
 /* All Leads section should behave like Today Follow-ups */
-#allLeadsSection {
-  overflow-x: auto !important;
-}
 
 #allLeadsSection .table-wrapper {
   width: 100%;
@@ -1349,4 +1343,126 @@ button:active {
   white-space: nowrap;
   min-width: 90px;
   text-align: center;
+}
+/* ===============================
+   SIMPLE NO-SCROLL LAYOUT FIX
+   Add at bottom of style.css
+================================ */
+
+/* Top cards always stay inside screen */
+.top-cards-new {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(150px, 1fr)) minmax(260px, 1.2fr) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* Cards shrink instead of going outside */
+.top-cards-new .stat-card,
+.top-cards-new .overview-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Overview chart should stay inside card */
+.overview-card {
+  overflow: hidden !important;
+}
+
+.overview-card .overview-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.overview-card .overview-chart-box {
+  width: 95px !important;
+  min-width: 95px !important;
+  height: 95px !important;
+}
+
+#overviewLegend {
+  font-size: 11px !important;
+  max-width: 160px !important;
+}
+
+/* Add Lead should stay in its own card */
+.add-lead-card {
+  overflow: hidden !important;
+}
+
+.add-lead-card .form-grid.add-lead {
+  display: grid !important;
+  grid-template-columns: 1.1fr 0.9fr 1.1fr 1.1fr 1fr 0.9fr 1.1fr 120px !important;
+  gap: 12px !important;
+  align-items: end !important;
+}
+
+.add-lead-card input,
+.add-lead-card select,
+.add-lead-card button {
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* All Leads table stay inside card */
+#allLeadsSection {
+  overflow: hidden !important;
+}
+
+#allLeadsSection .table-wrapper {
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+#allLeadsSection table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  font-size: 12px !important;
+}
+
+#allLeadsSection th,
+#allLeadsSection td {
+  padding: 7px 8px !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Phone/date/action should not wrap */
+#allLeadsSection th:nth-child(2),
+#allLeadsSection td:nth-child(2),
+#allLeadsSection th:nth-child(5),
+#allLeadsSection td:nth-child(5),
+#allLeadsSection th:nth-child(6),
+#allLeadsSection td:nth-child(6),
+#allLeadsSection th:nth-child(10),
+#allLeadsSection td:nth-child(10) {
+  white-space: nowrap !important;
+}
+
+/* Notes compact */
+#allLeadsSection .notes-cell {
+  max-width: 130px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Pagination no wrap */
+#pagination {
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+
+#pagination span {
+  white-space: nowrap !important;
+  min-width: 90px !important;
+  text-align: center !important;
 }
