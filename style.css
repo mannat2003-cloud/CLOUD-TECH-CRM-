@@ -1495,3 +1495,46 @@ body {
   min-width: 190px !important;
   width: 190px !important;
 }
+/* ===============================
+   FOLLOW-UP OVERVIEW LEGEND FIX
+   Add at bottom of style.css
+================================ */
+
+.top-cards-new {
+  grid-template-columns: repeat(5, minmax(150px, 1fr)) minmax(390px, 1.45fr) !important;
+}
+
+.top-cards-new .overview-card {
+  min-width: 390px !important;
+  max-width: none !important;
+  overflow: hidden !important;
+  padding: 14px 16px !important;
+}
+
+.top-cards-new .overview-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  overflow: visible !important;
+}
+
+.top-cards-new .overview-chart-box {
+  width: 115px !important;
+  min-width: 115px !important;
+  height: 115px !important;
+  flex-shrink: 0 !important;
+}
+
+#overviewLegend {
+  flex: 1 !important;
+  min-width: 210px !important;
+  max-width: none !important;
+  overflow: visible !important;
+  font-size: 12px !important;
+}
+
+#overviewLegend > div {
+  width: 100% !important;
+  min-width: 210px !important;
+  box-sizing: border-box !important;
+}
