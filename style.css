@@ -1676,3 +1676,84 @@ body {
 
   box-shadow: 0 10px 24px rgba(0,0,0,0.14) !important;
 }
+/* ==================================================
+   MOBILE LAYOUT RESTORE FIX
+   Keep this at the bottom
+================================================== */
+
+@media (max-width: 768px) {
+
+  html,
+  body {
+    width: 100% !important;
+    min-width: 1300px !important;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+  }
+
+  body {
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .content {
+    width: 1300px !important;
+    min-width: 1300px !important;
+    max-width: 1300px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard-header,
+  .header-divider,
+  .efficiency-card,
+  .top-cards-new,
+  .add-lead-card,
+  .filter-bar,
+  #allLeadsSection,
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .top-cards-new {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) 360px !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+
+  .top-cards-new .overview-card {
+    min-width: 360px !important;
+    max-width: none !important;
+  }
+
+  .add-lead-card .form-grid.add-lead {
+    display: grid !important;
+    grid-template-columns: 1.1fr 0.95fr 1.1fr 1.1fr 1fr 0.9fr 1.1fr 120px !important;
+    gap: 12px !important;
+    align-items: end !important;
+  }
+
+  .filter-bar {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .filter-group {
+    width: auto !important;
+  }
+
+  #allLeadsSection table {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  #pagination {
+    white-space: nowrap !important;
+  }
+}
