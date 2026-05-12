@@ -1510,3 +1510,32 @@ body {
   margin-left: 20px !important;
   margin-right: 40px !important;
 }
+/* Fix edit/delete icons visibility */
+#allLeadsSection th:nth-child(10),
+#allLeadsSection td:nth-child(10) {
+  width: 120px !important;
+  min-width: 120px !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+#allLeadsSection td:nth-child(10) {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.action-btn {
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.delete-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
