@@ -1326,6 +1326,22 @@ body {
 
   box-shadow: 0 10px 24px rgba(0,0,0,0.14) !important;
 }
+/* Center empty state in All Leads table */
+#allEmpty .empty-state {
+  text-align: center !important;
+  vertical-align: middle !important;
+  padding: 45px 0 !important;
+}
+
+#allEmpty td {
+  text-align: center !important;
+}
+
+#allEmpty .empty-state i,
+#allEmpty .empty-state svg {
+  display: block !important;
+  margin: 0 auto 10px auto !important;
+}
 /* ==================================================
    MOBILE LAYOUT RESTORE FIX
    Keep this at the bottom
@@ -1406,20 +1422,4 @@ body {
   #pagination {
     white-space: nowrap !important;
   }
-}
-/* Center empty state in All Leads table */
-#allEmpty .empty-state {
-  text-align: center !important;
-  vertical-align: middle !important;
-  padding: 45px 0 !important;
-}
-
-#allEmpty td {
-  text-align: center !important;
-}
-
-#allEmpty .empty-state i,
-#allEmpty .empty-state svg {
-  display: block !important;
-  margin: 0 auto 10px auto !important;
 }
