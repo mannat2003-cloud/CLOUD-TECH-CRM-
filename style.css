@@ -1245,49 +1245,61 @@ button:active {
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 /* ==================================================
-   FINAL DESKTOP-CANVAS LAYOUT
-   Dashboard will stay like laptop view on zoom/mobile
+   FINAL CLEAN LAYOUT FIX
    DO NOT ADD ANYTHING BELOW THIS
 ================================================== */
 
-/* Whole app behaves like one fixed desktop dashboard */
 html,
 body {
-  width: 100%;
-  min-width: 1500px;
-  overflow-x: auto;
-  overflow-y: auto;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
 }
 
-/* Main content fixed desktop width */
+body {
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
 .content {
-  width: 1500px;
-  min-width: 1500px;
-  max-width: 1500px;
-  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
 }
 
-/* Header full width */
 .dashboard-header,
 .header-divider,
 .efficiency-card,
 .top-cards-new,
 .add-lead-card,
 .filter-bar,
-#allLeadsSection {
-  width: 100%;
-  box-sizing: border-box;
+#allLeadsSection,
+.card {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* Team efficiency stays in one line */
-/* Team Wins premium strip */
+/* Header/button alignment */
+.content > div[style*="display:flex"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Team Wins */
 .efficiency-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(239,246,255,0.85));
-  border: 1px solid rgba(191,219,254,0.9);
-  box-shadow: 0 10px 28px rgba(37,99,235,0.10);
-  border-radius: 18px;
-  padding: 18px 24px;
-  margin: 18px 0 22px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(239,246,255,0.85)) !important;
+  border: 1px solid rgba(191,219,254,0.9) !important;
+  box-shadow: 0 10px 28px rgba(37,99,235,0.10) !important;
+  border-radius: 18px !important;
+  padding: 18px 24px !important;
+  margin: 18px 0 22px !important;
 
   display: flex !important;
   align-items: center !important;
@@ -1299,21 +1311,21 @@ body {
 .efficiency-heading {
   flex: 0 0 auto !important;
   white-space: nowrap !important;
-  padding-right: 18px;
-  border-right: 1px solid #dbeafe;
+  padding-right: 18px !important;
+  border-right: 1px solid #dbeafe !important;
 }
 
 .efficiency-heading h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: #0f172a;
+  margin: 0 !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
 }
 
 .efficiency-heading p {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: #64748b;
+  margin: 4px 0 0 !important;
+  font-size: 13px !important;
+  color: #64748b !important;
 }
 
 .efficiency-box {
@@ -1321,45 +1333,33 @@ body {
   flex-wrap: nowrap !important;
   gap: 12px !important;
   align-items: center !important;
+  overflow: hidden !important;
 }
 
 .eff-title {
-  display: none;
+  display: none !important;
 }
 
 .eff-item {
   flex: 0 0 auto !important;
   white-space: nowrap !important;
-
-  background: white;
-  color: #1d4ed8;
-  padding: 10px 16px;
-  border-radius: 14px;
-  font-size: 14px;
-  border: 1px solid #bfdbfe;
-  box-shadow: 0 6px 16px rgba(37,99,235,0.08);
+  background: white !important;
+  color: #1d4ed8 !important;
+  padding: 10px 16px !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  border: 1px solid #bfdbfe !important;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.08) !important;
 }
 
-.eff-item span {
-  font-weight: 700;
-}
-
-.eff-item b {
-  margin-left: 8px;
-  color: #0f172a;
-  font-weight: 800;
-}
-
-/* Top cards fixed layout */
+/* Top cards */
 .top-cards-new {
   display: grid !important;
-  grid-template-columns: repeat(5, 1fr) 330px !important;
-  gap: 18px !important;
-  align-items: stretch !important;
-  overflow: visible !important;
+  grid-template-columns: repeat(5, minmax(150px, 1fr)) minmax(280px, 1.2fr) !important;
+  gap: 16px !important;
+  overflow: hidden !important;
 }
 
-/* Cards stay inside their grid cells */
 .top-cards-new .stat-card,
 .top-cards-new .overview-card {
   width: 100% !important;
@@ -1368,7 +1368,6 @@ body {
   box-sizing: border-box !important;
 }
 
-/* Overview chart controlled */
 .top-cards-new .overview-card {
   overflow: hidden !important;
 }
@@ -1376,30 +1375,30 @@ body {
 .top-cards-new .overview-content {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 10px !important;
   overflow: hidden !important;
 }
 
 .top-cards-new .overview-chart-box {
-  width: 110px !important;
-  min-width: 110px !important;
-  height: 110px !important;
+  width: 95px !important;
+  min-width: 95px !important;
+  height: 95px !important;
 }
 
 #overviewLegend {
-  font-size: 12px !important;
-  max-width: 180px !important;
+  font-size: 11px !important;
+  max-width: 170px !important;
   overflow: hidden !important;
 }
 
-/* Add Lead fixed desktop layout */
+/* Add Lead */
 .add-lead-card {
-  overflow: visible !important;
+  overflow: hidden !important;
 }
 
 .add-lead-card .form-grid.add-lead {
   display: grid !important;
-  grid-template-columns: 1.15fr 0.95fr 1.15fr 1.15fr 1fr 0.9fr 1.15fr 120px !important;
+  grid-template-columns: 1.1fr 0.9fr 1.1fr 1.1fr 1fr 0.9fr 1.1fr 120px !important;
   gap: 12px !important;
   align-items: end !important;
 }
@@ -1412,67 +1411,77 @@ body {
   box-sizing: border-box !important;
 }
 
-/* Phone number input compact but not broken */
 #phone {
   max-width: 100% !important;
 }
 
-/* Tables should use full card width */
-.table-wrapper {
-  width: 100% !important;
-  overflow: visible !important;
+/* All Leads table */
+#allLeadsSection {
+  overflow: hidden !important;
 }
 
-#allLeadsSection {
-  overflow: visible !important;
+#allLeadsSection .table-wrapper {
+  width: 100% !important;
+  overflow: hidden !important;
 }
 
 #allLeadsSection table {
   width: 100% !important;
   table-layout: fixed !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
 }
 
 #allLeadsSection th,
 #allLeadsSection td {
-  padding: 8px 10px !important;
-  vertical-align: top !important;
+  padding: 7px 8px !important;
   word-break: break-word !important;
   overflow-wrap: break-word !important;
+  vertical-align: top !important;
 }
 
-/* Phone should never wrap */
+/* No wrap columns */
 #allLeadsSection th:nth-child(2),
-#allLeadsSection td:nth-child(2) {
-  white-space: nowrap !important;
-}
-
-/* Dates should not wrap */
+#allLeadsSection td:nth-child(2),
 #allLeadsSection th:nth-child(5),
 #allLeadsSection td:nth-child(5),
 #allLeadsSection th:nth-child(6),
-#allLeadsSection td:nth-child(6) {
-  white-space: nowrap !important;
-}
-
-/* Created By and Actions no wrap */
-#allLeadsSection th:nth-child(9),
-#allLeadsSection td:nth-child(9),
+#allLeadsSection td:nth-child(6),
 #allLeadsSection th:nth-child(10),
 #allLeadsSection td:nth-child(10) {
   white-space: nowrap !important;
 }
 
-/* Notes short by default */
+/* Actions icons */
+#allLeadsSection th:nth-child(10),
+#allLeadsSection td:nth-child(10) {
+  width: 95px !important;
+  overflow: visible !important;
+}
+
+#allLeadsSection td:nth-child(10) {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.action-btn {
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Notes */
 #allLeadsSection .notes-cell {
-  max-width: 150px !important;
+  max-width: 140px !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   cursor: pointer !important;
 }
 
-/* Notes full on hover */
 #allLeadsSection .notes-cell:hover {
   white-space: normal !important;
   overflow: visible !important;
@@ -1486,7 +1495,7 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
 }
 
-/* Pagination fixed */
+/* Pagination */
 #pagination {
   white-space: nowrap !important;
   flex-wrap: nowrap !important;
@@ -1496,46 +1505,4 @@ body {
   white-space: nowrap !important;
   min-width: 90px !important;
   text-align: center !important;
-}
-/* Right side breathing space */
-html,
-body {
-  min-width: 1550px !important;
-}
-
-.content {
-  width: 1500px !important;
-  min-width: 1500px !important;
-  max-width: 1500px !important;
-  margin-left: 20px !important;
-  margin-right: 40px !important;
-}
-/* Fix edit/delete icons visibility */
-#allLeadsSection th:nth-child(10),
-#allLeadsSection td:nth-child(10) {
-  width: 120px !important;
-  min-width: 120px !important;
-  white-space: nowrap !important;
-  overflow: visible !important;
-}
-
-#allLeadsSection td:nth-child(10) {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.action-btn {
-  flex: 0 0 36px !important;
-  width: 36px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.delete-btn {
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
 }
