@@ -1280,28 +1280,74 @@ body {
 }
 
 /* Team efficiency stays in one line */
+/* Team Wins premium strip */
 .efficiency-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(239,246,255,0.85));
+  border: 1px solid rgba(191,219,254,0.9);
+  box-shadow: 0 10px 28px rgba(37,99,235,0.10);
+  border-radius: 18px;
+  padding: 18px 24px;
+  margin: 18px 0 22px;
+
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 30px !important;
+  gap: 28px !important;
   overflow: hidden !important;
 }
 
 .efficiency-heading {
   flex: 0 0 auto !important;
   white-space: nowrap !important;
+  padding-right: 18px;
+  border-right: 1px solid #dbeafe;
+}
+
+.efficiency-heading h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.efficiency-heading p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
 }
 
 .efficiency-box {
   display: flex !important;
   flex-wrap: nowrap !important;
   gap: 12px !important;
+  align-items: center !important;
+}
+
+.eff-title {
+  display: none;
 }
 
 .eff-item {
   flex: 0 0 auto !important;
   white-space: nowrap !important;
+
+  background: white;
+  color: #1d4ed8;
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  border: 1px solid #bfdbfe;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.08);
+}
+
+.eff-item span {
+  font-weight: 700;
+}
+
+.eff-item b {
+  margin-left: 8px;
+  color: #0f172a;
+  font-weight: 800;
 }
 
 /* Top cards fixed layout */
@@ -1450,4 +1496,17 @@ body {
   white-space: nowrap !important;
   min-width: 90px !important;
   text-align: center !important;
+}
+/* Right side breathing space */
+html,
+body {
+  min-width: 1550px !important;
+}
+
+.content {
+  width: 1500px !important;
+  min-width: 1500px !important;
+  max-width: 1500px !important;
+  margin-left: 20px !important;
+  margin-right: 40px !important;
 }
