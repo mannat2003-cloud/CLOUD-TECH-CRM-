@@ -716,7 +716,7 @@ button {
 /* Closed This Week & Lost text upar lao */
 .stat-card:nth-child(4) p,
 .stat-card:nth-child(5) p {
-  margin-top: -14px;
+  margin-top: 0px;
 }
 .stat-card {
   border: 1px solid rgba(0,0,0,0.05);
