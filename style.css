@@ -1245,7 +1245,8 @@ button:active {
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 /* ==================================================
-   FINAL CLEAN LAYOUT FIX
+   FINAL FIT-IN-SCREEN LAYOUT
+   No bottom scrollbar, full dashboard inside screen
    DO NOT ADD ANYTHING BELOW THIS
 ================================================== */
 
@@ -1254,10 +1255,11 @@ body {
   width: 100% !important;
   min-width: 0 !important;
   overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
 body {
-  padding: 20px !important;
+  padding: 20px 28px 20px 20px !important;
   box-sizing: border-box !important;
 }
 
@@ -1266,10 +1268,11 @@ body {
   max-width: 100% !important;
   min-width: 0 !important;
   padding: 0 !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
   box-sizing: border-box !important;
 }
 
+/* Main sections fit screen */
 .dashboard-header,
 .header-divider,
 .efficiency-card,
@@ -1281,82 +1284,39 @@ body {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
   box-sizing: border-box !important;
-}
-
-/* Header/button alignment */
-.content > div[style*="display:flex"] {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
 }
 
 /* Team Wins */
 .efficiency-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(239,246,255,0.85)) !important;
-  border: 1px solid rgba(191,219,254,0.9) !important;
-  box-shadow: 0 10px 28px rgba(37,99,235,0.10) !important;
-  border-radius: 18px !important;
-  padding: 18px 24px !important;
-  margin: 18px 0 22px !important;
-
   display: flex !important;
   align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 28px !important;
+  gap: 24px !important;
   overflow: hidden !important;
 }
 
 .efficiency-heading {
   flex: 0 0 auto !important;
   white-space: nowrap !important;
-  padding-right: 18px !important;
-  border-right: 1px solid #dbeafe !important;
-}
-
-.efficiency-heading h2 {
-  margin: 0 !important;
-  font-size: 20px !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-}
-
-.efficiency-heading p {
-  margin: 4px 0 0 !important;
-  font-size: 13px !important;
-  color: #64748b !important;
 }
 
 .efficiency-box {
   display: flex !important;
+  gap: 10px !important;
   flex-wrap: nowrap !important;
-  gap: 12px !important;
-  align-items: center !important;
   overflow: hidden !important;
 }
 
-.eff-title {
-  display: none !important;
-}
-
 .eff-item {
-  flex: 0 0 auto !important;
   white-space: nowrap !important;
-  background: white !important;
-  color: #1d4ed8 !important;
-  padding: 10px 16px !important;
-  border-radius: 14px !important;
-  font-size: 14px !important;
-  border: 1px solid #bfdbfe !important;
-  box-shadow: 0 6px 16px rgba(37,99,235,0.08) !important;
+  flex: 0 1 auto !important;
 }
 
-/* Top cards */
+/* Top cards fit inside screen */
 .top-cards-new {
   display: grid !important;
-  grid-template-columns: repeat(5, minmax(150px, 1fr)) minmax(280px, 1.2fr) !important;
-  gap: 16px !important;
+  grid-template-columns: repeat(5, minmax(130px, 1fr)) minmax(230px, 1.2fr) !important;
+  gap: 14px !important;
   overflow: hidden !important;
 }
 
@@ -1368,6 +1328,26 @@ body {
   box-sizing: border-box !important;
 }
 
+.stat-card {
+  padding: 14px !important;
+  gap: 10px !important;
+}
+
+.stat-card p {
+  font-size: 13px !important;
+  white-space: nowrap !important;
+}
+
+.stat-card h2 {
+  font-size: 24px !important;
+}
+
+.stat-card small {
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+/* Overview card fit */
 .top-cards-new .overview-card {
   overflow: hidden !important;
 }
@@ -1375,31 +1355,31 @@ body {
 .top-cards-new .overview-content {
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: 8px !important;
   overflow: hidden !important;
 }
 
 .top-cards-new .overview-chart-box {
-  width: 95px !important;
-  min-width: 95px !important;
-  height: 95px !important;
+  width: 85px !important;
+  min-width: 85px !important;
+  height: 85px !important;
 }
 
 #overviewLegend {
-  font-size: 11px !important;
-  max-width: 170px !important;
+  font-size: 10px !important;
+  max-width: 135px !important;
   overflow: hidden !important;
 }
 
-/* Add Lead */
+/* Add Lead fit */
 .add-lead-card {
   overflow: hidden !important;
 }
 
 .add-lead-card .form-grid.add-lead {
   display: grid !important;
-  grid-template-columns: 1.1fr 0.9fr 1.1fr 1.1fr 1fr 0.9fr 1.1fr 120px !important;
-  gap: 12px !important;
+  grid-template-columns: 1fr 0.85fr 1fr 1fr 0.9fr 0.85fr 1fr 110px !important;
+  gap: 10px !important;
   align-items: end !important;
 }
 
@@ -1409,37 +1389,35 @@ body {
   width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box !important;
+  font-size: 13px !important;
 }
 
-#phone {
-  max-width: 100% !important;
-}
-
-/* All Leads table */
-#allLeadsSection {
+/* Tables fit */
+.table-wrapper,
+#allLeadsSection .table-wrapper {
+  width: 100% !important;
   overflow: hidden !important;
 }
 
-#allLeadsSection .table-wrapper {
-  width: 100% !important;
+#allLeadsSection {
   overflow: hidden !important;
 }
 
 #allLeadsSection table {
   width: 100% !important;
   table-layout: fixed !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
 }
 
 #allLeadsSection th,
 #allLeadsSection td {
-  padding: 7px 8px !important;
+  padding: 6px 6px !important;
   word-break: break-word !important;
   overflow-wrap: break-word !important;
   vertical-align: top !important;
 }
 
-/* No wrap columns */
+/* Important columns no wrap */
 #allLeadsSection th:nth-child(2),
 #allLeadsSection td:nth-child(2),
 #allLeadsSection th:nth-child(5),
@@ -1451,51 +1429,33 @@ body {
   white-space: nowrap !important;
 }
 
-/* Actions icons */
+/* Actions visible */
 #allLeadsSection th:nth-child(10),
 #allLeadsSection td:nth-child(10) {
-  width: 95px !important;
-  overflow: visible !important;
+  width: 80px !important;
 }
 
 #allLeadsSection td:nth-child(10) {
   display: flex !important;
+  gap: 4px !important;
   align-items: center !important;
-  gap: 6px !important;
 }
 
 .action-btn {
-  flex: 0 0 36px !important;
-  width: 36px !important;
-  height: 36px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 30px !important;
 }
 
-/* Notes */
+/* Notes compact */
 #allLeadsSection .notes-cell {
-  max-width: 140px !important;
+  max-width: 100px !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  cursor: pointer !important;
 }
 
-#allLeadsSection .notes-cell:hover {
-  white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: unset !important;
-  word-break: break-word !important;
-  background: #f9fafb !important;
-  padding: 8px !important;
-  border-radius: 8px !important;
-  position: relative !important;
-  z-index: 999 !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
-}
-
-/* Pagination */
+/* Pagination no wrap */
 #pagination {
   white-space: nowrap !important;
   flex-wrap: nowrap !important;
@@ -1503,6 +1463,6 @@ body {
 
 #pagination span {
   white-space: nowrap !important;
-  min-width: 90px !important;
+  min-width: 85px !important;
   text-align: center !important;
 }
