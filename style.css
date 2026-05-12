@@ -109,7 +109,7 @@ button {
   margin: 0;
 }
 .top-cards-new {
-  grid-template-columns: repeat(5, 1fr) 330px;
+  grid-template-columns: repeat(5, 1fr) 380px !important;
 }
 .action-btn {
   background: transparent;
@@ -1465,4 +1465,33 @@ body {
   white-space: nowrap !important;
   min-width: 85px !important;
   text-align: center !important;
+}
+/* Follow-up Overview chart cut fix */
+.top-cards-new .overview-card {
+  min-width: 360px !important;
+  overflow: visible !important;
+}
+
+.top-cards-new .overview-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  overflow: visible !important;
+}
+
+.top-cards-new .overview-chart-box {
+  width: 110px !important;
+  min-width: 110px !important;
+  height: 110px !important;
+}
+
+#overviewLegend {
+  max-width: 220px !important;
+  overflow: visible !important;
+  font-size: 12px !important;
+}
+
+#overviewLegend > div {
+  min-width: 190px !important;
+  width: 190px !important;
 }
