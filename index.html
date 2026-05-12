@@ -14,18 +14,23 @@
 
 <body>
 
-    <div class="dashboard-scale">
+  
     <div class="content">
 
       <div class="dashboard-header">
   <div>
-    <h1 class="premium-title">Cloud Tech Follow-Up Dashboard</h1>
-<p class="tagline">Stay on top of your commitments and never miss a follow-up</p>
+    <h1 class="premium-title">
+  Cloud Tech Follow-Up Dashboard
+</h1>
+<p class="tagline">
+  Stay on top of your commitments and never miss a follow-up
+</p>
   </div>
-   
+</div>
 <div class="header-divider"></div>
-
- <div class="dashboard-actions">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+  
+  <div style="display:flex; gap:10px;">
     <button onclick="toggleSettings()">⚙ Settings</button>
     <button onclick="togglePerformanceChart()">Team Performance</button>
     </div>
@@ -61,8 +66,8 @@
 <div class="efficiency-card">
   <div class="efficiency-heading">
     <div>
-      <h2>Team Wins</h2>
-<p>Closed won leads by user</p>
+      <h2>Team Efficiency</h2>
+      <p>Total won leads by each user</p>
     </div>
   </div>
 
@@ -295,6 +300,7 @@ align-items:center;
 
 <div class="card" style="margin-top:24px;">
   <h2>Today's Follow-Ups</h2>
+  <div class="table-wrapper"></div>
   <div class="table-wrapper">
 <table>
     <thead>
@@ -405,8 +411,6 @@ align-items:center;
   <button class="secondary" onclick="exportToExcel()">Export</button>
 </div>
 
-</div> <!-- filter-bar close -->
-
 <div id="allLeadsSection" class="card">
   <h2>All Leads</h2>
 
@@ -450,13 +454,7 @@ align-items:center;
 </div>
 
 <div id="toast">Saved successfully</div>
-
-  </div> <!-- content close -->
-</div> <!-- dashboard-scale close -->
-
 <script src="app.js"></script>
-</body>
-</html>
 
 </body>
 </html>
