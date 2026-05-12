@@ -19,19 +19,27 @@
 
       <div class="dashboard-header">
   <div>
-    <h1 class="premium-title">
-  Cloud Tech Follow-Up Dashboard
-</h1>
-<p class="tagline">
-  Stay on top of your commitments and never miss a follow-up
-</p>
+    <h1 class="premium-title">Cloud Tech Follow-Up Dashboard</h1>
+<p class="tagline">Stay on top of your commitments and never miss a follow-up</p>
   </div>
-  </div>
-</div>
+   <div id="userProfileCard" class="user-profile-card">
+        <div id="profileAvatar" class="profile-avatar">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Z" fill="currentColor"/>
+            <path d="M12 14c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <div class="profile-info">
+          <div id="profileUsername" class="profile-username">User</div>
+          <div id="profileRole" class="profile-role">Employee</div>
+        </div>
+      </div>
+    </div>
+
 <div class="header-divider"></div>
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-  
-  <div style="display:flex; gap:10px;">
+
+ <div class="dashboard-actions">
     <button onclick="toggleSettings()">⚙ Settings</button>
     <button onclick="togglePerformanceChart()">Team Performance</button>
     </div>
@@ -301,7 +309,6 @@ align-items:center;
 
 <div class="card" style="margin-top:24px;">
   <h2>Today's Follow-Ups</h2>
-  <div class="table-wrapper"></div>
   <div class="table-wrapper">
 <table>
     <thead>
@@ -412,6 +419,8 @@ align-items:center;
   <button class="secondary" onclick="exportToExcel()">Export</button>
 </div>
 
+</div> <!-- filter-bar close -->
+
 <div id="allLeadsSection" class="card">
   <h2>All Leads</h2>
 
@@ -455,7 +464,13 @@ align-items:center;
 </div>
 
 <div id="toast">Saved successfully</div>
+
+  </div> <!-- content close -->
+</div> <!-- dashboard-scale close -->
+
 <script src="app.js"></script>
+</body>
+</html>
 
 </body>
 </html>
