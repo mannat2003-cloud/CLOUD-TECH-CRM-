@@ -1272,73 +1272,114 @@ body {
   box-sizing: border-box !important;
 }
 
-/* ==================================================
-   FINAL TRUE SCALE DASHBOARD
-   Whole dashboard scales together
-================================================== */
-
-html,
-body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden !important;
-  overflow-y: auto;
-  background: linear-gradient(135deg, #eef2ff, #dbeafe);
-}
-
-/* This wrapper scales the whole dashboard together */
-.dashboard-scale {
-  width: 1500px;
-  transform-origin: top left;
-  transform: scale(calc((100vw - 40px) / 1500));
-}
-
-/* Keep original dashboard design width */
-.content {
-  width: 1500px !important;
-  max-width: 1500px !important;
-  min-width: 1500px !important;
-  padding: 20px !important;
-  box-sizing: border-box !important;
-}
-
-/* Prevent page height issue after scaling */
-body {
-  min-height: calc(100vh * 1);
-}
-
-/* Top cards original style */
-.top-cards-new {
-  display: grid !important;
-  grid-template-columns: repeat(5, 1fr) 330px !important;
-  gap: 18px !important;
-  align-items: stretch !important;
-}
-
-/* Cards should not cut content */
-.top-cards-new .stat-card,
-.top-cards-new .overview-card {
+/* Main sections fit screen */
+.dashboard-header,
+.header-divider,
+.efficiency-card,
+.top-cards-new,
+.add-lead-card,
+.filter-bar,
+#allLeadsSection,
+.card {
   width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
   box-sizing: border-box !important;
 }
 
-/* Overview chart stable */
-.overview-card {
+/* Team Wins */
+.efficiency-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important;
   overflow: hidden !important;
 }
 
-.overview-content {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
+.efficiency-heading {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
 }
 
-/* Add Lead original fixed layout */
+.efficiency-box {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}
+
+.eff-item {
+  white-space: nowrap !important;
+  flex: 0 1 auto !important;
+}
+
+/* Top cards fit inside screen */
+.top-cards-new {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(130px, 1fr)) minmax(230px, 1.2fr) !important;
+  gap: 14px !important;
+  overflow: hidden !important;
+}
+
+.top-cards-new .stat-card,
+.top-cards-new .overview-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.stat-card {
+  padding: 14px !important;
+  gap: 10px !important;
+}
+
+.stat-card p {
+  font-size: 13px !important;
+  white-space: nowrap !important;
+}
+
+.stat-card h2 {
+  font-size: 24px !important;
+}
+
+.stat-card small {
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+/* Overview card fit */
+.top-cards-new .overview-card {
+  overflow: hidden !important;
+}
+
+.top-cards-new .overview-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  overflow: hidden !important;
+}
+
+.top-cards-new .overview-chart-box {
+  width: 85px !important;
+  min-width: 85px !important;
+  height: 85px !important;
+}
+
+#overviewLegend {
+  font-size: 10px !important;
+  max-width: 135px !important;
+  overflow: hidden !important;
+}
+
+/* Add Lead fit */
+.add-lead-card {
+  overflow: hidden !important;
+}
+
 .add-lead-card .form-grid.add-lead {
   display: grid !important;
-  grid-template-columns: 1.15fr 0.95fr 1.15fr 1.15fr 1fr 0.9fr 1.15fr 120px !important;
-  gap: 12px !important;
+  grid-template-columns: 1fr 0.85fr 1fr 1fr 0.9fr 0.85fr 1fr 110px !important;
+  gap: 10px !important;
   align-items: end !important;
 }
 
@@ -1346,22 +1387,37 @@ body {
 .add-lead-card select,
 .add-lead-card button {
   width: 100% !important;
+  min-width: 0 !important;
   box-sizing: border-box !important;
+  font-size: 13px !important;
 }
 
-/* All Leads table stable */
+/* Tables fit */
+.table-wrapper,
+#allLeadsSection .table-wrapper {
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+#allLeadsSection {
+  overflow: hidden !important;
+}
+
 #allLeadsSection table {
   width: 100% !important;
   table-layout: fixed !important;
+  font-size: 11px !important;
 }
 
 #allLeadsSection th,
 #allLeadsSection td {
-  padding: 8px 10px !important;
+  padding: 6px 6px !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
   vertical-align: top !important;
 }
 
-/* Phone/date/actions no wrap */
+/* Important columns no wrap */
 #allLeadsSection th:nth-child(2),
 #allLeadsSection td:nth-child(2),
 #allLeadsSection th:nth-child(5),
@@ -1374,15 +1430,26 @@ body {
 }
 
 /* Actions visible */
+#allLeadsSection th:nth-child(10),
 #allLeadsSection td:nth-child(10) {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
+  width: 80px !important;
 }
 
-/* Notes ellipsis */
+#allLeadsSection td:nth-child(10) {
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+
+.action-btn {
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 30px !important;
+}
+
+/* Notes compact */
 #allLeadsSection .notes-cell {
-  max-width: 150px !important;
+  max-width: 100px !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -1391,10 +1458,11 @@ body {
 /* Pagination no wrap */
 #pagination {
   white-space: nowrap !important;
+  flex-wrap: nowrap !important;
 }
 
 #pagination span {
   white-space: nowrap !important;
-  min-width: 90px !important;
+  min-width: 85px !important;
   text-align: center !important;
 }
