@@ -819,6 +819,64 @@ th, td {
 tr {
   transition: all 0.2s ease;
 }
+@media (max-width: 768px) {
+  body {
+    min-width: 1400px;
+    overflow-x: auto;
+  }
+
+  .content,
+  .top-cards-new,
+  .add-lead-card,
+  .filter-bar,
+  #allLeadsSection {
+    min-width: 1300px;
+  }
+
+  .top-cards-new {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 360px;
+  }
+
+  .form-grid.add-lead {
+    display: grid;
+    grid-template-columns: 1.1fr 1.2fr 1.1fr 1fr 1fr 1.1fr 130px;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    width: auto;
+  }
+
+  .overview-card {
+    width: 100% !important;
+    max-width: 220px !important;
+    overflow: hidden;
+  }
+
+  .overview-card .overview-content {
+    gap: 8px !important;
+  }
+
+  .overview-card .overview-chart-box {
+    width: 100px !important;
+    height: 90px !important;
+    flex-shrink: 0;
+  }
+
+  #overviewLegend {
+    font-size: 11px !important;
+  }
+
+  #overviewLegend > div {
+    min-width: 120px !important;
+  }
+}
 
 button:active {
   transform: scale(0.95);
