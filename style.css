@@ -617,7 +617,33 @@ tr:hover {
   min-width: 220px;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
 }
+/* Today's Follow-Ups section ko All Leads jaisa spacing dena */
+.card:has(#todayTable) {
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+}
 
+.card:has(#todayTable) h2 {
+  margin: 0 0 18px 0 !important;
+}
+
+.card:has(#todayTable) .table-wrapper {
+  width: 100% !important;
+  margin-top: 0 !important;
+  overflow: hidden !important;
+}
+
+.card:has(#todayTable) table {
+  width: 100% !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.card:has(#todayTable) th,
+.card:has(#todayTable) td {
+  padding: 16px 18px !important;
+}
 /* Status badges */
 .status {
   display: inline-flex;
