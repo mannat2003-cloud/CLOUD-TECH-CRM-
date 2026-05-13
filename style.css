@@ -1358,7 +1358,7 @@ button:active {
   margin: 0 !important;
   font-size: 29px !important;
   line-height: 1 !important;
-  font-weight: 850 !important;
+  font-weight: 600 !important;
   color: #0f172a !important;
 }
 
@@ -1411,7 +1411,7 @@ button:active {
 .overview-card h2 {
   margin: 0 0 12px !important;
   font-size: 16px !important;
-  font-weight: 850 !important;
+  font-weight: 600 !important;
   color: #0f172a !important;
 }
 
@@ -1458,7 +1458,7 @@ button:active {
 #teamChartBox h2 {
   margin: 0 0 18px !important;
   font-size: 22px !important;
-  font-weight: 850 !important;
+  font-weight: 600 !important;
   color: #0f172a !important;
 }
 
@@ -1563,7 +1563,7 @@ thead th,
 th {
   background: #f1f5ff !important;
   color: #0f172a !important;
-  font-weight: 850 !important;
+  font-weight: 600 !important;
   font-size: 13px !important;
   padding: 13px 14px !important;
   border-bottom: 1px solid #dbeafe !important;
@@ -1646,7 +1646,7 @@ tr:hover {
   padding: 7px 12px !important;
   border-radius: 999px !important;
   font-size: 12px !important;
-  font-weight: 850 !important;
+  font-weight: 600 !important;
   border: 1px solid transparent !important;
   white-space: nowrap !important;
 }
