@@ -150,11 +150,18 @@ button:active {
   width: 100%;
   padding: 18px 22px;
   margin: 18px 0 22px;
+
   display: flex;
   align-items: center;
   gap: 24px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(239,246,255,0.88));
+
+  background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%);
+  border: 1px solid #bfdbfe;
+  border-left: 5px solid #2563eb;
+  border-radius: 22px;
+
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.14);
 }
 
 .efficiency-heading {
@@ -171,18 +178,19 @@ button:active {
 
 .efficiency-heading::before {
   content: "🏆";
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 14px;
-  background: #eff6ff;
-  border: 1px solid #dbeafe;
+
+  background: linear-gradient(135deg, #dbeafe, #ffffff);
+  border: 1px solid #bfdbfe;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 18px;
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+  font-size: 20px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
 
   grid-row: 1 / span 2;
 }
