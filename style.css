@@ -1345,3 +1345,21 @@ tr:hover {
   padding: 24px !important;
 }
 
+/* Keep mobile as laptop-style wide view */
+@media (max-width: 768px) {
+  html,
+  body {
+    min-width: 1300px !important;
+    overflow-x: auto !important;
+  }
+
+  .content {
+    width: 1300px !important;
+    max-width: 1300px !important;
+    min-width: 1300px !important;
+  }
+
+  .top-cards-new {
+    grid-template-columns: repeat(5, 1fr) 390px !important;
+  }
+}
