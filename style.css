@@ -701,7 +701,7 @@ body {
 .premium-title {
   margin: 0 !important;
   font-size: 34px !important;
-  font-weight: 800 !important;
+  font-weight: 600 !important;
   letter-spacing: -0.4px !important;
   line-height: 1.15 !important;
   background: linear-gradient(135deg, #0f172a, #1d4ed8, #0284c7) !important;
@@ -740,7 +740,7 @@ button {
   border-radius: 12px !important;
   padding: 10px 16px !important;
   font-size: 14px !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
   cursor: pointer !important;
   color: white !important;
   background: linear-gradient(135deg, #2563eb, #1e40af) !important;
@@ -804,7 +804,7 @@ button:active {
 .efficiency-heading h2 {
   margin: 0 !important;
   font-size: 20px !important;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
   color: #0f172a !important;
 }
 
@@ -846,13 +846,13 @@ button:active {
 }
 
 .eff-item span {
-  font-weight: 800 !important;
+  font-weight: 500 !important;
 }
 
 .eff-item b {
   margin-left: 8px !important;
   color: #0f172a !important;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
 }
 
 /* ===== Top cards row ===== */
@@ -901,7 +901,7 @@ button:active {
 .stat-card p {
   margin: 0 0 6px !important;
   font-size: 13px !important;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
   color: #475569 !important;
   line-height: 1.2 !important;
   white-space: normal !important;
@@ -911,7 +911,7 @@ button:active {
   margin: 0 !important;
   font-size: 29px !important;
   line-height: 1 !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   color: #0f172a !important;
 }
 
@@ -964,7 +964,7 @@ button:active {
 .overview-card h2 {
   margin: 0 0 12px !important;
   font-size: 16px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   color: #0f172a !important;
 }
 
@@ -1011,7 +1011,7 @@ button:active {
 #teamChartBox h2 {
   margin: 0 0 18px !important;
   font-size: 22px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   color: #0f172a !important;
 }
 
@@ -1031,7 +1031,7 @@ button:active {
 
 .filter-group label {
   font-size: 12px !important;
-  font-weight: 800 !important;
+  font-weight: 400 !important;
   color: #64748b !important;
   margin-left: 2px !important;
 }
@@ -1132,6 +1132,7 @@ td {
   line-height: 1.35 !important;
   vertical-align: middle !important;
   word-break: break-word !important;
+  font-weight: 400 !important;
 }
 
 tr:hover {
@@ -1199,7 +1200,7 @@ tr:hover {
   padding: 7px 12px !important;
   border-radius: 999px !important;
   font-size: 12px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   border: 1px solid transparent !important;
   white-space: nowrap !important;
 }
@@ -1313,7 +1314,7 @@ tr:hover {
   text-align: center !important;
   white-space: nowrap !important;
   color: #334155 !important;
-  font-weight: 650 !important;
+  font-weight: 400 !important;
 }
 
 /* toast */
@@ -1330,7 +1331,7 @@ tr:hover {
   visibility: hidden !important;
   transform: translateY(20px) !important;
   transition: all 0.3s ease !important;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
   box-shadow: 0 12px 28px rgba(15,23,42,0.18) !important;
 }
 
