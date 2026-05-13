@@ -537,7 +537,66 @@ tr:hover {
   background: #f8fbff;
   transform: none;
 }
+/* ==================================================
+   TODAY FOLLOW-UPS TABLE - SAME AS ALL LEADS
+================================================== */
 
+.card:has(#todayTable) {
+  width: 100%;
+  padding: 24px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.card:has(#todayTable) h2 {
+  margin: 0 0 18px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.card:has(#todayTable) .table-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.card:has(#todayTable) table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.card:has(#todayTable) th {
+  background: #f1f5ff;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 13px 14px;
+  border-bottom: 1px solid #dbeafe;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.card:has(#todayTable) td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.35;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+.card:has(#todayTable) tr:hover {
+  background: #f8fbff;
+  transform: none;
+}
 /* ==================================================
    ALL LEADS TABLE
 ================================================== */
@@ -617,33 +676,7 @@ tr:hover {
   min-width: 220px;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15);
 }
-/* Today's Follow-Ups section ko All Leads jaisa spacing dena */
-.card:has(#todayTable) {
-  padding: 24px !important;
-  margin-bottom: 24px !important;
-  overflow: hidden !important;
-}
 
-.card:has(#todayTable) h2 {
-  margin: 0 0 18px 0 !important;
-}
-
-.card:has(#todayTable) .table-wrapper {
-  width: 100% !important;
-  margin-top: 0 !important;
-  overflow: hidden !important;
-}
-
-.card:has(#todayTable) table {
-  width: 100% !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
-}
-
-.card:has(#todayTable) th,
-.card:has(#todayTable) td {
-  padding: 16px 18px !important;
-}
 /* Status badges */
 .status {
   display: inline-flex;
