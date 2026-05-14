@@ -600,19 +600,19 @@ select:focus {
 #phone {
   border-left: 0;
 }
-.add-lead-card > h2 {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+#addLeadSection > h2 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
-.add-lead-card > h2::before {
+#addLeadSection > h2::before {
   content: "+";
-font-size: 24px;
-font-weight: 600;
   width: 38px;
   height: 38px;
+  min-width: 38px;
   border-radius: 50%;
+
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
 
@@ -620,7 +620,10 @@ font-weight: 600;
   align-items: center;
   justify-content: center;
 
-  font-size: 18px;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
 }
 /* ==================================================
