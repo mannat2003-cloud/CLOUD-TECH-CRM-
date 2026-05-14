@@ -172,9 +172,20 @@ body {
   margin-bottom: 8px;
   text-align: left;
   justify-content: flex-start;
-  box-shadow: none;
+  box-shadow: none !important;
   border-radius: 10px;
   font-size: 13px;
+
+  background: transparent !important;
+  color: #334155 !important;
+  border: none !important;
+}
+
+.profile-menu button:hover {
+  background: #f1f5f9 !important;
+  color: #1d4ed8 !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .profile-menu button:last-child {
@@ -182,11 +193,11 @@ body {
 }
 
 .danger-menu-btn {
-  background: #dc2626 !important;
+  color: #dc2626 !important;
 }
 
 .dark-menu-btn {
-  background: #111827 !important;
+  color: #111827 !important;
 }
 
 /* ==================================================
