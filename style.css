@@ -1024,20 +1024,7 @@ tr:hover {
   gap: 12px;
 }
 
-#allLeadsSection > h2::before {
-  content: "📋";
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #dbeafe;
-  color: #2563eb;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 18px;
-  }
 /* ==================================================
    PAGINATION
 ================================================== */
