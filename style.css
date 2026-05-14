@@ -85,16 +85,61 @@ body {
   margin-bottom: 18px !important;
 }
 
-/* Hide old profile card if present */
 #userProfileCard {
   display: flex !important;
   align-items: center;
   gap: 12px;
-  background: rgba(255,255,255,0.88);
-  border: 1px solid rgba(255,255,255,0.75);
+  min-width: 210px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 18px;
-  padding: 10px 16px;
-  box-shadow: 0 14px 32px rgba(15,23,42,0.08);
+  padding: 10px 14px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dbeafe, #eff6ff);
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-avatar svg {
+  width: 70%;
+  height: 70%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 90px;
+}
+
+.profile-username {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.15;
+}
+
+.profile-role {
+  font-size: 12px;
+  font-weight: 400;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.profile-dropdown-icon {
+  margin-left: auto;
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1;
 }
 
 /* ==================================================
