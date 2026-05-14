@@ -606,30 +606,11 @@ select:focus {
   gap: 12px !important;
 }
 
-#addLeadSection > h2::before {
-  content: "+";
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
-  border-radius: 50%;
 
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  color: white;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1;
-
-  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
-}
 .section-title-icon {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .section-icon {
@@ -637,12 +618,14 @@ select:focus {
   height: 38px;
   min-width: 38px;
   border-radius: 50%;
+  background: #dbeafe;
+  color: #2563eb;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  box-shadow: none;
 }
 
 .section-icon svg {
@@ -651,9 +634,9 @@ select:focus {
   stroke-width: 2;
 }
 
-.add-icon {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  color: white;
+.add-lead-icon {
+  background: #dbeafe;
+  color: #2563eb;
 }
 /* ==================================================
    FILTER BAR
@@ -1015,8 +998,6 @@ tr:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12) !important;
 }
 
 .today-empty-icon svg {
@@ -1056,8 +1037,7 @@ tr:hover {
   justify-content: center;
 
   font-size: 18px;
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
-}
+  }
 /* ==================================================
    PAGINATION
 ================================================== */
