@@ -600,7 +600,27 @@ select:focus {
 #phone {
   border-left: 0;
 }
+.add-lead-card > h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
+.add-lead-card > h2::before {
+  content: "👥";
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+}
 /* ==================================================
    FILTER BAR
 ================================================== */
@@ -740,6 +760,27 @@ tr:hover {
 .card:has(#todayTable) tr:hover {
   background: #f8fbff;
   transform: none;
+}
+.card:has(#todayTable) > h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card:has(#todayTable) > h2::before {
+  content: "📅";
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #2563eb;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
 }
 /* ==================================================
    ALL LEADS TABLE
@@ -915,7 +956,74 @@ tr:hover {
   height: 42px;
   opacity: 0.65;
 }
+/* Today's Follow-Ups empty state */
+.today-empty-state {
+  text-align: center !important;
+  padding: 34px 0 !important;
+  vertical-align: middle !important;
+}
 
+.today-empty-content {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  text-align: left !important;
+}
+
+.today-empty-icon {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 50% !important;
+  background: #dbeafe !important;
+  color: #2563eb !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12) !important;
+}
+
+.today-empty-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+  stroke-width: 1.8 !important;
+}
+
+.today-empty-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  margin-bottom: 4px !important;
+}
+
+.today-empty-subtitle {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+}
+#allLeadsSection > h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#allLeadsSection > h2::before {
+  content: "📋";
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #2563eb;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+}
 /* ==================================================
    PAGINATION
 ================================================== */

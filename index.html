@@ -315,12 +315,20 @@ align-items:center;
     </thead>
     <tbody id="todayTable"></tbody>
     <tbody>
-  <tr id="todayEmpty" style="display:none;">
-    <td colspan="5" class="empty-state">
-      <i data-lucide="clipboard-x"></i>
-      <div>No Follow-ups Today</div>
-    </td>
-  </tr>
+ <tr id="todayEmpty" style="display:none;">
+  <td colspan="5" class="today-empty-state">
+    <div class="today-empty-content">
+      <div class="today-empty-icon">
+        <i data-lucide="inbox"></i>
+      </div>
+
+      <div>
+        <div class="today-empty-title">No follow-ups scheduled for today!</div>
+        <div class="today-empty-subtitle">You're all caught up. Great job!</div>
+      </div>
+    </div>
+  </td>
+</tr>
 </tbody>
   </table>
   </div>
