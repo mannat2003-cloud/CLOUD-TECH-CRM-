@@ -401,14 +401,6 @@ function searchLeads() {
   applyAllFilters();
 }
 
-function toggleSettings() {
-  document.getElementById("settingsModal").style.display = "flex";
-}
-
-function closeSettings() {
-  document.getElementById("settingsModal").style.display = "none";
-}
-
 async function openCreateUser() {
 
   const username = prompt("Enter Username");
@@ -775,64 +767,6 @@ function editLead(id) {
 });
 
   editId = id;   // 🔥 important
-}
-
-let multiChart;
-
-async function loadMultiBarChart() {
-
-  const res = await fetch("/today-followups");   // 🔥 IMPORTANT CHANGE
-  const leads = await res.json();
-
-  const users = {};
-
-  leads.forEach(l => {
-    const name = (l.customerName || "Unknown").trim().toLowerCase();
-
-    if (!users[name]) {
-      users[name] = 0;
-    }
-
-    users[name]++;
-  });
-
-  const labels = Object.keys(users);
-  const values = Object.values(users);
-
-  if (multiChart) multiChart.destroy();
-
-  multiChart = new Chart(document.getElementById("multiBarChart"), {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [{
-        label: "Today's Follow-ups",
-        data: values,
-        backgroundColor: [
-  "#0284c7",
-  "#7c3aed",
-  "#16a34a",
-  "#ca8a04",
-  "#065f46",
-  "#dc2626"
-]
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: true
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: { stepSize: 1 }
-        }
-      }
-    }
-  });
 }
 
 function clearForm() {

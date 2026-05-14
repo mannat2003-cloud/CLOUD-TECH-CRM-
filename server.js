@@ -40,14 +40,6 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-let users = [
-  { username: "CloudTech", password: "032003", role: "admin" },
-
-  { username: "emp1", password: "123", role: "employee" },
-  { username: "emp2", password: "123", role: "employee" },
-  { username: "emp3", password: "123", role: "employee" }
-];
-
 /* ================= LOGIN ================= */
 
 app.post("/login", async (req, res) => {
@@ -68,31 +60,6 @@ app.post("/login", async (req, res) => {
 
   res.json({ success: false });
 });
-
-
-
-app.get("/setup-users", async (req, res) => {
-  const defaultUsers = [
-    { username: "CloudTech", password: "032003", role: "admin" },
-    { username: "emp1", password: "123", role: "employee" },
-    { username: "emp2", password: "123", role: "employee" },
-    { username: "emp3", password: "123", role: "employee" }
-  ];
-
-  for (const u of defaultUsers) {
-    const exists = await User.findOne({
-      username: new RegExp("^" + u.username + "$", "i")
-    });
-
-    if (!exists) {
-      await User.create(u);
-    }
-  }
-
-  res.send("Default users checked/created");
-});
-
-
 
 /* ================= ADD LEAD ================= */
 
