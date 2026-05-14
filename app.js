@@ -1078,7 +1078,21 @@ function resetFilters() {
 
   showToast("Filters Reset");
 }
+function toggleProfileMenu(event) {
+  event.stopPropagation();
 
+  const menu = document.getElementById("profileMenu");
+  if (!menu) return;
+
+  menu.classList.toggle("show");
+}
+
+document.addEventListener("click", function () {
+  const menu = document.getElementById("profileMenu");
+  if (menu) {
+    menu.classList.remove("show");
+  }
+});
 function togglePerformanceChart(){
   const box = document.getElementById("teamChartBox");
 
