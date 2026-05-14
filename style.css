@@ -1039,7 +1039,51 @@ tr:hover {
   font-size: 18px;
   box-shadow: none;
 }
+/* All Leads empty state - same as Today's Follow-Ups */
+.all-empty-state {
+  text-align: center !important;
+  padding: 34px 0 !important;
+  vertical-align: middle !important;
+}
 
+.all-empty-content {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  text-align: left !important;
+}
+
+.all-empty-icon {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 50% !important;
+  background: #dbeafe !important;
+  color: #2563eb !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.all-empty-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+  stroke-width: 1.8 !important;
+}
+
+.all-empty-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  margin-bottom: 4px !important;
+}
+
+.all-empty-subtitle {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+}
 /* ==================================================
    PAGINATION
 ================================================== */

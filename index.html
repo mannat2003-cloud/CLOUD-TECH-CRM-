@@ -446,10 +446,18 @@ align-items:center;
   </tr>
 </thead>
     <tbody id="tableBody"></tbody>
-    <tr id="allEmpty" style="display:none;">
-  <td colspan="10" class="empty-state">
-    <i data-lucide="inbox"></i>
-    <div>No Leads Found</div>
+ <tr id="allEmpty" style="display:none;">
+  <td colspan="10" class="all-empty-state">
+    <div class="all-empty-content">
+      <div class="all-empty-icon">
+        <i data-lucide="inbox"></i>
+      </div>
+
+      <div>
+        <div class="all-empty-title">No leads found!</div>
+        <div class="all-empty-subtitle">Try changing filters or add a new lead.</div>
+      </div>
+    </div>
   </td>
 </tr>
   </table>
