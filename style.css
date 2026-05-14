@@ -722,7 +722,7 @@ tr:hover {
    TODAY FOLLOW-UPS TABLE - SAME AS ALL LEADS
 ================================================== */
 
-.card:has(#todayTable) {
+.add-lead-card > .card:has(#todayTable) {
   width: 100%;
   padding: 24px;
   margin-bottom: 24px;
@@ -784,7 +784,7 @@ tr:hover {
   gap: 12px;
 }
 
-.card:has(#todayTable) > h2::before {
+.add-lead-card > .card:has(#todayTable) > h2::before {
   content: "📅";
   width: 38px;
   height: 38px;
@@ -1023,7 +1023,22 @@ tr:hover {
   align-items: center;
   gap: 12px;
 }
+#allLeadsSection > h2::before {
+  content: "📋";
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #2563eb;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  box-shadow: none;
+}
 
 /* ==================================================
    PAGINATION
