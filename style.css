@@ -386,6 +386,13 @@ button:active {
   transition: 0.2s ease;
 }
 
+.stat-card > div:last-child {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .stat-card:hover {
   transform: translateY(-3px);
 }
@@ -406,14 +413,13 @@ button:active {
   width: 22px;
   height: 22px;
 }
-
 .stat-card p {
   margin: 0 0 6px;
   font-size: 13px;
   font-weight: 500;
   color: #475569;
   line-height: 1.2;
-  white-space: normal;
+  white-space: nowrap;
 }
 
 .stat-card h2 {
@@ -432,6 +438,7 @@ button:active {
   color: #64748b;
   line-height: 1.25;
   white-space: normal;
+  min-height: 30px;
 }
 
 /* Card backgrounds */
