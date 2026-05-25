@@ -1,4 +1,7 @@
-  if (!localStorage.getItem("loggedIn")) {
+if (!sessionStorage.getItem("loggedIn")) {
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("username");
+  localStorage.removeItem("role");
   window.location.replace("/login.html");
 } else {
   document.body.style.visibility = "visible";
@@ -37,7 +40,7 @@ if (!/^[0-9]{10}$/.test(phone)) {
     status: document.getElementById("status").value,
     nextFollowUp: document.getElementById("date").value,
     notes: document.getElementById("notes").value,
-    createdBy: localStorage.getItem("username")
+    createdBy: sessionStorage.getItem("username")
   };
   // required validation
   if (
@@ -69,8 +72,8 @@ let result = null;
   method: "PUT",
   headers: {
     "Content-Type": "application/json",
-    username: localStorage.getItem("username"),
-    role: localStorage.getItem("role")
+    username: sessionStorage.getItem("username"),
+    role: sessionStorage.getItem("role")
   },
   body: JSON.stringify(data)
 });
@@ -441,7 +444,7 @@ async function openResetPassword() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        username: localStorage.getItem("username")
+        username: sessionStorage.getItem("username")
       },
       body: JSON.stringify({
         newPassword: newPassword
@@ -452,7 +455,8 @@ async function openResetPassword() {
 
     if (data.success) {
       alert("Password reset successfully. Please login again.");
-      localStorage.clear();
+      sessionStorage.clear();
+localStorage.clear();
       window.location.href = "/login.html";
     } else {
       alert(data.message || "Password reset failed");
@@ -475,7 +479,7 @@ async function deleteMyAccount() {
   const res = await fetch("/delete-account", {
     method: "DELETE",
     headers: {
-      username: localStorage.getItem("username")
+      username: sessionStorage.getItem("username")
     }
   });
 
@@ -486,16 +490,14 @@ async function deleteMyAccount() {
     return;
   }
 
-  localStorage.clear();
+  sessionStorage.clear();
+localStorage.clear();
   window.location.href = "/login.html";
 }
 
-function logout(){
-
-  localStorage.clear();
-
+function logout() {
   sessionStorage.clear();
-
+  localStorage.clear();
   window.location.replace("/login.html");
 }
 
@@ -670,8 +672,8 @@ if (title) {
 
   const res = await fetch(`/performance?type=${type}&user=${selectedUser}`, {
     headers: {
-      username: localStorage.getItem("username"),
-      role: localStorage.getItem("role")
+      username: sessionStorage.getItem("username"),
+      role: sessionStorage.getItem("role")
     }
   });
 
@@ -791,8 +793,8 @@ function clearForm() {
 async function loadAll() {
   const res = await fetch("/leads", {
     headers: {
-      username: localStorage.getItem("username"),
-      role: localStorage.getItem("role")
+      username: sessionStorage.getItem("username"),
+      role: sessionStorage.getItem("role")
     }
   });
 
@@ -918,7 +920,7 @@ function populateChartUsers() {
 
   // admin-only lead filter dropdown
   const userFilter = document.getElementById("userFilter");
-  const role = localStorage.getItem("role");
+  const role = sessionStorage.getItem("role");
   const userFilterGroup = document.getElementById("userFilterGroup");
 
   if (userFilter) {
@@ -933,7 +935,7 @@ function populateChartUsers() {
     } else {
       if (userFilterGroup) userFilterGroup.style.display = "none";
       userFilter.style.display = "none";
-      selectedUserFilter = localStorage.getItem("username") || "All";
+      selectedUserFilter = sessionStorage.getItem("username") || "All";
     }
   }
 }
@@ -1088,8 +1090,8 @@ function showToast(message) {
   const res = await fetch("/delete-lead/" + id, {
     method: "DELETE",
     headers: {
-      username: localStorage.getItem("username"),
-      role: localStorage.getItem("role")
+      username: sessionStorage.getItem("username"),
+      role: sessionStorage.getItem("role")
     }
   });
 
@@ -1105,8 +1107,8 @@ function showToast(message) {
 }
 document.addEventListener("DOMContentLoaded", () => {
 
-  const username = localStorage.getItem("username") || "User";
-  const role = localStorage.getItem("role") || "employee";
+  const username = sessionStorage.getItem("username") || "User";
+  const role = sessionStorage.getItem("role") || "employee";
 
   const profileUsername = document.getElementById("profileUsername");
   const profileRole = document.getElementById("profileRole");

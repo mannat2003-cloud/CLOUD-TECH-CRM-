@@ -402,9 +402,14 @@
     const data = await res.json();
 
     if (data.success) {
-      localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("username", data.username);
-      localStorage.setItem("role", data.role);
+      sessionStorage.setItem("loggedIn", "true");
+sessionStorage.setItem("username", data.username);
+sessionStorage.setItem("role", data.role);
+
+// old saved login data remove 
+localStorage.removeItem("loggedIn");
+localStorage.removeItem("username");
+localStorage.removeItem("role");
       window.location.href = "index.html";
     } else {
       alert("Invalid credentials");
