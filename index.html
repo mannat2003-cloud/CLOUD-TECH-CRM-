@@ -48,12 +48,6 @@
 </div>
 
   <div class="header-divider"></div>
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-  
-  <div style="display:flex; gap:10px;">
-      <button onclick="togglePerformanceChart()">Team Performance</button>
-    </div>
-   </div>
 
 <div class="efficiency-card">
   <div class="efficiency-heading">
@@ -64,6 +58,29 @@
   </div>
 
   <div id="efficiencyBox" class="efficiency-box"></div>
+</div>
+<div id="teamChartBox" style="display:none;" class="card team-performance-panel">
+  <div class="team-performance-header">
+    <h2 id="teamPerformanceTitle">Team Performance</h2>
+    <button onclick="closePerformanceChart()" class="team-chart-close-btn">Close</button>
+  </div>
+
+  <select id="chartUserFilter" onchange="loadPerformance(currentType)" style="display:none;">
+    <option value="All">All Users</option>
+  </select>
+
+  <div id="performanceSummary" class="performance-summary" style="display:none;"></div>
+
+  <div class="team-chart-filters">
+    <button onclick="setType('today')">Today</button>
+    <button onclick="setType('week')">Weekly</button>
+    <button onclick="setType('month')">Monthly</button>
+    <button onclick="setType('year')">Yearly</button>
+  </div>
+
+  <div class="team-chart-wrapper">
+    <canvas id="multiBarChart"></canvas>
+  </div>
 </div>
 
 <div class="top-cards-new">
@@ -129,36 +146,7 @@
 </div>
 </div>
 
-<div id="teamChartBox" style="display:none;" class="card">
-  <h2>Team Performance</h2>
-  <select id="chartUserFilter" onchange="loadPerformance(currentType)">
-    <option value="All">All Users</option>
-  </select>
-<div id="performanceSummary" style="
-  display:none;
-  margin:15px 0;
-  padding:15px;
-  background:#f8fafc;
-  border-radius:14px;
-  border:1px solid #e5e7eb;
-  font-weight:600;
-"></div>
-
-  <div style="margin-bottom:10px;">
-<button onclick="setType('today')">Today</button>
-<button onclick="setType('week')">Weekly</button>
-<button onclick="setType('month')">Monthly</button>
-<button onclick="setType('year')">Yearly</button>
-<button onclick="closePerformanceChart()" style="background:#dc2626;">Close Chart</button>
-  </div>
-
-  <div style="width: 700px; margin: auto;">
-    <canvas id="multiBarChart"></canvas>
-  </div>
-</div>
-
-
-  <div id="addLeadSection" class="card add-lead-card">
+<div id="addLeadSection" class="card add-lead-card">
 <h2 class="section-title-icon">
   <span class="section-icon add-lead-icon">
     <i data-lucide="user-plus"></i>

@@ -660,6 +660,13 @@ let performanceChart;
 
 async function loadPerformance(type) {
   const selectedUser = document.getElementById("chartUserFilter").value;
+  const title = document.getElementById("teamPerformanceTitle");
+
+if (title) {
+  title.innerText = selectedUser === "All"
+    ? "Team Performance"
+    : `${selectedUser} Performance`;
+}
 
   const res = await fetch(`/performance?type=${type}&user=${selectedUser}`, {
     headers: {
@@ -956,34 +963,43 @@ function updateEfficiencyBox(leads) {
   const box = document.getElementById("efficiencyBox");
   if (!box) return;
 
-  const wonCount = {};
+  const userStats = {};
 
   leads.forEach(l => {
     const user = l.createdBy || "Unknown";
 
-    if (!wonCount[user]) {
-      wonCount[user] = 0;
+    if (!userStats[user]) {
+      userStats[user] = {
+        total: 0,
+        won: 0
+      };
     }
 
-    if (l.status === "Closed Won") {
-      wonCount[user]++;
+    userStats[user].total++;
+
+    if ((l.status || "").trim() === "Closed Won") {
+      userStats[user].won++;
     }
   });
 
   let html = `<div class="eff-title">User Efficiency</div>`;
 
-  Object.keys(wonCount).forEach(user => {
+  Object.keys(userStats).forEach(user => {
+    const total = userStats[user].total;
+    const won = userStats[user].won;
+    const percent = total ? Math.round((won / total) * 100) : 0;
+
     html += `
-      <div class="eff-item">
+      <button class="eff-item" onclick="openUserPerformance('${user}')">
         <span>${user}</span>
-        <b>${wonCount[user]} Won</b>
-      </div>
+        <b>${won} Won</b>
+        <em>${percent}%</em>
+      </button>
     `;
   });
 
   box.innerHTML = html;
 }
-
 
 function resetFilters() {
   selectedDateFilter = "All";
@@ -1027,25 +1043,35 @@ document.addEventListener("click", function () {
     menu.classList.remove("show");
   }
 });
-function togglePerformanceChart(){
-  const box = document.getElementById("teamChartBox");
 
-  if (box.style.display === "none") {
-    box.style.display = "block";
-
-    loadPerformance("today");
-
-    box.scrollIntoView({
-  behavior: "smooth",
-  block: "start"
-});
-
-  } else {
-    box.style.display = "none";
-  }
+function togglePerformanceChart() {
+  openUserPerformance("All");
 }
+function openUserPerformance(user) {
+  const box = document.getElementById("teamChartBox");
+  const dropdown = document.getElementById("chartUserFilter");
+  const title = document.getElementById("teamPerformanceTitle");
 
+  if (!box || !dropdown) return;
 
+  box.style.display = "block";
+
+  dropdown.value = user;
+
+  if (title) {
+    title.innerText = user === "All"
+      ? "Team Performance"
+      : `${user} Performance`;
+  }
+
+  currentType = "today";
+  loadPerformance("today");
+
+  box.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
 function showToast(message) {
   const toast = document.getElementById("toast");
   toast.innerText = message;

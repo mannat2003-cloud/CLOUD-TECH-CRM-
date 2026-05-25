@@ -337,30 +337,52 @@ button:active {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   white-space: nowrap;
-  background: #ffffff;
-  color: #1d4ed8;
+
+  background: #ffffff !important;
+  color: #1d4ed8 !important;
+
   padding: 10px 16px;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 400;
+
   border: 1px solid #bfdbfe;
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+
+  cursor: pointer;
+  min-height: auto;
+}
+
+.eff-item:hover {
+  background: #eff6ff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12) !important;
 }
 
 .eff-item::before {
   content: "👤";
-  margin-right: 8px;
+  margin-right: 2px;
 }
 
 .eff-item span,
-.eff-item b {
+.eff-item b,
+.eff-item em {
+  font-style: normal;
   font-weight: 500;
 }
 
 .eff-item b {
-  margin-left: 8px;
   color: #0f172a;
+}
+
+.eff-item em {
+  color: #16a34a;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  padding: 3px 8px;
 }
 
 /* ==================================================
@@ -1135,6 +1157,50 @@ tr:hover {
 
 #teamChartBox {
   padding: 24px;
+}
+.team-performance-panel {
+  margin: -8px 0 24px;
+  padding: 22px 24px;
+}
+
+.team-performance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.team-performance-header h2 {
+  margin: 0;
+}
+
+.team-chart-close-btn {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  box-shadow: none !important;
+}
+
+.team-chart-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.team-chart-wrapper {
+  width: 700px;
+  max-width: 100%;
+  margin: auto;
+}
+
+.performance-summary {
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  font-weight: 500;
 }
 
 /* ==================================================
