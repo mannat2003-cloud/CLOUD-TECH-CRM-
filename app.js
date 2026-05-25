@@ -992,7 +992,6 @@ function updateEfficiencyBox(leads) {
     html += `
       <button class="eff-item" onclick="openUserPerformance('${user}')">
         <span>${user}</span>
-        <b>${won} Won</b>
         <em>${percent}%</em>
       </button>
     `;
