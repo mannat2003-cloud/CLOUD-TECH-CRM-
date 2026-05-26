@@ -336,6 +336,7 @@ const highlightClass =
 <tr class="${highlightClass}" id="lead-${l._id}">
   <td>${l.customerName || l.clientName || ""}</td>
   <td>${l.phone || ""}</td>
+  <td>${l.email || ""}</td>
   <td>${l.company || ""}</td>
   <td>${l.product || ""}</td>
   <td>${l.lastFollowUp ? formatDate(l.lastFollowUp) : ""}</td>
@@ -883,6 +884,7 @@ async function loadAll() {
       <tr>
         <td>${l.customerName || l.clientName || ""}</td>
         <td>${l.phone || ""}</td>
+        <td>${l.email || ""}</td>
         <td>${l.company || ""}</td>
         <td>${l.notes || ""}</td>
         <td>${l.createdBy || ""}</td>
