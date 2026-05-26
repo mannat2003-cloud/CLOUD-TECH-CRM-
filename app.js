@@ -351,7 +351,7 @@ const highlightClass =
 
   <td>👤 ${l.createdBy || "Unknown"}</td>
 
-  <td style="white-space:nowrap;">
+  <td class="actions-cell">
   <button onclick="editLead('${l._id}')" class="action-btn edit-btn">
   <i data-lucide="pencil"></i>
 </button>

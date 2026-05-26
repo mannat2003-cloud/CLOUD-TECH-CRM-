@@ -894,43 +894,62 @@ tr:hover {
 }
 
 #allLeadsSection th:nth-child(1),
-#allLeadsSection td:nth-child(1) { width: 11%; }
+#allLeadsSection td:nth-child(1) {
+  width: 11%;
+}
 
 #allLeadsSection th:nth-child(2),
 #allLeadsSection td:nth-child(2) {
-  width: 11%;
+  width: 10%;
   white-space: nowrap;
 }
 
 #allLeadsSection th:nth-child(3),
-#allLeadsSection td:nth-child(3) { width: 13%; }
+#allLeadsSection td:nth-child(3) {
+  width: 13%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 #allLeadsSection th:nth-child(4),
-#allLeadsSection td:nth-child(4) { width: 11%; }
+#allLeadsSection td:nth-child(4) {
+  width: 12%;
+}
 
 #allLeadsSection th:nth-child(5),
-#allLeadsSection td:nth-child(5),
+#allLeadsSection td:nth-child(5) {
+  width: 10%;
+}
+
 #allLeadsSection th:nth-child(6),
-#allLeadsSection td:nth-child(6) {
-  width: 9%;
+#allLeadsSection td:nth-child(6),
+#allLeadsSection th:nth-child(7),
+#allLeadsSection td:nth-child(7) {
+  width: 8%;
   white-space: nowrap;
 }
 
-#allLeadsSection th:nth-child(7),
-#allLeadsSection td:nth-child(7) { width: 14%; }
-
 #allLeadsSection th:nth-child(8),
-#allLeadsSection td:nth-child(8) { width: 10%; }
+#allLeadsSection td:nth-child(8) {
+  width: 13%;
+}
 
 #allLeadsSection th:nth-child(9),
 #allLeadsSection td:nth-child(9) {
-  width: 10%;
+  width: 9%;
   white-space: nowrap;
 }
 
 #allLeadsSection th:nth-child(10),
 #allLeadsSection td:nth-child(10) {
-  width: 8%;
+  width: 9%;
+  white-space: nowrap;
+}
+
+#allLeadsSection th:nth-child(11),
+#allLeadsSection td:nth-child(11) {
+  width: 7%;
   white-space: nowrap;
 }
 
@@ -997,10 +1016,12 @@ tr:hover {
 }
 
 /* Action icons */
-#allLeadsSection td:nth-child(10) {
+#allLeadsSection td:nth-child(11),
+.actions-cell {
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .action-btn {
