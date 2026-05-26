@@ -584,11 +584,55 @@ button:active {
 
 .add-lead-card .form-grid.add-lead {
   display: grid;
-  grid-template-columns: 1.1fr 0.95fr 1.1fr 1.1fr 1fr 0.9fr 1.1fr 115px;
-  gap: 14px;
+  grid-template-columns: repeat(4, 1fr) 130px;
+  gap: 22px 18px;
   align-items: end;
 }
+.add-lead-card .form-grid.add-lead .filter-group:last-child {
+  grid-column: 4 / 5;
+  align-self: end;
+}
 
+.add-lead-card .form-grid.add-lead .filter-group:last-child button {
+  width: 100%;
+  height: 44px;
+}
+.add-lead-card .form-grid.add-lead .filter-group:last-child {
+  grid-column: 5 / 6;
+  align-self: end;
+}
+
+.add-lead-card .form-grid.add-lead .filter-group:last-child button {
+  width: 100%;
+  height: 44px;
+}
+.phone-input-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.phone-input-wrap span {
+  height: 48px;
+  min-width: 56px;
+  padding: 0 14px;
+  background: #f1f5f9;
+  border: 1px solid #dbeafe;
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.phone-input-wrap input {
+  border-radius: 0 12px 12px 0;
+}
 .filter-group {
   display: flex;
   flex-direction: column;
@@ -606,12 +650,12 @@ button:active {
 input,
 select {
   width: 100%;
-  height: 44px;
+  height: 48px;
   box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid #dbeafe;
-  background: rgba(255, 255, 255, 0.88);
-  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px 14px;
   font-size: 13px;
   font-weight: 400;
   color: #0f172a;

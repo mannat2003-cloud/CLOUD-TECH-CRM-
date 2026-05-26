@@ -35,13 +35,20 @@ if (!/^[0-9]{10}$/.test(phone)) {
     customerName: document.getElementById("customerName").value,
     clientName: document.getElementById("customerName").value,
     phone: "+91" + phone,
-    company: document.getElementById("company").value,
+email: document.getElementById("email").value.trim(),
+company: document.getElementById("company").value,
     product: document.getElementById("product").value,
     status: document.getElementById("status").value,
     nextFollowUp: document.getElementById("date").value,
     notes: document.getElementById("notes").value,
     createdBy: sessionStorage.getItem("username")
   };
+
+  if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  alert("Enter valid Email ID");
+  return;
+}
+
   // required validation
   if (
   !data.customerName.trim() ||
@@ -765,7 +772,8 @@ function editLead(id) {
 
   document.getElementById("customerName").value = lead.customerName || lead.clientName || "";
   document.getElementById("phone").value = (lead.phone || "").replace("+91", "");
-  document.getElementById("company").value = lead.company || "";
+document.getElementById("email").value = lead.email || "";
+document.getElementById("company").value = lead.company || "";
   document.getElementById("product").value = lead.product || "";
   document.getElementById("status").value = lead.status || "";
   document.getElementById("date").value = lead.nextFollowUp || "";
@@ -781,7 +789,8 @@ function editLead(id) {
 function clearForm() {
   document.getElementById("customerName").value = "";
   document.getElementById("phone").value = "";
-  document.getElementById("company").value = "";
+document.getElementById("email").value = "";
+document.getElementById("company").value = "";
   document.getElementById("product").selectedIndex = 0;
   document.getElementById("date").value = "";
   document.getElementById("notes").value = "";
