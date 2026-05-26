@@ -584,9 +584,24 @@ button:active {
 
 .add-lead-card .form-grid.add-lead {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 130px;
+  grid-template-columns: 1.2fr 1.2fr 1.2fr 1.2fr 130px;
   gap: 22px 18px;
   align-items: end;
+}
+/* Product ko second row me proper width */
+.add-lead-card .form-grid.add-lead .filter-group:nth-child(5) {
+  grid-column: 1 / 2;
+}
+
+/* Add button ko right side same row me */
+.add-lead-card .form-grid.add-lead .filter-group:last-child {
+  grid-column: 5 / 6;
+  align-self: end;
+}
+
+.add-lead-card .form-grid.add-lead .filter-group:last-child button {
+  width: 100%;
+  height: 48px;
 }
 .add-lead-card .form-grid.add-lead .filter-group:last-child {
   grid-column: 4 / 5;
