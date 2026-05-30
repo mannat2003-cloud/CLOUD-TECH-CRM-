@@ -268,6 +268,8 @@ function exportToExcel() {
 
     "Phone": l.phone || "",
 
+      "Email": l.email || "",
+
     "Company": l.company || "",
 
 "Product": l.product || "",
@@ -282,11 +284,11 @@ function exportToExcel() {
         ? new Date(l.nextFollowUp).toLocaleDateString()
         : "",
 
+        "Notes": l.notes || "",
+
     "Status": l.status || "",
 
-    "Notes": l.notes || "",
-
-    "Created By": l.createdBy || "Unknown"
+      "Created By": l.createdBy || "Unknown"
 
   }));
 
