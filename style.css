@@ -1748,3 +1748,55 @@ tr:hover {
 
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
 }
+/* ==================================================
+   ASSIGNED TASK TABLE - COMPANY WRAP + NOTES SHORT VIEW
+================================================== */
+
+/* Company column wrap */
+.assigned-task-table-wrapper th:nth-child(8),
+.assigned-task-table-wrapper td:nth-child(8) {
+  width: 180px !important;
+  max-width: 180px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Notes column fixed short width */
+.assigned-task-table-wrapper th:nth-child(9),
+.assigned-task-table-wrapper td:nth-child(9) {
+  width: 200px !important;
+  max-width: 200px !important;
+}
+
+/* Notes short view with ... */
+.assigned-task-table-wrapper .notes-cell {
+  display: block !important;
+  max-width: 200px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  cursor: pointer !important;
+}
+
+/* Notes full view on hover/click */
+.assigned-task-table-wrapper .notes-cell:hover,
+.assigned-task-table-wrapper .notes-cell:active {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+
+  background: white !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+
+  position: relative !important;
+  z-index: 99999 !important;
+  max-width: 340px !important;
+  min-width: 240px !important;
+
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
+}
