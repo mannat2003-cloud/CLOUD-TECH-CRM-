@@ -1141,6 +1141,57 @@ function showToast(message) {
     toast.classList.remove("show");
   }, 2000);
 }
+async function loadDashboardPendingTaskSummary() {
+  const box = document.getElementById("dashboardPendingTaskSummaryBox");
+
+  if (!box) return;
+
+  try {
+    const res = await fetch("/task-pending-summary", {
+      headers: {
+        username: sessionStorage.getItem("username"),
+        role: sessionStorage.getItem("role")
+      }
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      box.innerHTML = `<span class="pending-mini-chip">Unable to load</span>`;
+      return;
+    }
+
+    if (data.type === "employee") {
+      box.innerHTML = `
+        <span class="pending-mini-chip">
+          👤 ${data.username} Pending = <b>${data.pendingCount}</b>
+        </span>
+      `;
+      return;
+    }
+
+    const employees = Object.keys(data.summary);
+
+    if (employees.length === 0) {
+      box.innerHTML = `
+        <span class="pending-mini-chip success">
+          ✅ No Pending Tasks
+        </span>
+      `;
+      return;
+    }
+
+    box.innerHTML = employees.map(emp => `
+      <span class="pending-mini-chip">
+        👤 ${emp} Pending = <b>${data.summary[emp]}</b>
+      </span>
+    `).join("");
+
+  } catch (error) {
+    console.error("Pending task summary error:", error);
+    box.innerHTML = `<span class="pending-mini-chip">Error loading</span>`;
+  }
+}
 
   async function deleteLead(id) {
 

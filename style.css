@@ -1372,3 +1372,86 @@ tr:hover {
   color: #dc2626;
   font-size: 16px;
 }
+/* ==================================================
+   PENDING TASKS INSIDE TEAM EFFICIENCY CARD
+================================================== */
+
+.efficiency-right-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  overflow: hidden;
+}
+
+.pending-inline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 18px;
+  border-left: 1px solid #dbeafe;
+  min-width: 280px;
+  max-width: 52%;
+  overflow: hidden;
+}
+
+.pending-inline-title {
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.pending-inline-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.pending-mini-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+  border-radius: 999px;
+  padding: 8px 13px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pending-mini-chip b {
+  color: #dc2626;
+  font-size: 15px;
+}
+
+.pending-mini-chip.success {
+  background: #ecfdf5;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+@media (max-width: 900px) {
+  .efficiency-right-area {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pending-inline-wrap {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-top: 12px;
+    border-left: none;
+    border-top: 1px solid #dbeafe;
+  }
+}

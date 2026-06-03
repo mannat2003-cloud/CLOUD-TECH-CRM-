@@ -340,6 +340,63 @@ app.get("/task-pending-summary", async (req, res) => {
 
     tasks.forEach(t => {
       const employee = t.assignedTo || "Unknown";
+      summary[employee] = (summary[employee] || 0) + 1;
+    });
+
+    res.json({
+      success: true,
+      type: "admin",
+      summary
+    });
+
+  } catch (err) {
+    console.error("TASK SUMMARY ERROR:", err);
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
+  }
+});
+
+// Pending task count summary
+app.get("/task-pending-summary", async (req, res) => {
+  try {
+    const { username, role } = req.headers;
+
+    const pendingStatuses = [
+      "Assigned",
+      "Contacted",
+      "In Progress",
+      "Interested",
+      "Not Responding"
+    ];
+
+    let tasks;
+
+    if (role === "admin") {
+      tasks = await Task.find({
+        status: { $in: pendingStatuses }
+      });
+    } else {
+      tasks = await Task.find({
+        assignedTo: username,
+        status: { $in: pendingStatuses }
+      });
+    }
+
+    if (role !== "admin") {
+      return res.json({
+        success: true,
+        type: "employee",
+        username,
+        pendingCount: tasks.length
+      });
+    }
+
+    const summary = {};
+
+    tasks.forEach(t => {
+      const employee = t.assignedTo || "Unknown";
 
       if (!summary[employee]) {
         summary[employee] = 0;
