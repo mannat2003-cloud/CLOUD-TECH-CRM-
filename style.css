@@ -1588,3 +1588,87 @@ tr:hover {
 .assigned-task-table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #93c5fd;
 }
+/* ==================================================
+   COMPACT TEAM EFFICIENCY + PENDING TASKS
+================================================== */
+
+.efficiency-card {
+  min-height: 86px;
+  padding: 14px 22px !important;
+  gap: 20px !important;
+}
+
+.efficiency-heading {
+  flex: 0 0 360px !important;
+  padding-right: 18px !important;
+}
+
+.efficiency-heading h2 {
+  font-size: 19px !important;
+  font-weight: 600 !important;
+}
+
+.efficiency-heading p {
+  font-size: 13px !important;
+}
+
+.efficiency-box {
+  gap: 8px !important;
+  overflow-x: auto !important;
+  max-width: none !important;
+}
+
+.eff-item {
+  padding: 7px 12px !important;
+  font-size: 13px !important;
+  gap: 6px !important;
+  min-height: 36px !important;
+}
+
+.eff-item em {
+  padding: 3px 8px !important;
+  font-size: 13px !important;
+}
+
+.efficiency-right-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px !important;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.pending-inline-wrap {
+  flex: 0 0 auto;
+  min-width: auto !important;
+  max-width: none !important;
+  padding-left: 16px !important;
+  gap: 10px !important;
+  border-left: 1px solid #dbeafe;
+}
+
+.pending-inline-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  white-space: nowrap;
+}
+
+.pending-inline-box {
+  gap: 8px !important;
+  overflow-x: auto;
+}
+
+.pending-mini-chip {
+  padding: 7px 12px !important;
+  font-size: 13px !important;
+  min-height: 36px !important;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.pending-mini-chip b {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
