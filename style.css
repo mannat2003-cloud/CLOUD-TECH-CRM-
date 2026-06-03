@@ -1523,3 +1523,68 @@ tr:hover {
     border-top: 1px solid #dbeafe;
   }
 }
+/* ==================================================
+   ASSIGNED TASK LIST IMPROVEMENT
+================================================== */
+
+.assigned-task-list-card {
+  padding: 24px !important;
+  margin-top: 28px;
+  overflow: visible !important;
+}
+
+.assigned-task-list-card h2 {
+  margin-bottom: 18px !important;
+}
+
+.task-list-icon {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.assigned-task-table-wrapper {
+  width: 100%;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  padding-bottom: 8px;
+}
+
+.assigned-task-table-wrapper table {
+  min-width: 1450px;
+  width: 100%;
+  table-layout: auto;
+}
+
+.assigned-task-table-wrapper th,
+.assigned-task-table-wrapper td {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.assigned-task-table-wrapper .notes-cell {
+  max-width: 260px;
+  white-space: normal;
+}
+
+.assigned-task-table-wrapper .actions-cell {
+  min-width: 110px;
+  white-space: nowrap;
+}
+
+.assigned-task-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.assigned-task-table-wrapper::-webkit-scrollbar-track {
+  background: #eaf2ff;
+  border-radius: 20px;
+}
+
+.assigned-task-table-wrapper::-webkit-scrollbar-thumb {
+  background: #bfdbfe;
+  border-radius: 20px;
+}
+
+.assigned-task-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #93c5fd;
+}
