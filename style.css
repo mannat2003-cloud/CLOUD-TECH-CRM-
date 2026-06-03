@@ -588,12 +588,11 @@ button:active {
   gap: 22px 18px;
   align-items: end;
 }
-/* Product ko second row me proper width */
+/* Product second row me proper width */
 .add-lead-card .form-grid.add-lead .filter-group:nth-child(5) {
   grid-column: 1 / 2;
 }
 
-/* Add button ko right side same row me */
 .add-lead-card .form-grid.add-lead .filter-group:last-child {
   grid-column: 5 / 6;
   align-self: end;
@@ -601,13 +600,8 @@ button:active {
 
 .add-lead-card .form-grid.add-lead .filter-group:last-child button {
   width: 100%;
-  height: 48px;
+  height: 44px;
 }
-.add-lead-card .form-grid.add-lead .filter-group:last-child {
-  grid-column: 4 / 5;
-  align-self: end;
-}
-
 .add-lead-card .form-grid.add-lead .filter-group:last-child button {
   width: 100%;
   height: 44px;
@@ -1334,195 +1328,7 @@ tr:hover {
   }
 }
 
-/* ==================================================
-   PENDING TASKS INSIDE TEAM EFFICIENCY CARD
-================================================== */
 
-.efficiency-right-area {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  overflow: hidden;
-}
-
-.pending-inline-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-left: 18px;
-  border-left: 1px solid #dbeafe;
-  min-width: 280px;
-  max-width: 52%;
-  overflow: hidden;
-}
-
-.pending-inline-title {
-  flex: 0 0 auto;
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-  white-space: nowrap;
-}
-
-.pending-inline-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-}
-
-.pending-mini-chip {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-
-  background: #fff7ed;
-  color: #9a3412;
-  border: 1px solid #fed7aa;
-  border-radius: 999px;
-  padding: 8px 13px;
-
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.pending-mini-chip b {
-  color: #dc2626;
-  font-size: 15px;
-}
-
-.pending-mini-chip.success {
-  background: #ecfdf5;
-  color: #15803d;
-  border-color: #bbf7d0;
-}
-
-@media (max-width: 900px) {
-  .efficiency-right-area {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pending-inline-wrap {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 0;
-    padding-top: 12px;
-    border-left: none;
-    border-top: 1px solid #dbeafe;
-  }
-}
-/* ==================================================
-   PENDING TASKS INSIDE TEAM EFFICIENCY
-================================================== */
-
-.efficiency-right-area {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  overflow: hidden;
-}
-
-.efficiency-right-area .efficiency-box {
-  flex: 0 0 auto;
-  max-width: 48%;
-  overflow-x: auto;
-}
-
-.pending-inline-wrap {
-  flex: 1;
-  min-width: 260px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-left: 18px;
-  border-left: 1px solid #dbeafe;
-  overflow: hidden;
-}
-
-.pending-inline-title {
-  flex: 0 0 auto;
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-  white-space: nowrap;
-}
-
-.pending-inline-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.pending-mini-chip {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  background: #fff7ed;
-  color: #9a3412;
-  border: 1px solid #fed7aa;
-  border-radius: 999px;
-  padding: 8px 13px;
-
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.pending-mini-chip b {
-  color: #dc2626;
-  font-size: 15px;
-}
-
-.pending-mini-chip.success {
-  background: #ecfdf5;
-  color: #15803d;
-  border-color: #bbf7d0;
-}
-
-@media (max-width: 900px) {
-  .efficiency-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .efficiency-heading {
-    border-right: none;
-    border-bottom: 1px solid #dbeafe;
-    padding-right: 0;
-    padding-bottom: 14px;
-    width: 100%;
-  }
-
-  .efficiency-right-area {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .efficiency-right-area .efficiency-box {
-    max-width: 100%;
-  }
-
-  .pending-inline-wrap {
-    width: 100%;
-    min-width: 0;
-    padding-left: 0;
-    padding-top: 12px;
-    border-left: none;
-    border-top: 1px solid #dbeafe;
-  }
-}
 /* ==================================================
    ASSIGNED TASK LIST IMPROVEMENT
 ================================================== */
@@ -1673,7 +1479,7 @@ tr:hover {
   font-weight: 600 !important;
 }
 /* ==================================================
-   SMALL LAPTOP RESPONSIVE FIX - KEEP SAME CARD DESIGN
+   SMALL LAPTOP RESPONSIVE FIX 
 ================================================== */
 
 /* Main dashboard width handling */
