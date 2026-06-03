@@ -1333,45 +1333,7 @@ tr:hover {
     grid-template-columns: 1fr !important;
   }
 }
-/* ==================================================
-   PENDING TASK SUMMARY
-================================================== */
 
-.pending-summary-card {
-  padding: 18px 22px;
-  margin: 18px 0 22px;
-}
-
-.pending-summary-card h2 {
-  margin: 0 0 14px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #0f172a;
-}
-
-.pending-task-summary-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.pending-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #ffffff;
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 14px;
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
-}
-
-.pending-chip b {
-  color: #dc2626;
-  font-size: 16px;
-}
 /* ==================================================
    PENDING TASKS INSIDE TEAM EFFICIENCY CARD
 ================================================== */
@@ -1449,6 +1411,112 @@ tr:hover {
   .pending-inline-wrap {
     width: 100%;
     max-width: 100%;
+    padding-left: 0;
+    padding-top: 12px;
+    border-left: none;
+    border-top: 1px solid #dbeafe;
+  }
+}
+/* ==================================================
+   PENDING TASKS INSIDE TEAM EFFICIENCY
+================================================== */
+
+.efficiency-right-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  overflow: hidden;
+}
+
+.efficiency-right-area .efficiency-box {
+  flex: 0 0 auto;
+  max-width: 48%;
+  overflow-x: auto;
+}
+
+.pending-inline-wrap {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 18px;
+  border-left: 1px solid #dbeafe;
+  overflow: hidden;
+}
+
+.pending-inline-title {
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.pending-inline-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.pending-mini-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+  border-radius: 999px;
+  padding: 8px 13px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pending-mini-chip b {
+  color: #dc2626;
+  font-size: 15px;
+}
+
+.pending-mini-chip.success {
+  background: #ecfdf5;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+@media (max-width: 900px) {
+  .efficiency-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .efficiency-heading {
+    border-right: none;
+    border-bottom: 1px solid #dbeafe;
+    padding-right: 0;
+    padding-bottom: 14px;
+    width: 100%;
+  }
+
+  .efficiency-right-area {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .efficiency-right-area .efficiency-box {
+    max-width: 100%;
+  }
+
+  .pending-inline-wrap {
+    width: 100%;
+    min-width: 0;
     padding-left: 0;
     padding-top: 12px;
     border-left: none;
