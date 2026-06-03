@@ -32,6 +32,43 @@ leadSchema.index({ phone: 1 });
 
 const Lead = mongoose.model("Lead", leadSchema);
 
+/* ================= TASKS ================= */
+
+const taskSchema = new mongoose.Schema({
+  clientName: String,
+  phone: String,
+  email: String,
+  product: String,
+
+  assignedTo: String,
+  assignedBy: String,
+
+  company: String,
+  status: {
+    type: String,
+    default: "Assigned"
+  },
+  nextFollowUp: String,
+  notes: String,
+
+  priority: {
+    type: String,
+    default: "Normal"
+  },
+
+  assignedDate: String,
+  lastUpdated: String,
+
+  linkedLeadId: String
+});
+
+taskSchema.index({ assignedTo: 1 });
+taskSchema.index({ assignedBy: 1 });
+taskSchema.index({ status: 1 });
+taskSchema.index({ nextFollowUp: 1 });
+
+const Task = mongoose.model("Task", taskSchema);
+
 /* ================= USERS ================= */
 const userSchema = new mongoose.Schema({
   username: String,
@@ -187,6 +224,183 @@ app.get("/all-users", async (req, res) => {
   res.json(users);
 });
 
+/* ================= ASSIGNED TASKS ================= */
+
+// Admin assign task
+app.post("/assign-task", async (req, res) => {
+  try {
+    const { username, role } = req.headers;
+
+    if (role !== "admin") {
+      return res.json({
+        success: false,
+        message: "Only admin can assign tasks"
+      });
+    }
+
+    const {
+      clientName,
+      phone,
+      email,
+      product,
+      assignedTo,
+      priority,
+      nextFollowUp,
+      notes
+    } = req.body;
+
+    if (!clientName || !phone || !product || !assignedTo) {
+      return res.json({
+        success: false,
+        message: "Client name, phone, product and assigned employee are required"
+      });
+    }
+
+    const task = await Task.create({
+      clientName: clientName.trim(),
+      phone: phone.startsWith("+91") ? phone : "+91" + phone,
+      email: email || "",
+      product,
+      assignedTo,
+      assignedBy: username,
+      priority: priority || "Normal",
+      nextFollowUp: nextFollowUp || "",
+      notes: notes || "",
+      status: "Assigned",
+      assignedDate: new Date().toISOString().split("T")[0],
+      lastUpdated: ""
+    });
+
+    res.json({ success: true, data: task });
+
+  } catch (err) {
+    console.error("ASSIGN TASK ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+// Get assigned tasks
+app.get("/assigned-tasks", async (req, res) => {
+  try {
+    const { username, role } = req.headers;
+
+    let tasks;
+
+    if (role === "admin") {
+      tasks = await Task.find();
+    } else {
+      tasks = await Task.find({ assignedTo: username });
+    }
+
+    res.json(tasks);
+
+  } catch (err) {
+    console.error("GET TASKS ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+// Employee/Admin update task
+app.put("/update-task/:id", async (req, res) => {
+  try {
+    const { username, role } = req.headers;
+
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.json({
+        success: false,
+        message: "Task not found"
+      });
+    }
+
+    if (role !== "admin" && task.assignedTo !== username) {
+      return res.json({
+        success: false,
+        message: "You can update only your assigned task"
+      });
+    }
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const updateData = {
+      company: req.body.company || "",
+      status: req.body.status || "Assigned",
+      nextFollowUp: req.body.nextFollowUp || "",
+      notes: req.body.notes || "",
+      lastUpdated: today
+    };
+
+    await Task.findByIdAndUpdate(req.params.id, updateData);
+
+    // Auto create/update lead in main dashboard
+    if (!task.linkedLeadId) {
+      const newLead = await Lead.create({
+        customerName: task.clientName,
+        clientName: task.clientName,
+        phone: task.phone,
+        email: task.email,
+        company: req.body.company || "",
+        product: task.product,
+        status: req.body.status || "In Progress",
+        nextFollowUp: req.body.nextFollowUp || "",
+        lastFollowUp: today,
+        notes: req.body.notes || "",
+        createdBy: task.assignedTo
+      });
+
+      await Task.findByIdAndUpdate(req.params.id, {
+        linkedLeadId: newLead._id
+      });
+
+    } else {
+      await Lead.findByIdAndUpdate(task.linkedLeadId, {
+        customerName: task.clientName,
+        clientName: task.clientName,
+        phone: task.phone,
+        email: task.email,
+        company: req.body.company || "",
+        product: task.product,
+        status: req.body.status || "In Progress",
+        nextFollowUp: req.body.nextFollowUp || "",
+        lastFollowUp: today,
+        notes: req.body.notes || "",
+        createdBy: task.assignedTo
+      });
+    }
+
+    res.json({ success: true });
+
+  } catch (err) {
+    console.error("UPDATE TASK ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+// Admin delete task
+app.delete("/delete-task/:id", async (req, res) => {
+  try {
+    const { role } = req.headers;
+
+    if (role !== "admin") {
+      return res.json({
+        success: false,
+        message: "Only admin can delete tasks"
+      });
+    }
+
+    await Task.findByIdAndDelete(req.params.id);
+
+    res.json({ success: true });
+
+  } catch (err) {
+    console.error("DELETE TASK ERROR:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 app.put("/reset-password", async (req, res) => {
   const { username } = req.headers;

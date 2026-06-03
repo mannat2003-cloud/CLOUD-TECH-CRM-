@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Tech Assigned Tasks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="content">
+
+  <div class="dashboard-header">
+    <div>
+      <h1 class="premium-title">Assigned Tasks</h1>
+      <p class="tagline">Assign, update and track employee tasks</p>
+    </div>
+
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button onclick="window.location.href='index.html'">Back to Dashboard</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="header-divider"></div>
+
+  <div class="top-cards-new task-cards">
+    <div class="stat-card light-blue">
+      <div class="icon blue"><i data-lucide="clipboard-list"></i></div>
+      <div>
+        <p>Total Tasks</p>
+        <h2 id="taskTotal">0</h2>
+        <small>All assigned tasks</small>
+      </div>
+    </div>
+
+    <div class="stat-card light-yellow">
+      <div class="icon yellow"><i data-lucide="clock"></i></div>
+      <div>
+        <p>Pending</p>
+        <h2 id="taskPending">0</h2>
+        <small>Work not completed</small>
+      </div>
+    </div>
+
+    <div class="stat-card light-green">
+      <div class="icon green"><i data-lucide="check-circle"></i></div>
+      <div>
+        <p>Closed Won</p>
+        <h2 id="taskWon">0</h2>
+        <small>Successfully closed</small>
+      </div>
+    </div>
+
+    <div class="stat-card light-red">
+      <div class="icon red"><i data-lucide="alert-circle"></i></div>
+      <div>
+        <p>Overdue</p>
+        <h2 id="taskOverdue">0</h2>
+        <small>Follow-up date passed</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Assign Task Form -->
+  <div id="assignTaskSection" class="card add-lead-card" style="display:none;">
+    <h2 class="section-title-icon">
+      <span class="section-icon add-lead-icon">
+        <i data-lucide="user-plus"></i>
+      </span>
+      Assign New Task
+    </h2>
+
+    <div class="form-grid add-lead">
+
+      <div class="filter-group">
+        <label>Client Name</label>
+        <input id="taskClientName" placeholder="Client Name">
+      </div>
+
+      <div class="filter-group">
+        <label>Phone Number</label>
+        <div class="phone-input-wrap">
+          <span>+91</span>
+          <input id="taskPhone" placeholder="10 digit number" maxlength="10">
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label>Email ID</label>
+        <input id="taskEmail" type="email" placeholder="example@company.com">
+      </div>
+
+      <div class="filter-group">
+        <label>Product</label>
+        <select id="taskProduct">
+          <option value="">Select Product</option>
+          <option value="Fog Cannon">Fog Cannon</option>
+          <option value="Anti Smog Gun">Anti Smog Gun</option>
+          <option value="Smog Tower">Smog Tower</option>
+          <option value="Road Sweeper">Road Sweeper</option>
+          <option value="Waste Water Evaporator">Waste Water Evaporator</option>
+          <option value="Dust Control Agent">Dust Control Agent</option>
+          <option value="Odor Control System">Odor Control System</option>
+          <option value="Humidification System">Humidification System</option>
+          <option value="Misting System">Misting System</option>
+          <option value="Mosquito Control System">Mosquito Control System</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Assign To</label>
+        <select id="taskAssignTo">
+          <option value="">Select Employee</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Priority</label>
+        <select id="taskPriority">
+          <option value="Normal">Normal</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Due / Follow-up Date</label>
+        <input id="taskNextFollowUp" type="date">
+      </div>
+
+      <div class="filter-group">
+        <label>Admin Remarks</label>
+        <input id="taskNotes" placeholder="Remarks">
+      </div>
+
+      <div class="filter-group">
+        <label>&nbsp;</label>
+        <button onclick="assignTask()">Assign</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Update Task Section -->
+  <div id="updateTaskSection" class="card add-lead-card" style="display:none;">
+    <h2>Update Assigned Task</h2>
+
+    <input type="hidden" id="editTaskId">
+
+    <div class="form-grid add-lead">
+      <div class="filter-group">
+        <label>Company / Location</label>
+        <input id="updateCompany" placeholder="Company / Location">
+      </div>
+
+      <div class="filter-group">
+        <label>Status</label>
+        <select id="updateStatus">
+          <option value="Assigned">Assigned</option>
+          <option value="Contacted">Contacted</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Interested">Interested</option>
+          <option value="Closed Won">Closed Won</option>
+          <option value="Closed Lost">Closed Lost</option>
+          <option value="Not Responding">Not Responding</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Next Follow-up</label>
+        <input id="updateNextFollowUp" type="date">
+      </div>
+
+      <div class="filter-group">
+        <label>Remarks</label>
+        <input id="updateNotes" placeholder="Update remarks">
+      </div>
+
+      <div class="filter-group">
+        <label>&nbsp;</label>
+        <button onclick="saveTaskUpdate()">Save Update</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Search</label>
+      <input id="taskSearch" placeholder="Search client, phone, product..." onkeyup="renderTasks()">
+    </div>
+
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="taskStatusFilter" onchange="renderTasks()">
+        <option value="All">All</option>
+        <option value="Assigned">Assigned</option>
+        <option value="Contacted">Contacted</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Interested">Interested</option>
+        <option value="Closed Won">Closed Won</option>
+        <option value="Closed Lost">Closed Lost</option>
+        <option value="Not Responding">Not Responding</option>
+      </select>
+    </div>
+
+    <div class="filter-group" id="taskUserFilterGroup" style="display:none;">
+      <label>Employee</label>
+      <select id="taskUserFilter" onchange="renderTasks()">
+        <option value="All">All Employees</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Tasks Table -->
+  <div class="card">
+    <h2>Assigned Task List</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Product</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+            <th>Next</th>
+            <th>Company</th>
+            <th>Notes</th>
+            <th>Last Updated</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="tasksTableBody"></tbody>
+
+        <tr id="taskEmpty" style="display:none;">
+          <td colspan="11" class="all-empty-state">
+            <div class="all-empty-content">
+              <div class="all-empty-icon">
+                <i data-lucide="inbox"></i>
+              </div>
+              <div>
+                <div class="all-empty-title">No assigned tasks found!</div>
+                <div class="all-empty-subtitle">Assigned tasks will show here.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast">Saved successfully</div>
+
+<script src="tasks.js"></script>
+
+</body>
+</html>

@@ -1309,3 +1309,27 @@ tr:hover {
     grid-template-columns: repeat(5, 1fr) 390px;
   }
 }
+/* ==================================================
+   ASSIGNED TASKS PAGE
+================================================== */
+
+.task-cards {
+  grid-template-columns: repeat(4, minmax(160px, 1fr)) !important;
+}
+
+#assignTaskSection,
+#updateTaskSection {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .task-cards {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .task-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
