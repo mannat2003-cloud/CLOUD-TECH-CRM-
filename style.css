@@ -1712,3 +1712,129 @@ tr:hover {
   height: 42px !important;
   flex: 0 0 42px !important;
 }
+/* ==================================================
+   DASHBOARD TOP CARDS - SAME AS ASSIGNED TASK PAGE
+================================================== */
+
+.top-cards-new {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(220px, 1fr)) !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  margin-bottom: 28px !important;
+  overflow: visible !important;
+}
+
+.top-cards-new .stat-card {
+  min-height: 170px !important;
+  padding: 24px 26px !important;
+  border-radius: 26px !important;
+
+  display: grid !important;
+  grid-template-columns: 58px 1fr !important;
+  align-items: center !important;
+  gap: 22px !important;
+
+  overflow: hidden !important;
+}
+
+.top-cards-new .stat-card .icon {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px !important;
+  border-radius: 18px !important;
+}
+
+.top-cards-new .stat-card .icon svg {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.top-cards-new .stat-card > div:last-child {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.top-cards-new .stat-card p {
+  margin: 0 0 8px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+.top-cards-new .stat-card h2 {
+  margin: 0 !important;
+  font-size: 36px !important;
+  line-height: 1.05 !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+.top-cards-new .stat-card small {
+  margin-top: 8px !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+  white-space: normal !important;
+}
+
+/* Follow-up overview ko next row me full width karo */
+.top-cards-new .overview-card {
+  grid-column: 1 / -1 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 210px !important;
+  padding: 24px 28px !important;
+  border-radius: 26px !important;
+}
+
+.top-cards-new .overview-card h2 {
+  font-size: 22px !important;
+  margin-bottom: 18px !important;
+}
+
+.overview-content {
+  gap: 26px !important;
+}
+
+.overview-chart-box {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+}
+
+#overviewLegend {
+  font-size: 14px !important;
+}
+
+/* Responsive layout */
+@media (max-width: 1450px) {
+  .top-cards-new {
+    grid-template-columns: repeat(3, minmax(220px, 1fr)) !important;
+  }
+
+  .top-cards-new .overview-card {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .top-cards-new {
+    grid-template-columns: repeat(2, minmax(220px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-cards-new {
+    grid-template-columns: 1fr !important;
+  }
+
+  .top-cards-new .stat-card {
+    min-height: 150px !important;
+    padding: 20px !important;
+  }
+}
