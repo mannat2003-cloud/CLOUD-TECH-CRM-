@@ -1765,8 +1765,8 @@ tr:hover {
 /* Notes column fixed short width */
 .assigned-task-table-wrapper th:nth-child(9),
 .assigned-task-table-wrapper td:nth-child(9) {
-  width: 200px !important;
-  max-width: 200px !important;
+  width: 160px !important;
+  max-width: 160px !important;
 }
 
 /* Notes short view with ... */
