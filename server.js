@@ -268,7 +268,8 @@ app.post("/assign-task", async (req, res) => {
       notes: notes || "",
       status: "Assigned",
       assignedDate: new Date().toISOString().split("T")[0],
-      lastUpdated: ""
+      lastUpdated: "",
+      linkedLeadId: ""
     });
 
     res.json({ success: true, data: task });
@@ -470,6 +471,7 @@ app.put("/update-task/:id", async (req, res) => {
       });
 
       await Task.findByIdAndUpdate(req.params.id, {
+         ...updateData,
         linkedLeadId: newLead._id
       });
 
