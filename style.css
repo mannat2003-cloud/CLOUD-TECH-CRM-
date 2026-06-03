@@ -1672,3 +1672,52 @@ tr:hover {
   font-size: 13px !important;
   font-weight: 600 !important;
 }
+/* ==================================================
+   EMAIL HOVER FULL VIEW - SAME AS NOTES
+================================================== */
+
+#allLeadsSection td:nth-child(3) {
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+#allLeadsSection td:nth-child(3) {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Hover/click feel: full email show */
+#allLeadsSection td:nth-child(3):hover {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+
+  background: white !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+
+  position: relative !important;
+  z-index: 9999 !important;
+  max-width: 320px !important;
+  min-width: 220px !important;
+
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
+}
+#allLeadsSection td:nth-child(3):active {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+  background: white !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  max-width: 320px !important;
+  min-width: 220px !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
+}
