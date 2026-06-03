@@ -1333,3 +1333,42 @@ tr:hover {
     grid-template-columns: 1fr !important;
   }
 }
+/* ==================================================
+   PENDING TASK SUMMARY
+================================================== */
+
+.pending-summary-card {
+  padding: 18px 22px;
+  margin: 18px 0 22px;
+}
+
+.pending-summary-card h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.pending-task-summary-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pending-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 14px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+}
+
+.pending-chip b {
+  color: #dc2626;
+  font-size: 16px;
+}

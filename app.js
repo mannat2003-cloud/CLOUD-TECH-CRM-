@@ -918,6 +918,52 @@ async function loadAll() {
   }, 300);
 }
 
+async function loadDashboardPendingTaskSummary() {
+  const box = document.getElementById("dashboardPendingTaskSummaryBox");
+
+  if (!box) return;
+
+  const res = await fetch("/task-pending-summary", {
+    headers: {
+      username: sessionStorage.getItem("username"),
+      role: sessionStorage.getItem("role")
+    }
+  });
+
+  const data = await res.json();
+
+  if (!data.success) {
+    box.innerHTML = `<div class="pending-chip">Unable to load pending tasks</div>`;
+    return;
+  }
+
+  if (data.type === "employee") {
+    box.innerHTML = `
+      <div class="pending-chip">
+        👤 ${data.username} Pending Tasks = <b>${data.pendingCount}</b>
+      </div>
+    `;
+    return;
+  }
+
+  const employees = Object.keys(data.summary);
+
+  if (employees.length === 0) {
+    box.innerHTML = `
+      <div class="pending-chip">
+        ✅ No pending tasks
+      </div>
+    `;
+    return;
+  }
+
+  box.innerHTML = employees.map(emp => `
+    <div class="pending-chip">
+      👤 ${emp} Pending Tasks = <b>${data.summary[emp]}</b>
+    </div>
+  `).join("");
+}
+
 function populateChartUsers() {
   const users = [...new Set(allLeads.map(l => l.createdBy || "Unknown"))];
 
@@ -1144,4 +1190,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   loadAll();
+  loadDashboardPendingTaskSummary();
 });
