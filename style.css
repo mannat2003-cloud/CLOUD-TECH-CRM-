@@ -1615,28 +1615,6 @@ body {
   overflow: hidden !important;
 }
 
-/* Tables should never go outside cards */
-.table-wrapper {
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-  width: 100% !important;
-}
-
-table {
-  min-width: 1150px !important;
-}
-
-th,
-td {
-  font-size: clamp(11px, 0.85vw, 13px) !important;
-  padding: clamp(9px, 0.8vw, 13px) clamp(10px, 0.9vw, 14px) !important;
-  white-space: nowrap !important;
-}
-
-.notes-cell {
-  max-width: 220px !important;
-  white-space: normal !important;
-}
 
 /* For small laptops like 1366px */
 @media (max-width: 1400px) {
@@ -1689,4 +1667,128 @@ td {
   .add-lead-card {
     min-width: 1100px !important;
   }
+}
+/* ==================================================
+   RESTORE ALL LEADS TABLE STRUCTURE
+================================================== */
+
+#allLeadsSection {
+  overflow: hidden !important;
+}
+
+#allLeadsSection .table-wrapper {
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+#allLeadsSection table {
+  width: 100% !important;
+  min-width: 0 !important;
+  table-layout: fixed !important;
+}
+
+#allLeadsSection th,
+#allLeadsSection td {
+  font-size: 13px !important;
+  padding: 13px 14px !important;
+  vertical-align: middle !important;
+  white-space: normal !important;
+}
+
+/* Column widths restore */
+#allLeadsSection th:nth-child(1),
+#allLeadsSection td:nth-child(1) {
+  width: 11% !important;
+}
+
+#allLeadsSection th:nth-child(2),
+#allLeadsSection td:nth-child(2) {
+  width: 10% !important;
+  white-space: nowrap !important;
+}
+
+#allLeadsSection th:nth-child(3),
+#allLeadsSection td:nth-child(3) {
+  width: 13% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#allLeadsSection th:nth-child(4),
+#allLeadsSection td:nth-child(4) {
+  width: 12% !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+#allLeadsSection th:nth-child(5),
+#allLeadsSection td:nth-child(5) {
+  width: 10% !important;
+  white-space: normal !important;
+}
+
+#allLeadsSection th:nth-child(6),
+#allLeadsSection td:nth-child(6),
+#allLeadsSection th:nth-child(7),
+#allLeadsSection td:nth-child(7) {
+  width: 8% !important;
+  white-space: nowrap !important;
+}
+
+#allLeadsSection th:nth-child(8),
+#allLeadsSection td:nth-child(8) {
+  width: 13% !important;
+}
+
+#allLeadsSection th:nth-child(9),
+#allLeadsSection td:nth-child(9) {
+  width: 9% !important;
+  white-space: nowrap !important;
+}
+
+#allLeadsSection th:nth-child(10),
+#allLeadsSection td:nth-child(10) {
+  width: 9% !important;
+  white-space: nowrap !important;
+}
+
+#allLeadsSection th:nth-child(11),
+#allLeadsSection td:nth-child(11) {
+  width: 7% !important;
+  white-space: nowrap !important;
+}
+
+/* Notes original behavior restore */
+#allLeadsSection .notes-cell {
+  max-width: 180px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  cursor: pointer !important;
+}
+
+#allLeadsSection .notes-cell:hover {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+  background: white !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  max-width: 320px !important;
+  min-width: 220px !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
+}
+
+/* Actions restore */
+#allLeadsSection td:nth-child(11),
+#allLeadsSection .actions-cell {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
 }
