@@ -1672,3 +1672,43 @@ tr:hover {
   font-size: 13px !important;
   font-weight: 600 !important;
 }
+/* ==================================================
+   FIX DASHBOARD TOP CARD TEXT OVERFLOW
+================================================== */
+
+.stat-card {
+  overflow: hidden !important;
+  padding: 18px 16px !important;
+  gap: 12px !important;
+}
+
+.stat-card > div:last-child {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.stat-card p {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-height: 1.25 !important;
+  font-size: 13px !important;
+  max-width: 100% !important;
+}
+
+.stat-card h2 {
+  font-size: 28px !important;
+  line-height: 1.1 !important;
+}
+
+.stat-card small {
+  white-space: normal !important;
+  line-height: 1.25 !important;
+  max-width: 100% !important;
+}
+
+.stat-card .icon {
+  width: 42px !important;
+  height: 42px !important;
+  flex: 0 0 42px !important;
+}
