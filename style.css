@@ -1721,3 +1721,63 @@ tr:hover {
   min-width: 220px !important;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
 }
+/* ==================================================
+   ASSIGNED TASK EMAIL FULL VIEW - SAME AS NOTES
+================================================== */
+
+.assigned-task-table-wrapper td:nth-child(3) {
+  max-width: 180px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+
+.assigned-task-table-wrapper td:nth-child(3):hover,
+.assigned-task-table-wrapper td:nth-child(3):active {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+
+  background: white !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+
+  position: relative !important;
+  z-index: 9999 !important;
+  max-width: 320px !important;
+  min-width: 220px !important;
+
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
+}
+/* Assigned Task Notes full view */
+.assigned-task-table-wrapper .notes-cell {
+  max-width: 220px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  cursor: pointer !important;
+}
+
+.assigned-task-table-wrapper .notes-cell:hover,
+.assigned-task-table-wrapper .notes-cell:active {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+
+  background: white !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+
+  position: relative !important;
+  z-index: 9999 !important;
+  max-width: 320px !important;
+  min-width: 220px !important;
+
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
+}
