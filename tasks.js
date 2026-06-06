@@ -63,8 +63,8 @@ async function assignTask() {
     notes: document.getElementById("taskNotes").value.trim()
   };
 
-  if (!data.clientName || !data.phone || !data.product || !data.assignedTo) {
-    alert("Client Name, Phone, Product and Assign To are required");
+  if (!data.clientName || !data.phone || !data.assignedTo) {
+    alert("Client Name, Phone and Assign To are required");
     return;
   }
 
