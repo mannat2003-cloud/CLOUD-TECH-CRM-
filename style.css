@@ -1800,3 +1800,30 @@ tr:hover {
 
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.15) !important;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.pagination button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #0d6efd;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pagination button:disabled {
+  background: #c5c5c5;
+  cursor: not-allowed;
+}
+
+#taskPageInfo {
+  font-weight: 600;
+  color: #333;
+}

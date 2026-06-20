@@ -9,6 +9,9 @@ if (!sessionStorage.getItem("loggedIn")) {
 
 let allTasks = [];
 
+let currentTaskPage = 1;
+const tasksPerPage = 10;
+
 const role = sessionStorage.getItem("role") || "employee";
 const username = sessionStorage.getItem("username") || "";
 
@@ -175,6 +178,18 @@ function renderTasks() {
     data = data.filter(t => t.assignedTo === userFilter);
   }
 
+  data.reverse();
+
+  const totalPages = Math.ceil(data.length / tasksPerPage);
+
+  if (currentTaskPage > totalPages) {
+    currentTaskPage = totalPages || 1;
+  }
+
+  const start = (currentTaskPage - 1) * tasksPerPage;
+  const end = start + tasksPerPage;
+  const paginatedData = data.slice(start, end);
+
   tbody.innerHTML = "";
 
   if (data.length === 0) {
@@ -183,7 +198,7 @@ function renderTasks() {
     empty.style.display = "none";
   }
 
-  data.reverse().forEach(t => {
+  paginatedData.forEach(t => {
     tbody.innerHTML += `
       <tr>
         <td>${t.clientName || ""}</td>
@@ -215,8 +230,42 @@ function renderTasks() {
     `;
   });
 
+  updateTaskPagination(totalPages, data.length);
+
   if (window.lucide) {
     lucide.createIcons();
+  }
+}
+
+function updateTaskPagination(totalPages, totalRecords) {
+  const pageInfo = document.getElementById("taskPageInfo");
+  const prevBtn = document.getElementById("prevTaskPage");
+  const nextBtn = document.getElementById("nextTaskPage");
+
+  if (!pageInfo || !prevBtn || !nextBtn) return;
+
+  if (totalRecords === 0) {
+    pageInfo.innerText = "Page 0 of 0";
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  pageInfo.innerText = `Page ${currentTaskPage} of ${totalPages}`;
+
+  prevBtn.disabled = currentTaskPage === 1;
+  nextBtn.disabled = currentTaskPage === totalPages;
+}
+
+function nextTaskPage() {
+  currentTaskPage++;
+  renderTasks();
+}
+
+function prevTaskPage() {
+  if (currentTaskPage > 1) {
+    currentTaskPage--;
+    renderTasks();
   }
 }
 
@@ -367,4 +416,8 @@ function logout() {
   sessionStorage.clear();
   localStorage.clear();
   window.location.replace("/login.html");
+}
+function resetTaskPagination() {
+  currentTaskPage = 1;
+  renderTasks();
 }

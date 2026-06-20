@@ -190,12 +190,12 @@
   <div class="filter-bar">
     <div class="filter-group">
       <label>Search</label>
-      <input id="taskSearch" placeholder="Search client, phone, product..." onkeyup="renderTasks()">
+      <input id="taskSearch" placeholder="Search client, phone, product..." onkeyup="resetTaskPagination()">
     </div>
 
     <div class="filter-group">
       <label>Status</label>
-      <select id="taskStatusFilter" onchange="renderTasks()">
+      <select id="taskStatusFilter" onchange="resetTaskPagination()">
         <option value="All">All</option>
         <option value="Assigned">Assigned</option>
         <option value="Contacted">Contacted</option>
@@ -209,7 +209,7 @@
 
     <div class="filter-group" id="taskUserFilterGroup" style="display:none;">
       <label>Employee</label>
-      <select id="taskUserFilter" onchange="renderTasks()">
+      <select id="taskUserFilter" onchange="resetTaskPagination()">
         <option value="All">All Employees</option>
       </select>
     </div>
@@ -261,6 +261,14 @@
       </table>
     </div>
   </div>
+
+  <div id="leadsContainer"></div>
+
+<div class="pagination">
+  <button onclick="prevPage()">Previous</button>
+  <span id="pageInfo"></span>
+  <button onclick="nextPage()">Next</button>
+</div>
 
 </div>
 
