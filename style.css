@@ -1827,3 +1827,11 @@ tr:hover {
   font-weight: 600;
   color: #333;
 }
+#taskPageInfo {
+  display: inline-block;
+  color: #111827;
+  font-weight: 700;
+  font-size: 15px;
+  min-width: 150px;
+  text-align: center;
+}

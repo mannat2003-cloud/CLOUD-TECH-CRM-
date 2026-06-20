@@ -117,10 +117,12 @@ async function loadTasks() {
     }
   });
 
-  allTasks = await res.json();
+allTasks = await res.json();
 
-  updateTaskCards();
-  renderTasks();
+currentTaskPage = 1;
+
+updateTaskCards();
+renderTasks();
 }
 
 function updateTaskCards() {
@@ -251,15 +253,46 @@ function updateTaskPagination(totalPages, totalRecords) {
     return;
   }
 
-  pageInfo.innerText = `Page ${currentTaskPage} of ${totalPages}`;
+  pageInfo.innerText = `Page ${currentTaskPage} of ${totalPages} | Total ${totalRecords}`;
 
-  prevBtn.disabled = currentTaskPage === 1;
-  nextBtn.disabled = currentTaskPage === totalPages;
+  prevBtn.disabled = currentTaskPage <= 1;
+  nextBtn.disabled = currentTaskPage >= totalPages;
 }
 
 function nextTaskPage() {
-  currentTaskPage++;
-  renderTasks();
+  const search = document.getElementById("taskSearch").value.toLowerCase().trim();
+  const statusFilter = document.getElementById("taskStatusFilter").value;
+  const userFilter = document.getElementById("taskUserFilter")
+    ? document.getElementById("taskUserFilter").value
+    : "All";
+
+  let data = [...allTasks];
+
+  if (search) {
+    data = data.filter(t =>
+      (t.clientName || "").toLowerCase().includes(search) ||
+      (t.phone || "").toLowerCase().includes(search) ||
+      (t.email || "").toLowerCase().includes(search) ||
+      (t.product || "").toLowerCase().includes(search) ||
+      (t.company || "").toLowerCase().includes(search) ||
+      (t.notes || "").toLowerCase().includes(search)
+    );
+  }
+
+  if (statusFilter !== "All") {
+    data = data.filter(t => t.status === statusFilter);
+  }
+
+  if (role === "admin" && userFilter !== "All") {
+    data = data.filter(t => t.assignedTo === userFilter);
+  }
+
+  const totalPages = Math.ceil(data.length / tasksPerPage);
+
+  if (currentTaskPage < totalPages) {
+    currentTaskPage++;
+    renderTasks();
+  }
 }
 
 function prevTaskPage() {
